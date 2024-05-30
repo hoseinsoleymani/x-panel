@@ -14,7 +14,7 @@ import Cost from './components/Cost';
 
 export default function Create() {
   return (
-    <section className="m-6 min-h-screen grow">
+    <section className="m-6  grow">
       <div className="text-3xl">
         <h1 className="font-bold">ساخت اکانت جدید</h1>
       </div>

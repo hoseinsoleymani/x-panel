@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`bg-[#060B26] text-slate-200 ${vazirfont.className}`}>
         <Header />
-        <main className="justify-between p-5 md:flex md:flex-row xl:px-20 ">
+        <main className="justify-between min-h-screen p-5 md:flex md:flex-row xl:px-20 ">
           <Sidebar />
           {children}
         </main>
