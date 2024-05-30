@@ -1,4 +1,3 @@
-'use clinet'
 import Link from "next/link";
 import {  IoPersonAdd , IoSettings  } from "react-icons/io5";
 import { FaMoneyBill , FaHome, FaUsers   } from "react-icons/fa";

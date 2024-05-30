@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@nextui-org/date-picker": "^2.1.0",
+    "@nextui-org/react": "^2.4.0",
     "@nextui-org/system": "^2.2.0",
     "@nextui-org/theme": "^2.2.4",
     "framer-motion": "^11.2.9",

@@ -50,6 +50,16 @@ export default function Header() {
 
 <div className="flex justify-between items-center w-full h-20 px-4 text-white bg-[#060B26] ">
 
+    <div>
+          <h1 className="text-5xl font-signature ml-2">
+          <Link
+            className="link-underline link-underline-black text-xl"
+            href="/"
+          >
+            VPN LOGO
+          </Link>
+        </h1> 
+      </div>
 
       <div className="info flex items-center">
           <button
@@ -76,16 +86,7 @@ export default function Header() {
           </div>
         </div>
 
-        <div>
-        <h1 className="text-5xl font-signature ml-2">
-          <Link
-            className="link-underline link-underline-black text-xl"
-            href="/"
-          >
-            VPN LOGO
-          </Link>
-        </h1>
-      </div>
+    
       <div
         onClick={() => setNav(!nav)}
         className="cursor-pointer pr-4 z-10 text-gray-500 md:hidden"

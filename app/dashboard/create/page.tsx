@@ -7,22 +7,25 @@ import { DatePicker } from "@nextui-org/date-picker";
 
 export default function Create() {
   return (
-    <div className="main flex flex-row justify-end w-5/6 me-5">
-      <div className="flex flex-col  ">
-        <div className="title text-end text-2xl rtl">
-          <h1>:ساخت اکانت جدید</h1>
+    <section className="grow m-6">
+        <div className="title text-2xl rtl">
+          <h1>ساخت اکانت جدید</h1>
         </div>
-        <div className="inputs flex flex-row  ">
+
+    <div className="flex flex-row mt-6">
+      <div className="flex flex-col w-full ">
+
+        <div className="flex flex-row justify-between">
           <div className="time  me-5 ">
             <label
               htmlFor="bedrooms-input"
-              className="block mb-2 text-sm font-medium text-white text-end "
+              className="block mb-2 text-sm font-medium text-white"
             >
               مدت زمان اکانت
             </label>
-            <DatePicker label="Birth date" className="max-w-[284px] " />
+            <DatePicker label="Birth date" className="max-w-[284px]" />
           </div>
-          <div className="hjm text-end mt-2">
+          <div className="mt-2">
             <NumberInput />
           </div>
           <div className="type">
@@ -32,5 +35,6 @@ export default function Create() {
         </div>
       </div>
     </div>
+    </section>
   );
 }

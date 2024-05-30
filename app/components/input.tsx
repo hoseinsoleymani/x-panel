@@ -32,9 +32,6 @@ const NumberInput = () => {
     </form>
 
 
-
-
-
   );
 };
 

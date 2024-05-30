@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import localFont from 'next/font/local'
-import Header from "./layout/header";
-import Sidebar from "./layout/sidebar";
+import Header from "./components/layout/header";
+import Sidebar from "./components/layout/sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,8 +27,8 @@ export default function RootLayout({
       <body className={`bg-[#060B26] text-slate-200 ${vazirfont.className}`}>
       <Header/>
         <main className="p-5 justify-between md:flex md:flex-row xl:px-20 ">
-          {children}
           <Sidebar/>
+          {children}
         </main>
       </body>
     </html>
