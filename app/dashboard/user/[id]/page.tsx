@@ -1,11 +1,19 @@
+"use client"
 import { IoQrCodeOutline } from "react-icons/io5";
 import React from "react";
+import { Button } from '@nextui-org/react';
+
 import {Switch} from "@nextui-org/switch";
-import Button  from "@/app/dashboard/user/components/Button";
+import Buttonc  from "@/app/dashboard/user/components/Buttonc";
 import { FaCheck } from "react-icons/fa";
 import Span from "../components/Span";
 import Infobox from "../components/Infobox";
 import { BiReset } from "react-icons/bi";
+import NumberInput from "../../create/components/Input";
+import UserLimitInput from "../../create/components/UserLimitInput";
+import { DatePicker } from '@nextui-org/date-picker';
+import { Label } from "@/app/components/shared";
+import Cost from "../components/Cost";
 
 
 export default function Page({ params }: { params: { id: string } }) {
@@ -21,7 +29,7 @@ export default function Page({ params }: { params: { id: string } }) {
           </div>
         <div className="qr">
           <span>برای دریافت qr کلیک کنید</span>
-          <Button><IoQrCodeOutline /></Button>
+          <Buttonc><IoQrCodeOutline /></Buttonc>
         </div>
     </div>  
     <hr/>
@@ -39,23 +47,24 @@ export default function Page({ params }: { params: { id: string } }) {
       <Infobox title="تعداد کاربر" content="4" />
       <div className="used flex items-center">
         <p>تغییر لینک اکانت و ریست uuid</p>
-        <Button><BiReset /></Button>
+        <Buttonc><BiReset /></Buttonc>
       </div>
     </div>
     <hr/>
+    <h1 className="p-5 text-xl">تمدید</h1>
+      <div className="info py-17 grid grid-cols-3 gap-7 ">
+          <NumberInput/>
+          <UserLimitInput/>
+          <div className="me-5">
+                <Label>مدت زمان اکانت</Label>
+                <DatePicker label="Birth date" className="max-w-[284px]" />
+            </div>
+       </div>
 
-
-    <div className="tamdid py-10">
-    <h1 className="text-xl">تمدید</h1>
-    
+        <div className="flex flex-row p-10 justify-center">
+          <Cost/>
+          <Button color="primary" className="max-w-36 mx-5">تمدید اکانت</Button>
+        </div>
     </div>
-
-
-
-
-    </div>
-
-
-
     );
   }
