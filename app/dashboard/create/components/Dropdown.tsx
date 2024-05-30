@@ -6,6 +6,7 @@ import {
   DropdownTrigger,
 } from '@nextui-org/react';
 import React, { useMemo, useState } from 'react';
+import { IoIosArrowDropdown } from "react-icons/io";
 
 import { Label } from '../../../components/shared';
 
@@ -22,7 +23,7 @@ const Dropdown = () => {
       <Label>نوع سرور خود را انتخاب کنید</Label>
       <NextUiDropdown>
         <DropdownTrigger>
-          <Button className="capitalize">{selectedValue}</Button>
+          <Button className="capitalize"> <IoIosArrowDropdown className='text-lg' /> {selectedValue}</Button>
         </DropdownTrigger>
         <DropdownMenu
           aria-label="Single selection example"
@@ -34,8 +35,8 @@ const Dropdown = () => {
             setSelectedKeys(val);
           }}
         >
-          <DropdownItem key="vip">VIP</DropdownItem>
-          <DropdownItem key="one_server">تک سرور VIP</DropdownItem>
+          <DropdownItem className='text-black' key="subscription_vip">VIP</DropdownItem>
+          <DropdownItem className='text-black' key="single_server">تک سرور VIP</DropdownItem>
         </DropdownMenu>
       </NextUiDropdown>
     </div>

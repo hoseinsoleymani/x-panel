@@ -31,8 +31,8 @@ export default function Create() {
 
             <UserLimitInput />
 
-            <DropdownS />
             <Dropdown />
+            <DropdownS />
 
             <AccountName />
 
