@@ -5,3 +5,7 @@
 body {
     direction: rtl;
 }
+
+input {
+    outline: none;
+}

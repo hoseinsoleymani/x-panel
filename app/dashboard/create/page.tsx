@@ -1,40 +1,50 @@
-"use client";
+'use client';
 
-import Dropdown from "@/app/components/Dropdown";
-import DropdownS from "@/app/components/DropdownS";
-import NumberInput from "@/app/components/input";
-import { DatePicker } from "@nextui-org/date-picker";
+import { DatePicker } from '@nextui-org/date-picker';
+import { Button } from '@nextui-org/react';
+
+import { Label } from '@/app/components/shared';
+import AccountName from '@/app/dashboard/create/components/AccountName';
+import Dropdown from '@/app/dashboard/create/components/Dropdown';
+import DropdownS from '@/app/dashboard/create/components/DropdownS';
+import NumberInput from '@/app/dashboard/create/components/Input';
+import UserLimitInput from '@/app/dashboard/create/components/UserLimitInput';
+
+import Cost from './components/Cost';
 
 export default function Create() {
   return (
-    <section className="grow m-6">
-        <div className="title text-2xl rtl">
-          <h1>ساخت اکانت جدید</h1>
-        </div>
+    <section className="m-6 min-h-screen grow">
+      <div className="text-3xl">
+        <h1 className="font-bold">ساخت اکانت جدید</h1>
+      </div>
 
-    <div className="flex flex-row mt-6">
-      <div className="flex flex-col w-full ">
+      <div className="mt-6 flex flex-row">
+        <div className="flex w-full flex-col">
+          <form className="grid grid-cols-3 gap-y-6">
+            <div className="me-5">
+              <Label>مدت زمان اکانت</Label>
+              <DatePicker label="Birth date" className="max-w-[284px]" />
+            </div>
 
-        <div className="flex flex-row justify-between">
-          <div className="time  me-5 ">
-            <label
-              htmlFor="bedrooms-input"
-              className="block mb-2 text-sm font-medium text-white"
-            >
-              مدت زمان اکانت
-            </label>
-            <DatePicker label="Birth date" className="max-w-[284px]" />
-          </div>
-          <div className="mt-2">
             <NumberInput />
-          </div>
-          <div className="type">
-            <DropdownS/>
-            <Dropdown/>
-          </div>
+
+            <UserLimitInput />
+
+            <DropdownS />
+            <Dropdown />
+
+            <AccountName />
+
+            <div className="mt-10 flex items-center gap-6">
+              <Cost />
+              <Button color="primary" className="max-w-36">
+                ساخت اکانت
+              </Button>
+            </div>
+          </form>
         </div>
       </div>
-    </div>
     </section>
   );
 }

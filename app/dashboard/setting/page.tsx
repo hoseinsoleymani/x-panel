@@ -1,5 +1,3 @@
-export default function Setting(){
-    return(
-        <h1>setiing</h1>
-    )
+export default function Setting() {
+  return <h1>setiing</h1>;
 }

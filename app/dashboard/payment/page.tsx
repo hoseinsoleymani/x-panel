@@ -1,3 +1,3 @@
-export default function Payment(){
-    return <h1>سلام پرداخت</h1>
+export default function Payment() {
+  return <h1>سلام پرداخت</h1>;
 }
