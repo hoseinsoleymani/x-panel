@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { FaBars, FaTimes, FaWallet } from 'react-icons/fa';
 import { IoIosSettings } from 'react-icons/io';
 import { IoNotifications } from 'react-icons/io5';
+import Wallet from '@/app/components/layout/Wallet';
 
 export default function Header() {
   const [nav, setNav] = useState(false);
@@ -64,14 +65,10 @@ export default function Header() {
             <IoIosSettings />
           </button>
         </Link>
-        <span className="me-2 hidden rounded bg-green-100 p-3.5 text-[1.3rem] font-bold text-green-800  md:block dark:bg-green-900 dark:text-green-300">
+        <span className="me-2 hidden rounded bg-green-100 p-3.5 text-[1.2rem] font-bold text-green-800  md:block dark:bg-green-900 dark:text-green-300">
           ابوالفضل حسن زاده
         </span>
-        <div className="me-2 flex items-center rounded bg-blue-100 p-3.5 text-[1rem] font-medium text-blue-800 md:text-[1.3rem] dark:bg-blue-900 dark:text-blue-300">
-          <FaWallet className="me-2 " />
-          <span className="me-2 ">تومان</span>
-          <span className="me-2 ">700.000</span>
-        </div>
+        <Wallet/>
       </div>
 
       <button
