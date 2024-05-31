@@ -2,9 +2,9 @@
 import React from "react";
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Chip} from "@nextui-org/react";
 import { MdEdit } from "react-icons/md";
-import { ImConnection } from "react-icons/im";
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
 import { useQRCode } from 'next-qrcode';
+import { IoQrCodeOutline } from "react-icons/io5";
 
 export default function Users() {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -32,7 +32,7 @@ export default function Users() {
           <TableCell>تک سرور</TableCell>
           <TableCell>50</TableCell>
           <TableCell>10.8</TableCell>
-          <TableCell><Button onPress={onOpen}  className="p-2 text-white text-2xl mx-3 bg-[#415FEF] rounded-lg  "><ImConnection   /></Button></TableCell>
+          <TableCell><Button onPress={onOpen}  className="p-2 text-white text-2xl mx-3 bg-[#415FEF] rounded-lg  "><IoQrCodeOutline   /></Button></TableCell>
           <TableCell><button className="p-2 text-2xl mx-3 bg-[#415FEF] rounded-lg "><MdEdit  /></button></TableCell>
         </TableRow>
         <TableRow key="2">
@@ -42,7 +42,7 @@ export default function Users() {
           <TableCell>سابسکریپشن</TableCell>
           <TableCell>60</TableCell>
           <TableCell>60</TableCell>
-          <TableCell><Button onPress={onOpen}  className="p-2 text-white text-2xl mx-3 bg-[#415FEF] rounded-lg  "><ImConnection   /></Button></TableCell>
+          <TableCell><Button onPress={onOpen}  className="p-2 text-white text-2xl mx-3 bg-[#415FEF] rounded-lg  "><IoQrCodeOutline   /></Button></TableCell>
           <TableCell><button className="p-2 text-2xl mx-3 bg-[#415FEF] rounded-lg "><MdEdit  /></button></TableCell>
         </TableRow>
       </TableBody>
