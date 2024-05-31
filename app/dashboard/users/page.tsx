@@ -2,19 +2,26 @@
 import React from "react";
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Chip} from "@nextui-org/react";
 import { MdEdit } from "react-icons/md";
-
+import { ImConnection } from "react-icons/im";
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
+import { useQRCode } from 'next-qrcode';
 
 export default function Users() {
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+  const { Canvas } = useQRCode();
+
+
   return (
 <div className="w-8/12 flex flex-row mx-auto py-10 ">
 <Table removeWrapper    aria-label="Example static collection table">
       <TableHeader >
         <TableColumn className="text-lg" style={{borderRadius:"0 10px 10px 0", textAlign:"start"}}>وضعیت</TableColumn>
         <TableColumn className="text-lg" style={{textAlign:"start"}}>آیدی</TableColumn>
-        <TableColumn className="text-lg" style={{textAlign:"start"}}>نام اکانات</TableColumn>
+        <TableColumn className="text-lg" style={{textAlign:"start"}}>نام اکانت</TableColumn>
         <TableColumn className="text-lg" style={{textAlign:"start"}}>نوع اکانت</TableColumn>
         <TableColumn className="text-lg" style={{textAlign:"start"}}>حجم کل (GB)</TableColumn>
         <TableColumn className="text-lg" style={{textAlign:"start"}}>حجم مصرفی (GB)</TableColumn>
+        <TableColumn className="text-lg" style={{textAlign:"start"}}>لینک اتصال</TableColumn>
         <TableColumn className="text-lg" style={{borderRadius:"10px 0 0 10px",textAlign:"start"}}>ادیت</TableColumn>
       </TableHeader>
       <TableBody  >
@@ -25,6 +32,7 @@ export default function Users() {
           <TableCell>تک سرور</TableCell>
           <TableCell>50</TableCell>
           <TableCell>10.8</TableCell>
+          <TableCell><Button onPress={onOpen}  className="p-2 text-white text-2xl mx-3 bg-[#415FEF] rounded-lg  "><ImConnection   /></Button></TableCell>
           <TableCell><button className="p-2 text-2xl mx-3 bg-[#415FEF] rounded-lg "><MdEdit  /></button></TableCell>
         </TableRow>
         <TableRow key="2">
@@ -33,13 +41,41 @@ export default function Users() {
           <TableCell>ali</TableCell>
           <TableCell>سابسکریپشن</TableCell>
           <TableCell>60</TableCell>
-          <TableCell>10</TableCell>
+          <TableCell>60</TableCell>
+          <TableCell><Button onPress={onOpen}  className="p-2 text-white text-2xl mx-3 bg-[#415FEF] rounded-lg  "><ImConnection   /></Button></TableCell>
           <TableCell><button className="p-2 text-2xl mx-3 bg-[#415FEF] rounded-lg "><MdEdit  /></button></TableCell>
         </TableRow>
       </TableBody>
     </Table>
 
-
+    <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1 text-black">لینک اتصال </ModalHeader>
+              <ModalBody>
+              <div className="q flex flex-col justify-center items-center">
+              <span className="bg-[#17c964] text-black rounded-lg p-3">https://site.imfromir.site/sub/FkPiwni6qq2lf9bQTp2c</span>
+                <Canvas
+                text={'https://site.imfromir.site/sub/FkPiwni6qq2lf9bQTp2c'}
+                options={{
+                  errorCorrectionLevel: 'M',
+                  margin: 3,
+                  scale: 4,
+                  width: 200,
+                }}
+              />
+              </div>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="light" onPress={onClose}>
+                  بستن
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
 </div>
   )
 }

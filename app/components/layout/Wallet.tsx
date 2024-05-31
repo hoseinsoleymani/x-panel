@@ -10,8 +10,8 @@ export default function Wallet() {
     <div  className="me-2 flex items-center cursor-pointer rounded p-3.5 text-[1rem]  text-blue-800 md:text-[1.2rem] ">
         <Button onPress={onOpen} className="">
             <FaWallet className="me-2 " />
+            <span className="font-bold">700.000</span>
             <span className="me-2 ">تومان</span>
-            <span className="me-2 ">700.000</span>
             <IoIosAddCircle />
         </Button>
         <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
