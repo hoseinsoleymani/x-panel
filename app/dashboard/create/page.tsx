@@ -14,7 +14,7 @@ import Cost from './components/Cost';
 
 export default function Create() {
   return (
-    <section className="m-6 min-h-screen grow">
+    <section className="m-6  grow">
       <div className="text-3xl">
         <h1 className="font-bold">ساخت اکانت جدید</h1>
       </div>
@@ -23,7 +23,7 @@ export default function Create() {
         <div className="flex w-full flex-col">
           <form className="grid grid-cols-3 gap-y-6">
             <div className="me-5">
-              <Label>مدت زمان اکانت</Label>
+              <Label>زمان اکانت</Label>
               <DatePicker label="Birth date" className="max-w-[284px]" />
             </div>
 
