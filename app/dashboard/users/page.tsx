@@ -1,8 +1,8 @@
-"use client"
-import React from "react";
-import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Chip} from "@nextui-org/react";
-import { MdEdit } from "react-icons/md";
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
+'use client'
+import React from 'react';
+import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Chip} from '@nextui-org/react'
+import { MdEdit } from 'react-icons/md'
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from '@nextui-org/react';
 import { useQRCode } from 'next-qrcode';
 import { IoQrCodeOutline } from "react-icons/io5";
 
@@ -12,8 +12,8 @@ export default function Users() {
 
 
   return (
-<div className="w-8/12 flex flex-row mx-auto py-10 ">
-<Table removeWrapper    aria-label="Example static collection table">
+<div className='w-8/12 flex flex-row mx-auto py-10'>
+<Table removeWrapper  aria-label='Example static collection table'>
       <TableHeader >
         <TableColumn className="text-lg" style={{borderRadius:"0 10px 10px 0", textAlign:"start"}}>وضعیت</TableColumn>
         <TableColumn className="text-lg" style={{textAlign:"start"}}>آیدی</TableColumn>
