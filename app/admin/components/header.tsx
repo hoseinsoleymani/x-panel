@@ -13,25 +13,26 @@ export default function Header() {
     {
       id: 1,
       link: 'صفحه اصلی',
-      path: '/dashboard',
+      path: '/admin',
       icon: 'FaHome ',
     },
     {
       id: 4,
-      link: 'ساخت یوزر',
-      path: '/dashboard/create',
+      link: 'وضعیت سرور ها',
+      path: '/admin/status',
       icone: 'IoPersonAdd',
     },
     {
       id: 5,
-      link: 'یوزر ها',
-      path: '/dashboard/users',
+      link: 'نماینده ها',
+      path: '/admin/resellers',
       icon: 'FaUsers ',
     },
+
     {
-      id: 3,
-      link: 'افزایش موجودی',
-      path: '/dashboard/payment',
+      id: 2,
+      link: 'تنظیمات',
+      path: '/admin/setting',
     },
   ];
 
@@ -43,27 +44,6 @@ export default function Header() {
             VPN LOGO
           </Link>
         </h1>
-      </div>
-
-      <div className=" flex items-center">
-        <button
-          type="button"
-          className="mb-2 me-2 hidden rounded-3xl bg-purple-700 p-3 text-[1.5rem] font-medium text-white hover:bg-purple-800 focus:outline-none focus:ring-4  focus:ring-purple-300 md:block dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
-        >
-          <IoNotifications />
-        </button>
-        <Link href="/dashboard/setting">
-          <button
-            type="button"
-            className="mb-2 me-2 hidden rounded-3xl bg-purple-700 p-3 text-[1.5rem] font-medium text-white hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 md:block dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
-          >
-            <IoIosSettings />
-          </button>
-        </Link>
-        <span className="me-2 hidden rounded bg-green-100 p-3.5 text-[1.2rem] font-bold text-green-800  md:block dark:bg-green-900 dark:text-green-300">
-          ابوالفضل حسن زاده
-        </span>
-        <Wallet />
       </div>
 
       <button

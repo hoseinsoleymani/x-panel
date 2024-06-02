@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import Sidebar from './components/sidebar';
+import Header from './components/header';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -20,6 +21,7 @@ export default function RootLayout({
     <body
       className={`bg-[#060B26] h-[100vh] text-slate-200 ${vazirfont.className}`}
     >
+      <Header />
       <main className="justify-between p-5 md:flex md:flex-row xl:px-20 ">
         <Sidebar />
         {children}

@@ -20,10 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <body
-      className={`bg-[#060B26] h-[100vh] text-slate-200 ${vazirfont.className}`}
+      className={`bg-[#060B26] h-max md:h-[100vh] text-slate-200 ${vazirfont.className}`}
     >
       <Header />
-      <main className="justify-between p-5 md:flex md:flex-row xl:px-20 ">
+      <main className="justify-between md:p-5 p-2 md:flex md:flex-row xl:px-20 ">
         <Sidebar />
         {children}
       </main>

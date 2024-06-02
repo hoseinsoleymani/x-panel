@@ -8,7 +8,7 @@ export default function Dashboard() {
       <div className="text-xl">
         <h1>سلام ابوالفضل خوش اومدی</h1>
       </div>
-      <div className="flex flex-row justify-between">
+      <div className="flex md:flex-row flex-col  justify-between">
         <div className="flex flex-row items-center text-xl">
           <IoMdPersonAdd className="mx-2 text-green-600" />
           <span className="m-2">تعداد کاربر های ساخته شده:</span>

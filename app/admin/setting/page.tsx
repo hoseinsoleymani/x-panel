@@ -5,7 +5,7 @@ export default function Setting() {
   return (
     <section className="w-full p-3">
       <h1 className="text-xl">تنظمات پنل و نماینده ها:</h1>
-      <div className="grid grid-cols-3 gap-x-10 gap-y-20 p-5 ">
+      <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-x-10 gap-y-10 p-5 ">
         <div className="flex items-center">
           <span>حداقل حجم برای ساخت اکانت</span>
           <Input

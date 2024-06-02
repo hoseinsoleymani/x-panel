@@ -28,14 +28,14 @@ export default function Page({ params }: { params: { id: string } }) {
   const { Canvas } = useQRCode();
 
   return (
-    <div className="w-full p-5 mt-5 ">
+    <div className="md:mt-5  w-full md:p-5">
       <h1 className="text-2xl">مشخصات:</h1>
-      <div className="mainUser flex flex-row justify-evenly w-full my-5  ">
+      <div className="py-5 w-full md:my-5 grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-y-6 justify-items-center  ">
         <h1 className="text-xl">یوزر: {params.id}</h1>
-        <div className="link">
+        <div className="text-xs">
           <Span>https://site.imfromir.site/sub/FkPiwni6qq2lf9bQTp2c</Span>
         </div>
-        <div className="qr">
+        <div >
           <span>برای دریافت qr کلیک کنید</span>
           <Button
             onPress={onOpen}
@@ -47,9 +47,9 @@ export default function Page({ params }: { params: { id: string } }) {
       </div>
       <hr />
 
-      <div className="info py-12 grid grid-cols-3 gap-7  items-center">
-        <div className="stat flex flex-row">
-          <h1 className="text-xl ">وضعیت اکانت</h1>
+      <div className="info py-12 grid md:grid-cols-3 grid-cols-2 gap-7  items-center">
+        <div className="flex flex-row">
+          <h1 className="md:text-xl text-sm">وضعیت اکانت</h1>
           <Switch
             isDisabled
             color="success"
@@ -63,7 +63,7 @@ export default function Page({ params }: { params: { id: string } }) {
         <Infobox title="حجم مصرف شده" content="8.8 GB" />
         <Infobox title="زمان پایان" content="1403/11/11" />
         <Infobox title="تعداد کاربر" content="4" />
-        <div className="used flex items-center">
+        <div className="flex items-center">
           <p>تغییر لینک اکانت و ریست uuid</p>
           <Buttonc>
             <BiReset />
@@ -72,7 +72,7 @@ export default function Page({ params }: { params: { id: string } }) {
       </div>
       <hr />
       <h1 className="p-5 text-xl">تمدید</h1>
-      <div className="info py-17 grid grid-cols-3 gap-7 ">
+      <div className=" py-17 grid md:grid-cols-3 grid-cols-2 gap-3 ">
         <NumberInput />
         <UserLimitInput />
         <div className="me-5">

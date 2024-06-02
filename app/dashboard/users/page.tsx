@@ -27,38 +27,38 @@ export default function Users() {
   const { Canvas } = useQRCode();
 
   return (
-    <div className="w-8/12 flex flex-row mx-auto py-10">
+    <div className="md:w-8/12 flex flex-row mx-auto py-10 md:overflow-hidden overflow-x-scroll z-0 ">
       <Table removeWrapper aria-label="Example static collection table">
         <TableHeader>
           <TableColumn
-            className="text-lg"
+            className="md:text-lg"
             style={{ borderRadius: '0 10px 10px 0', textAlign: 'start' }}
           >
             وضعیت
           </TableColumn>
-          <TableColumn className="text-lg" style={{ textAlign: 'start' }}>
-            آیدی
-          </TableColumn>
-          <TableColumn className="text-lg" style={{ textAlign: 'start' }}>
+          <TableColumn className="md:text-lg" style={{ textAlign: 'start' }}>
             نام اکانت
           </TableColumn>
-          <TableColumn className="text-lg" style={{ textAlign: 'start' }}>
+          <TableColumn className="md:text-lg" style={{ textAlign: 'start' }}>
+            ادیت
+          </TableColumn>
+          <TableColumn className="md:text-lg" style={{ textAlign: 'start' }}>
+            آیدی
+          </TableColumn>
+          <TableColumn className="md:text-lg" style={{ textAlign: 'start' }}>
             نوع اکانت
           </TableColumn>
-          <TableColumn className="text-lg" style={{ textAlign: 'start' }}>
+          <TableColumn className="md:text-lg" style={{ textAlign: 'start' }}>
             حجم کل (GB)
           </TableColumn>
-          <TableColumn className="text-lg" style={{ textAlign: 'start' }}>
+          <TableColumn className="md:text-lg" style={{ textAlign: 'start' }}>
             حجم مصرفی (GB)
           </TableColumn>
-          <TableColumn className="text-lg" style={{ textAlign: 'start' }}>
-            لینک اتصال
-          </TableColumn>
           <TableColumn
-            className="text-lg"
+            className="md:text-lg"
             style={{ borderRadius: '10px 0 0 10px', textAlign: 'start' }}
           >
-            ادیت
+            لینک اتصال
           </TableColumn>
         </TableHeader>
         <TableBody>
@@ -68,8 +68,13 @@ export default function Users() {
                 فعال
               </Chip>
             </TableCell>
-            <TableCell>1055</TableCell>
             <TableCell>ali</TableCell>
+            <TableCell>
+              <button className="p-2 text-2xl mx-3 bg-[#415FEF] rounded-lg ">
+                <MdEdit />
+              </button>
+            </TableCell>
+            <TableCell>1055</TableCell>
             <TableCell>تک سرور</TableCell>
             <TableCell>50</TableCell>
             <TableCell>10.8</TableCell>
@@ -81,11 +86,6 @@ export default function Users() {
                 <IoQrCodeOutline />
               </Button>
             </TableCell>
-            <TableCell>
-              <button className="p-2 text-2xl mx-3 bg-[#415FEF] rounded-lg ">
-                <MdEdit />
-              </button>
-            </TableCell>
           </TableRow>
           <TableRow key="2">
             <TableCell>
@@ -93,8 +93,13 @@ export default function Users() {
                 غیر فعال
               </Chip>
             </TableCell>
-            <TableCell>1011</TableCell>
             <TableCell>ali</TableCell>
+            <TableCell>
+              <button className="p-2 text-2xl mx-3 bg-[#415FEF] rounded-lg ">
+                <MdEdit />
+              </button>
+            </TableCell>
+            <TableCell>1011</TableCell>
             <TableCell>سابسکریپشن</TableCell>
             <TableCell>60</TableCell>
             <TableCell>60</TableCell>
@@ -105,11 +110,6 @@ export default function Users() {
               >
                 <IoQrCodeOutline />
               </Button>
-            </TableCell>
-            <TableCell>
-              <button className="p-2 text-2xl mx-3 bg-[#415FEF] rounded-lg ">
-                <MdEdit />
-              </button>
             </TableCell>
           </TableRow>
         </TableBody>

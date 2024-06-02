@@ -8,7 +8,7 @@ export default function Home() {
       <div className="text-xl">
         <h1>سلام ابوالفضل خوش اومدی</h1>
       </div>
-      <div className="flex flex-row justify-between">
+      <div className="grid md:grid-cols-2 sm:grid-cols-3 gap-10 grid-cols-1">
         <div className="flex flex-row items-center text-xl">
           <IoMdPersonAdd className="mx-2 text-green-600" />
           <span className="m-2">تعداد کل نماینده ها:</span>
@@ -24,8 +24,6 @@ export default function Home() {
           <span>تعداد سرویس های فروخته شده:</span>
           <span className="m-2">120</span>
         </div>
-      </div>
-      <div className="flex flex-row justify-between">
         <div className="flex flex-row items-center text-xl">
           <IoMdPersonAdd className="mx-2 text-green-600" />
           <span className="m-2">تعداد کاربران آنلاین:</span>
@@ -41,7 +39,8 @@ export default function Home() {
           <span>تعداد سرویس های فروخته شده:</span>
           <span className="m-2">120</span>
         </div>
-      </div>
+        </div>
+
     </section>
   );
 }
