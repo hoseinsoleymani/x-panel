@@ -12,9 +12,9 @@ export async function POST(request: NextRequest) {
     const user = await User.findOne({ email });
 
     if (user) {
-      const hashedPassword = await bcrypt.hash(password, 10);
+      const isPasswordValid = await bcrypt.compare(password, user.password);
 
-      if (hashedPassword === user.password) {
+      if (isPasswordValid) {
         return new Response(
           JSON.stringify({
             success: true,
