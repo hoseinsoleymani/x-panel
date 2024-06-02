@@ -27,7 +27,7 @@ export default function Sidebar() {
         </Link>
 
         <Link
-          href="/admin/reseller"
+          href="/admin/resellers"
           className="my-5 mb-2 flex cursor-pointer rounded px-4 py-1  font-medium  capitalize hover:bg-purple-800 md:text-sm lg:text-lg dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
         >
           <div className=" rounded-lg bg-[#1A1F37]  p-2">
