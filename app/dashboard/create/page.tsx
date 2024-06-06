@@ -2,6 +2,7 @@
 
 import { DatePicker } from '@nextui-org/date-picker';
 import { Button } from '@nextui-org/react';
+import { useFormState } from 'react-dom';
 
 import { Label } from '@/app/components/shared';
 import AccountName from '@/app/dashboard/create/components/AccountName';
@@ -13,7 +14,13 @@ import UserLimitInput from '@/app/dashboard/create/components/UserLimitInput';
 import { createUser } from './actions/createUser';
 import Cost from './components/Cost';
 
+const initialState = {
+  message: '',
+};
+
 export default function Create() {
+  const [state, formAction] = useFormState(createUser, initialState);
+
   return (
     <section className="m-2 grow  md:m-6">
       <div className="text-3xl">
@@ -23,7 +30,7 @@ export default function Create() {
       <div className="mt-6 flex flex-row">
         <div className="flex w-full flex-col">
           <form
-            action={createUser}
+            action={formAction}
             className="grid grid-cols-1 gap-y-6 md:grid-cols-3"
           >
             <div className="me-5">
