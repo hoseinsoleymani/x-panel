@@ -30,7 +30,7 @@ export default function Create() {
               <Label>زمان اکانت</Label>
               <DatePicker
                 name="date"
-                label="Birth date"
+                label="زمان پایان"
                 className="max-w-[284px]"
               />
             </div>
