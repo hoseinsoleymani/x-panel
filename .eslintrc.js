@@ -24,7 +24,8 @@ module.exports = init({
     '@typescript-eslint/await-thenable': 'warn',
     'react-hooks/exhaustive-deps': 'off',
     'import/no-unresolved': 'off',
-    'react/function-component-definition': 'off'
+    'react/function-component-definition': 'off',
+    '@typescript-eslint/no-misused-promises': 'off'
   },
   settings: {
     'import/parsers': {

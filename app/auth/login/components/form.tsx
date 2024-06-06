@@ -26,7 +26,7 @@ export default function Form() {
             <input type="password" name="password" placeholder="*****" />
           </div>
 
-          <div className="my-2 text-red-500">{state.message}</div>
+          <div className="my-2 text-red-500">{state?.message}</div>
           <div className="inputBox">
             <SubmitButton />
           </div>
