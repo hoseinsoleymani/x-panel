@@ -10,7 +10,7 @@ const AccountName = () => {
     <div>
       <Label>اسم اکانت</Label>
       <div className="relative flex max-w-[11rem] items-center">
-        <Input color="primary" />
+        <Input color="primary" name="account-name" />
       </div>
     </div>
   );
