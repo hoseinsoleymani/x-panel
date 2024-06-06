@@ -10,32 +10,40 @@ import DropdownS from '@/app/dashboard/create/components/DropdownS';
 import NumberInput from '@/app/dashboard/create/components/Input';
 import UserLimitInput from '@/app/dashboard/create/components/UserLimitInput';
 
+import { createUser } from './actions/createUser';
 import Cost from './components/Cost';
 
 export default function Create() {
   return (
-    <section className="m-2 md:m-6  grow">
+    <section className="m-2 grow  md:m-6">
       <div className="text-3xl">
         <h1 className="font-bold">ساخت اکانت جدید</h1>
       </div>
 
       <div className="mt-6 flex flex-row">
         <div className="flex w-full flex-col">
-          <form className="grid grid-cols-1 md:grid-cols-3 gap-y-6">
+          <form
+            action={createUser}
+            className="grid grid-cols-1 gap-y-6 md:grid-cols-3"
+          >
             <div className="me-5">
               <Label>زمان اکانت</Label>
-              <DatePicker label="Birth date" className="max-w-[284px]" />
+              <DatePicker
+                name="date"
+                label="Birth date"
+                className="max-w-[284px]"
+              />
             </div>
             <NumberInput />
             <UserLimitInput />
             <div className="flex gap-2">
-            <Dropdown />
-            <DropdownS />
+              <Dropdown />
+              <DropdownS />
             </div>
             <AccountName />
             <div className="mt-10 flex items-center gap-6">
               <Cost />
-              <Button color="primary" className="max-w-36">
+              <Button color="primary" type="submit" className="max-w-36">
                 ساخت اکانت
               </Button>
             </div>

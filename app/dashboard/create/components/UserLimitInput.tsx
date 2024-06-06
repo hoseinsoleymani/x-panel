@@ -46,7 +46,7 @@ const UserLimitInput = () => {
         </button>
         <input
           type="text"
-          id="bedrooms-input"
+          name="user-limit"
           data-input-counter
           data-input-counter-min="1"
           data-input-counter-max="5"
