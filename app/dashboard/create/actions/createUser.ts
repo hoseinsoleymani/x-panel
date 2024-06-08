@@ -4,6 +4,9 @@ import { wrapper } from 'axios-cookiejar-support';
 import mysql from 'mysql2/promise';
 import { CookieJar } from 'tough-cookie';
 import { z } from 'zod';
+
+import dbConnect from '@/app/api/connect-db';
+import Account from '@/app/api/models/account';
 import withValidation from '@/app/utils/zodValidation';
 
 const schema = z.object({
@@ -17,18 +20,17 @@ const schema = z.object({
 });
 
 export const createUser = withValidation(schema, async (formData: FormData) => {
-  const date = formData.get('date');
-  const amount = formData.get('amount');
+  const date = formData.get('date') as string;
+  const amount = formData.get('amount') as string;
   const userLimit = formData.get('user-limit');
   const serverType = formData.get('server-type');
-  const accountName = formData.get('account-name');
+  const accountName = formData.get('account-name') as string;
   const serverLocation = formData.get('server-location');
   const cookieJar = new CookieJar();
   const client = wrapper(axios.create({ jar: cookieJar }));
 
-  // conect to XMpanel
   try {
-    const response = await client.post(
+    const loginToPanel = await client.post(
       'https://dash.imfromir.site/admin/login',
       {
         email: '4345abol@gmail.com',
@@ -44,7 +46,7 @@ export const createUser = withValidation(schema, async (formData: FormData) => {
     const createAccount = await axios.post(
       'https://dash.imfromir.site/admin/user/save',
       {
-        email: `${accountName}.1@gmail.com`,
+        email: generateEmail(accountName),
         passwd: '!ABdsv512com',
         name: `${accountName}.1`,
         server_group: '1',
@@ -65,7 +67,7 @@ export const createUser = withValidation(schema, async (formData: FormData) => {
     });
 
     const [rows, fields] = await connection.execute(
-      `SELECT id , email , token FROM user WHERE email = 'dscsd.1@gmail.com'`,
+      `SELECT id , token FROM user WHERE email = '${generateEmail(accountName)}'`,
     );
 
     await connection.end();
@@ -73,12 +75,12 @@ export const createUser = withValidation(schema, async (formData: FormData) => {
     const edituser = await axios.post(
       'https://dash.imfromir.site/admin/user/save',
       {
-        id: `${rows.id}`,
-        transfer_enable: '51',
+        id: `${rows[0].id}`,
+        transfer_enable: amount,
         server_group: `1`,
         speedlimit: '1024',
         iplimit: userLimit,
-        expire_in: '2024-06-09 03:22:11',
+        expire_in: `${date} 00:00:00`,
       },
       {
         headers: {
@@ -86,8 +88,25 @@ export const createUser = withValidation(schema, async (formData: FormData) => {
         },
       },
     );
+
+    try {
+      await dbConnect();
+    } catch (error: any) {
+      throw Error(error.message);
+    }
+
+    const addDatatoDB = await Account.create({
+      amount,
+      userLimit,
+      accountName,
+      expireTime: date,
+      serverType,
+    });
   } catch (error) {
     console.error('Error logging in:', error);
   }
-
 });
+
+function generateEmail(accountName: string) {
+  return `${accountName}.1@gmail.com`;
+}

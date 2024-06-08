@@ -1,10 +1,8 @@
 'use client';
 
-import { DatePicker } from '@nextui-org/date-picker';
 import { Button } from '@nextui-org/react';
 import { useFormState } from 'react-dom';
 
-import { Label } from '@/app/components/shared';
 import AccountName from '@/app/dashboard/create/components/AccountName';
 import Dropdown from '@/app/dashboard/create/components/Dropdown';
 import DropdownS from '@/app/dashboard/create/components/DropdownS';
@@ -13,6 +11,7 @@ import UserLimitInput from '@/app/dashboard/create/components/UserLimitInput';
 
 import { createUser } from './actions/createUser';
 import Cost from './components/Cost';
+import { DatePicker } from './components/Date';
 
 const initialState = {
   message: '',
@@ -34,12 +33,7 @@ export default function Create() {
             className="grid grid-cols-1 gap-y-6 md:grid-cols-3"
           >
             <div className="me-5">
-              <Label>زمان اکانت</Label>
-              <DatePicker
-                name="date"
-                label="زمان پایان"
-                className="max-w-[284px]"
-              />
+              <DatePicker />
             </div>
             <NumberInput />
             <UserLimitInput />
