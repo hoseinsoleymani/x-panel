@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { FaHome, FaMoneyBill, FaUsers } from 'react-icons/fa';
-import { IoPersonAdd, IoSettings } from 'react-icons/io5';
- 
+import { FaHome, FaUsers } from 'react-icons/fa';
+import { IoPersonAdd } from 'react-icons/io5';
+
 export default function Sidebar() {
   return (
     <div className=" hidden w-1/6 rounded-xl bg-[#23273C] md:flex xl:p-5">
@@ -35,25 +35,6 @@ export default function Sidebar() {
           </div>
           <span className="me-3">یوزر ها</span>
         </Link>
-
-        <Link
-          href="/dashboard/payment"
-          className="my-5 mb-2 flex cursor-pointer justify-end rounded px-4 py-1 text-end font-medium capitalize hover:bg-purple-800 md:text-sm lg:text-lg dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
-        >
-          <div className=" rounded-lg bg-[#1A1F37]  p-2">
-            <FaMoneyBill className="text-[#0075FF] " />
-          </div>
-          <span className="me-3">پرداخت و شارژ</span>
-        </Link>
-        {/* <Link
-          href="/dashboard/setting"
-          className="my-5 mb-2 flex w-full cursor-pointer rounded px-4 py-1 font-medium  capitalize hover:bg-purple-800 md:text-sm lg:text-lg dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
-        >
-          <div className=" rounded-lg bg-[#1A1F37]  p-2">
-            <IoSettings className="text-[#0075FF] " />
-          </div>
-          <span className="me-3">تنظیمات</span>
-        </Link> */}
       </ul>
     </div>
   );
