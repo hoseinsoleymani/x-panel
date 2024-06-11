@@ -1,21 +1,13 @@
-import { useState } from 'react';
+import { useCalculatorContext } from '@/app/hook/useCalculator';
 
 import { Label } from '../../../components/shared';
 
 const UserLimitInput = () => {
-  const [value, setValue] = useState(0);
-
-  const increment = () => {
-    if (value === 10) return;
-
-    setValue(value + 1);
-  };
-
-  const decrement = () => {
-    if (value === 0) return;
-
-    setValue(value - 1);
-  };
+  const {
+    limitIncrement: increment,
+    limitDecrement: decrement,
+    limit: value,
+  } = useCalculatorContext();
 
   return (
     <div className="">
@@ -54,7 +46,6 @@ const UserLimitInput = () => {
           className="block h-11 w-full border-x-0 border-gray-300 bg-gray-50 text-center text-sm font-medium text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
           placeholder=""
           value={value}
-          onChange={(e) => setValue(Number(e.target.value))}
         />
 
         <button

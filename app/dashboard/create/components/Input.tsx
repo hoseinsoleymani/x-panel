@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useCalculatorContext } from '@/app/hook/useCalculator';
 
 const NumberInput = () => {
-  const [value, setValue] = useState(0);
-
-  const increment = () => setValue(value + 1);
-  const decrement = () => setValue(value - 1);
+  const {
+    trafficIncrement: increment,
+    trafficDecrement: decrement,
+    traffic: value,
+  } = useCalculatorContext();
 
   return (
     <div className="">
@@ -48,7 +49,7 @@ const NumberInput = () => {
           className="block h-11 w-full border-x-0 border-gray-300 bg-gray-50 pb-6 text-center text-sm font-medium text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
           placeholder=""
           value={value}
-          onChange={(e) => setValue(Number(e.target.value))}
+          // onChange={(e) => handleChange(Number(e.target.value))}
         />
         <div className="absolute bottom-1 start-1/2 flex -translate-x-1/2 items-center space-x-1 text-xs text-gray-400 rtl:translate-x-1/2 rtl:space-x-reverse">
           <span>GB</span>

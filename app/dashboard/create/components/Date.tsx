@@ -5,9 +5,11 @@ import { DatePicker as NextUiDatePicker } from '@nextui-org/date-picker';
 import { useEffect, useState } from 'react';
 
 import { Label } from '@/app/components/shared';
+import { useCalculatorContext } from '@/app/hook/useCalculator';
 
 export const DatePicker = () => {
-  const [date, setDate] = useState<CalendarDate | undefined>();
+  const { date, setDate } = useCalculatorContext();
+  const [maxDate, setMaxDate] = useState<CalendarDate | undefined>();
 
   useEffect(() => {
     const todayDate = new Date();
@@ -16,7 +18,7 @@ export const DatePicker = () => {
       todayDate.getMonth() + 1,
       todayDate.getDate(),
     );
-    setDate(calender.add({ weeks: 4 }));
+    setMaxDate(calender.add({ weeks: 8 }));
   }, []);
 
   return (
@@ -25,8 +27,11 @@ export const DatePicker = () => {
       <NextUiDatePicker
         label="Date and time"
         name="date"
+        onChange={(e) => {
+          setDate(`${e.month}/${e.day}/${e.year}`);
+        }}
         minValue={today(getLocalTimeZone())}
-        maxValue={date}
+        maxValue={maxDate}
       />
     </div>
   );

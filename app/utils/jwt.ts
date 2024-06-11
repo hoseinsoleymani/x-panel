@@ -1,19 +1,22 @@
 import { jwtVerify } from 'jose';
 
 export const jwtSecretKey = () => {
-  const secretKey = new TextEncoder().encode(
-    'Swe4g7c?UBm5Nrd96vhsVDtkyJFbqKMTm!TMw5BDRLtaCFAXNvbq?s4rGKQSZnUP',
-  );
+  const secretKey = new TextEncoder().encode(process.env.JWT_SECRET_KEY ?? '');
 
   return secretKey;
 };
 
-export async function verifyToken(token: string) {
-  try {
-    const decodedToken = await jwtVerify(token, jwtSecretKey());
-    const isExpired = isTokenExpired(decodedToken);
+export interface Payload {
+  iat: number;
+  exp: number;
+}
 
-    return !isExpired;
+export async function verifyToken<T extends Payload>(token: string) {
+  try {
+    const { payload } = await jwtVerify<T>(token, jwtSecretKey());
+    // const isExpired = isTokenExpired(decodedToken);
+
+    return payload;
   } catch (error) {
     console.error('Error while verifying token:', error);
     return false;
@@ -32,7 +35,7 @@ export async function checkPermission(token: string) {
   }
 }
 
-function isTokenExpired(decodedToken) {
+function isTokenExpired(decodedToken: any) {
   const currentTime = Math.floor(Date.now() / 1000);
 
   if (decodedToken) {

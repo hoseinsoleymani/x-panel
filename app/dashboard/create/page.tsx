@@ -1,24 +1,42 @@
-'use client';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
-import { Button } from '@nextui-org/react';
-import { useFormState } from 'react-dom';
+import User from '@/app/api/models/user';
+import type { Payload } from '@/app/utils/jwt';
+import { verifyToken } from '@/app/utils/jwt';
 
-import AccountName from '@/app/dashboard/create/components/AccountName';
-import Dropdown from '@/app/dashboard/create/components/Dropdown';
-import DropdownS from '@/app/dashboard/create/components/DropdownS';
-import NumberInput from '@/app/dashboard/create/components/Input';
-import UserLimitInput from '@/app/dashboard/create/components/UserLimitInput';
+import Form from './components/Form';
 
-import { createUser } from './actions/createUser';
-import Cost from './components/Cost';
-import { DatePicker } from './components/Date';
+export interface User extends Payload {
+  email: string;
+  password: string;
+}
 
-const initialState = {
-  message: '',
-};
+export interface UserDB {
+  wallet: { inventory: string };
+  prices: { traffic: string; date: string; limit: string };
+  email: string;
+  password: string;
+  name: string;
+  accountStatus: string;
+}
 
-export default function Create() {
-  const [state, formAction] = useFormState(createUser, initialState);
+export default async function Create() {
+  const token = cookies().get('token');
+  let prices;
+
+  if (!token) return redirect('/auth/login');
+
+  try {
+    const userData = await verifyToken<User>(token.value);
+    if (!userData) return;
+
+    const response = await User.findOne<UserDB>({ email: userData.email });
+    if (!response) return;
+    prices = response.prices;
+  } catch (error) {
+    console.error('Error verifying token:', error);
+  }
 
   return (
     <section className="m-2 grow  md:m-6">
@@ -28,27 +46,7 @@ export default function Create() {
 
       <div className="mt-6 flex flex-row">
         <div className="flex w-full flex-col">
-          <form
-            action={formAction}
-            className="grid grid-cols-1 gap-y-6 md:grid-cols-3"
-          >
-            <div className="me-5">
-              <DatePicker />
-            </div>
-            <NumberInput />
-            <UserLimitInput />
-            <div className="flex gap-2">
-              <Dropdown />
-              <DropdownS />
-            </div>
-            <AccountName />
-            <div className="mt-10 flex items-center gap-6">
-              <Cost />
-              <Button color="primary" type="submit" className="max-w-36">
-                ساخت اکانت
-              </Button>
-            </div>
-          </form>
+          <Form prices={prices} />
         </div>
       </div>
     </section>

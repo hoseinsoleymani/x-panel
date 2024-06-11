@@ -2,21 +2,24 @@
 import axios from 'axios';
 import { wrapper } from 'axios-cookiejar-support';
 import mysql from 'mysql2/promise';
+import { cookies as cookiesReq } from 'next/headers';
+import { redirect } from 'next/navigation';
 import { CookieJar } from 'tough-cookie';
 import { z } from 'zod';
 
 import dbConnect from '@/app/api/connect-db';
-import Account from '@/app/api/models/account';
+import User from '@/app/api/models/user';
+import { verifyToken } from '@/app/utils/jwt';
 import withValidation from '@/app/utils/zodValidation';
 
 const schema = z.object({
   date: z.string().nonempty({ message: 'Date is required' }),
   amount: z.string().nonempty({ message: 'Amount is required' }),
   'user-limit': z.string().nonempty({ message: 'User limit is required' }),
-  'server-type': z.string().nonempty({ message: 'Server type is required' }),
-  'server-location': z
-    .string()
-    .nonempty({ message: 'Server location is required' }),
+  // 'server-type': z.string().nonempty({ message: 'Server type is required' }),
+  // 'server-location': z
+  //   .string()
+  //   .nonempty({ message: 'Server location is required' }),
 });
 
 export const createUser = withValidation(schema, async (formData: FormData) => {
@@ -25,7 +28,7 @@ export const createUser = withValidation(schema, async (formData: FormData) => {
   const userLimit = formData.get('user-limit');
   const serverType = formData.get('server-type');
   const accountName = formData.get('account-name') as string;
-  const serverLocation = formData.get('server-location');
+  // const serverLocation = formData.get('server-location');
   const cookieJar = new CookieJar();
   const client = wrapper(axios.create({ jar: cookieJar }));
 
@@ -42,7 +45,6 @@ export const createUser = withValidation(schema, async (formData: FormData) => {
     );
 
     const cookies = cookieJar.getCookiesSync('https://dash.imfromir.site');
-
     const createAccount = await axios.post(
       'https://dash.imfromir.site/admin/user/save',
       {
@@ -95,13 +97,33 @@ export const createUser = withValidation(schema, async (formData: FormData) => {
       throw Error(error.message);
     }
 
-    const addDatatoDB = await Account.create({
-      amount,
-      userLimit,
-      accountName,
-      expireTime: date,
-      serverType,
-    });
+    try {
+      const token = cookiesReq().get('token');
+      if (!token) return redirect('/auth/login');
+
+      const userData = await verifyToken<{ email: string }>(token.value);
+      if (!userData) return;
+
+      const { _id } = await User.findOne({ email: userData.email });
+
+      const addDatatoDB = await User.updateOne(
+        { _id },
+        {
+          $push: {
+            accounts: {
+              amount,
+              userLimit,
+              accountName,
+              expireTime: date,
+              serverType,
+              id: rows[0].id,
+            },
+          },
+        },
+      );
+    } catch (error) {
+      redirect('');
+    }
   } catch (error) {
     console.error('Error logging in:', error);
   }

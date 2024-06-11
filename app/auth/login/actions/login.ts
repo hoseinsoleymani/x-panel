@@ -32,7 +32,7 @@ export const login = withValidation(schema, async (formData: FormData) => {
   try {
     await dbConnect();
   } catch (error: any) {
-    throw Error(error.message);
+    console.log(error);
   }
 
   if (!(await isValidCredentials(email, password)))
@@ -41,6 +41,21 @@ export const login = withValidation(schema, async (formData: FormData) => {
     };
 
   const token = await generateToken(email, password);
+
+  // const hashedPassword = await bcrypt.hash(password, 10);
+
+  // await User.create({
+  //   email,
+  //   password: hashedPassword,
+  //   name: 'حسین سلیمانی',
+  //   wallet: { inventory: '9000000' },
+  //   accountStatus: 'active',
+  //   prices: {
+  //     traffic: '50000',
+  //     date: '20000',
+  //     limit: '10000',
+  //   },
+  // });
 
   cookies().set('token', token);
   permanentRedirect('/dashboard');
