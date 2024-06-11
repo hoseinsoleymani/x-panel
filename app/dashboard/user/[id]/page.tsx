@@ -14,11 +14,13 @@ import { Label } from '@/app/components/shared';
 import Cost from '../components/Cost';
 import {
   Modal,
+  CardBody,
   ModalContent,
   ModalHeader,
   ModalBody,
   ModalFooter,
   Button,
+  Card,
   useDisclosure,
 } from '@nextui-org/react';
 import { useQRCode } from 'next-qrcode';
@@ -28,62 +30,78 @@ export default function Page({ params }: { params: { id: string } }) {
   const { Canvas } = useQRCode();
 
   return (
-    <div className="md:mt-5  w-full md:p-5">
-      <h1 className="text-2xl">مشخصات:</h1>
-      <div className="py-5 w-full md:my-5 grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-y-6 justify-items-center  ">
-        <h1 className="text-xl">یوزر: {params.id}</h1>
+    <div className="w-full md:mt-5 md:p-5">
+      <div className=" flex items-center  gap-5 py-5">
+        <h1 className="text-2xl">مشخصات:</h1>
+        <Card className=" bg-[#d4d4d8]">
+          <CardBody>
+            <p className="w-full inline-block text-xl justify-start px-1  font-medium">
+              یوزر: {params.id}
+            </p>
+          </CardBody>
+        </Card>
+        <Card className="bg-[#d4d4d8]">
+          <CardBody>
+            <p className="text-xl justify-start px-1  font-medium">
+              نام اکانت: AMIR
+            </p>
+          </CardBody>
+        </Card>
+      </div>
+
+      <div className="py-12 px-4 grid md:grid-cols-3 grid-cols-2 gap-16 items-center bg-[#23273C] rounded-xl">
         <div className="text-xs">
-          <Span>https://site.imfromir.site/sub/FkPiwni6qq2lf9bQTp2c</Span>
+          <Span className="bg-gray-700">
+            https://sub.domain.com/sub/FkPiwni6qq2lf9bQTp2c
+          </Span>
         </div>
-        <div >
-          <span>برای دریافت qr کلیک کنید</span>
+        <div className="a"></div>
+        <div className="flex items-center">
+          <span className="">برای دریافت qr کلیک کنید</span>
           <Button
             onPress={onOpen}
-            className="p-2 text-white text-2xl mx-3 bg-[#415FEF] rounded-lg  "
+            className="p-2 text-white text-2xl mx-3 bg-[#415FEF] rounded-lg "
           >
             <IoQrCodeOutline />
           </Button>
         </div>
       </div>
-      <hr />
 
-      <div className="info py-12 grid md:grid-cols-3 grid-cols-2 gap-7  items-center">
+      <div className="py-16 px-4 grid md:grid-cols-3 grid-cols-2 gap-16 items-center mt-8 bg-[#23273C] rounded-xl">
         <div className="flex flex-row">
-          <h1 className="md:text-xl text-sm">وضعیت اکانت</h1>
+          <h1 className="md:text-xl  text-sm">وضعیت اکانت</h1>
           <Switch
             isDisabled
             color="success"
             defaultSelected
             thumbIcon={<FaCheck />}
-          >
-            Automatic updates
-          </Switch>
+          ></Switch>
         </div>
         <Infobox title="حجم کل" content="30 GB" />
         <Infobox title="حجم مصرف شده" content="8.8 GB" />
-        <Infobox title="زمان پایان" content="1403/11/11" />
+        <Infobox title="زمان پایان" content="2024/08/11" />
         <Infobox title="تعداد کاربر" content="4" />
         <div className="flex items-center">
-          <p>تغییر لینک اکانت و ریست uuid</p>
+          <p>تغییر لینک اکانت</p>
           <Buttonc>
             <BiReset />
           </Buttonc>
         </div>
       </div>
-      <hr />
-      <h1 className="p-5 text-xl">تمدید</h1>
-      <div className=" py-17 grid md:grid-cols-3 grid-cols-2 gap-3 ">
+      <h1 className="py-5 text-xl">تمدید</h1>
+      <div className="py-6 grid md:grid-cols-3 grid-cols-2 gap-16 items-center">
         <NumberInput />
-        <UserLimitInput />
         <div className="me-5">
           <Label>مدت زمان اکانت</Label>
-          <DatePicker label="Birth date" className="max-w-[284px]" />
+          <DatePicker label="زمان تمدید" className="max-w-[284px]" />
         </div>
+        <UserLimitInput />
       </div>
 
-      <div className="flex flex-row p-10 justify-center">
+      <div className="mt-5 flex items-center justify-center">
         <Cost />
-        <Button color="primary" className="max-w-36 mx-5">
+
+        <Button color="primary" className="mx-5 max-w-36">
           تمدید اکانت
         </Button>
       </div>
@@ -93,15 +111,15 @@ export default function Page({ params }: { params: { id: string } }) {
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1 text-black">
-                لینک اتصال{' '}
+                لینک اتصال
               </ModalHeader>
               <ModalBody>
-                <div className="q flex flex-col justify-center items-center">
+                <div className="flex flex-col justify-center items-center">
                   <span className="bg-[#17c964] text-black rounded-lg p-3">
-                    https://site.imfromir.site/sub/FkPiwni6qq2lf9bQTp2c
+                    https://sub.domain.com/sub/FkPiwni6qq2lf9bQTp2c
                   </span>
                   <Canvas
-                    text={'https://site.imfromir.site/sub/FkPiwni6qq2lf9bQTp2c'}
+                    text={'https://sub.domain.com/sub/FkPiwni6qq2lf9bQTp2c'}
                     options={{
                       errorCorrectionLevel: 'M',
                       margin: 3,

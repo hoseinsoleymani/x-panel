@@ -1,6 +1,6 @@
-const Span = ({ children }: any) => {
+const Span = ({ children,className }: any) => {
   return (
-    <span className="bg-cyan-950 text-sm md:text-base mx-2 rounded-lg py-3 md:px-6 px-2">
+    <span className={` ${className}  min-w-20 text-sm md:text-base mx-2 text-center rounded-lg py-3 px-2`}>
       {children}
     </span>
   );

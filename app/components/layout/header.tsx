@@ -1,13 +1,33 @@
 'use client';
-
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
 import React, { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import { IoIosSettings } from 'react-icons/io';
-import { IoNotifications } from 'react-icons/io5';
+import {
+  Card,
+  CardBody,
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  NavbarMenuToggle,
+  NavbarMenu,
+  NavbarMenuItem,
+} from '@nextui-org/react';
+
 import Wallet from '@/app/components/layout/Wallet';
 
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const pathname = usePathname();
+
+  const delayedSetIsMenuOpen = (val: boolean) => {
+    setTimeout(() => {
+      setIsMenuOpen(val);
+    }, 500);
+  };
+
   const [nav, setNav] = useState(false);
   const links = [
     {
@@ -28,65 +48,54 @@ export default function Header() {
       path: '/dashboard/users',
       icon: 'FaUsers ',
     },
-    {
-      id: 3,
-      link: 'افزایش موجودی',
-      path: '/dashboard/payment',
-    },
   ];
 
   return (
-    <div className="flex h-20 w-full items-center justify-between bg-[#060B26] px-4 text-white ">
-      <div>
-        <h1 className=" ml-2 text-5xl">
+    <Navbar
+      maxWidth="2xl"
+      className="bg-[#22025cdcc]"
+      isMenuOpen={isMenuOpen}
+      onMenuOpenChange={setIsMenuOpen}
+    >
+      <NavbarContent>
+        <NavbarMenuToggle
+          onChange={setIsMenuOpen}
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          className="sm:hidden"
+        />
+        <NavbarBrand>
           <Link className="text-xl" href="/">
-            VPN LOGO
+            {' '}
+            VPN LOGO{' '}
           </Link>
-        </h1>
-      </div>
+        </NavbarBrand>
+      </NavbarContent>
 
-      <div className=" flex items-center">
-        <button
-          type="button"
-          className="mb-2 me-2 hidden rounded-3xl bg-purple-700 p-3 text-[1.5rem] font-medium text-white hover:bg-purple-800 focus:outline-none focus:ring-4  focus:ring-purple-300 md:block dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
-        >
-          <IoNotifications />
-        </button>
-        <Link href="/dashboard/setting">
-          <button
-            type="button"
-            className="mb-2 me-2 hidden rounded-3xl bg-purple-700 p-3 text-[1.5rem] font-medium text-white hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 md:block dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
-          >
-            <IoIosSettings />
-          </button>
-        </Link>
-        <span className="me-2 hidden rounded bg-green-100 p-3.5 text-[1.2rem] font-bold text-green-800  md:block dark:bg-green-900 dark:text-green-300">
-          ابوالفضل حسن زاده
-        </span>
-        <Wallet />
-      </div>
-
-      <button
-        onClick={() => setNav(!nav)}
-        className="z-10 cursor-pointer pr-4 text-gray-500 md:hidden"
-      >
-        {nav ? <FaTimes size={30} /> : <FaBars size={30} />}
-      </button>
-
-      {nav ? (
-        <ul className="absolute z-[1] left-0 top-0 flex h-screen w-full flex-col justify-center bg-gradient-to-b from-[#060B26] to-gray-800 p-2 ">
-          {links.map(({ id, link, path }) => (
-            <li
-              key={id}
-              className="mb-2 cursor-pointer rounded-3xl bg-purple-700 p-3 px-4 py-6 text-center text-2xl font-medium capitalize hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+      <NavbarContent justify="end">
+        <NavbarItem>
+          <Wallet />
+        </NavbarItem>
+        <NavbarItem>
+          <Card className="hidden md:block">
+            <CardBody>
+              <p> ابوالفضل </p>
+            </CardBody>
+          </Card>
+        </NavbarItem>
+      </NavbarContent>
+      <NavbarMenu className="bg-[#22025cdcc]">
+        {links.map(({ id, link, path }) => (
+          <NavbarMenuItem className=" m-2" key={id}>
+            <Link
+              onClick={() => setIsMenuOpen(false)}
+              href={path}
+              className={` flex w-40 ${pathname == path ? 'text-blue-600 font-bold' : 'text-zinc-950'} bg-white rounded-md p-2`}
             >
-              <Link onClick={() => setNav(!nav)} href={path}>
-                {link}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      ) : null}
-    </div>
+              {link}
+            </Link>
+          </NavbarMenuItem>
+        ))}
+      </NavbarMenu>
+    </Navbar>
   );
 }

@@ -1,17 +1,17 @@
+'use client';
 import {
-  Table,
-  TableHeader,
-  TableColumn,
-  TableBody,
-  TableRow,
-  TableCell,
   Chip,
-  Button,
+  Table,
+  TableBody,
+  TableCell,
+  TableColumn,
+  TableHeader,
+  TableRow,
 } from '@nextui-org/react';
 import { MdEdit } from 'react-icons/md';
-import { IoQrCodeOutline } from 'react-icons/io5';
 
-export default function Rtable() {
+export default function Rtable({ data }: any) {
+  console.log(data);
   return (
     <Table removeWrapper aria-label="Example static collection table ">
       <TableHeader>
@@ -45,48 +45,31 @@ export default function Rtable() {
       </TableHeader>
 
       <TableBody>
-        <TableRow key="1">
-          <TableCell>
-            <Chip color="success" size="md" variant="flat">
-              فعال
-            </Chip>
-          </TableCell>
-          <TableCell>ali</TableCell>
-          <TableCell>
-            <button className="p-2 text-2xl mx-3 bg-[#415FEF] rounded-lg ">
-              <MdEdit />
-            </button>
-          </TableCell>
-          <TableCell>1055</TableCell>
-          <TableCell>تک سرور</TableCell>
-          <TableCell>50</TableCell>
-          <TableCell>
-            <Button className="p-2 text-white text-2xl mx-3 bg-[#415FEF] rounded-lg  ">
-              <IoQrCodeOutline />
-            </Button>
-          </TableCell>
-        </TableRow>
-        <TableRow key="2">
-          <TableCell>
-            <Chip color="success" size="md" variant="flat">
-              فعال
-            </Chip>
-          </TableCell>
-          <TableCell>ali</TableCell>
-          <TableCell>
-            <button className="p-2 text-2xl mx-3 bg-[#415FEF] rounded-lg ">
-              <MdEdit />
-            </button>
-          </TableCell>
-          <TableCell>1011</TableCell>
-          <TableCell>سابسکریپشن</TableCell>
-          <TableCell>60</TableCell>
-          <TableCell>
-            <Button className="p-2 text-white text-2xl mx-3 bg-[#415FEF] rounded-lg  ">
-              <IoQrCodeOutline />
-            </Button>
-          </TableCell>
-        </TableRow>
+        {data.map(({ id, wallet, accountStatus, name }: any) => (
+          <TableRow key={id}>
+            <TableCell>
+              {accountStatus === 'active' ? (
+                <Chip color="success" size="md" variant="flat">
+                  فعال
+                </Chip>
+              ) : (
+                <Chip color="danger" size="md" variant="flat">
+                  غیر فعال
+                </Chip>
+              )}
+            </TableCell>
+            <TableCell>{name}</TableCell>
+            <TableCell>
+              <button className="mx-3 rounded-lg bg-[#415FEF] p-2 text-2xl ">
+                <MdEdit />
+              </button>
+            </TableCell>
+            <TableCell>1</TableCell>
+            <TableCell>{wallet.inventory}</TableCell>
+            <TableCell>50</TableCell>
+            <TableCell>6</TableCell>
+          </TableRow>
+        ))}
       </TableBody>
     </Table>
   );
