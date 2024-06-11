@@ -21,7 +21,6 @@ import Wallet from '@/app/components/layout/Wallet';
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const pathname = usePathname();
-  console.log(pathname);
 
   const delayedSetIsMenuOpen = (val: boolean) => {
     setTimeout(() => {
@@ -79,7 +78,7 @@ export default function Header() {
         <NavbarItem>
           <Card className="hidden md:block">
             <CardBody>
-              <p> ابوالفضل حسن زاده</p>
+              <p> ابوالفضل </p>
             </CardBody>
           </Card>
         </NavbarItem>

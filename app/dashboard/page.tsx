@@ -1,6 +1,5 @@
 'use client';
 import { IoMdPersonAdd } from 'react-icons/io';
-import { FaUser } from 'react-icons/fa';
 import { MdCalendarMonth } from 'react-icons/md';
 import Chart from 'react-apexcharts';
 

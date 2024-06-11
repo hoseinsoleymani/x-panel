@@ -50,7 +50,7 @@ const Inputnm = () => {
           value={value}
           onChange={(e) => setValue(Number(e.target.value))}
         />
-        <div className="absolute bottom-1 start-1/2 flex -translate-x-1/2 items-center space-x-1 text-xs text-gray-400 rtl:translate-x-1/2 rtl:space-x-reverse">
+        <div className="absolute bottom-1  flex -translate-x-1/2 items-center space-x-1 text-xs text-gray-400 rtl:translate-x-1/2 rtl:space-x-reverse">
           <span>GB</span>
         </div>
         <button
