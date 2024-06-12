@@ -11,7 +11,6 @@ import {
 import { MdEdit } from 'react-icons/md';
 
 export default function Rtable({ data }: any) {
-  console.log(data);
   return (
     <Table removeWrapper aria-label="Example static collection table ">
       <TableHeader>
@@ -33,9 +32,6 @@ export default function Rtable({ data }: any) {
         <TableColumn className="md:text-lg" style={{ textAlign: 'start' }}>
           موجودی
         </TableColumn>
-        <TableColumn className="md:text-lg" style={{ textAlign: 'start' }}>
-          تعداد اکانت های خریداری شده
-        </TableColumn>
         <TableColumn
           className="md:text-lg"
           style={{ borderRadius: '10px 0 0 10px', textAlign: 'start' }}
@@ -45,7 +41,7 @@ export default function Rtable({ data }: any) {
       </TableHeader>
 
       <TableBody>
-        {data.map(({ id, wallet, accountStatus, name }: any) => (
+        {data.map(({ id, wallet, accountStatus, name , accounts }: any) => (
           <TableRow key={id}>
             <TableCell>
               {accountStatus === 'active' ? (
@@ -66,8 +62,7 @@ export default function Rtable({ data }: any) {
             </TableCell>
             <TableCell>1</TableCell>
             <TableCell>{wallet.inventory}</TableCell>
-            <TableCell>50</TableCell>
-            <TableCell>6</TableCell>
+            <TableCell>{accounts.length}</TableCell>
           </TableRow>
         ))}
       </TableBody>
