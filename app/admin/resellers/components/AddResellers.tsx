@@ -52,6 +52,12 @@ export default function AddResellers({ balance }: any) {
                     className="text-black m-2"
                     type="text"
                     variant="bordered"
+                    label="نام نماینده"
+                  />
+                  <Input
+                    className="text-black m-2"
+                    type="text"
+                    variant="bordered"
                     label="پسورد نماینده"
                   />
                   <span className="text-black">تعرفه های نماینده:</span>

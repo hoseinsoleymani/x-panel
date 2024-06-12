@@ -1,30 +1,34 @@
 'use client';
-import React from 'react';
 import {
-  Table,
-  TableHeader,
-  TableColumn,
-  TableBody,
-  TableRow,
-  TableCell,
-  Chip,
-} from '@nextui-org/react';
-import { MdEdit } from 'react-icons/md';
-import {
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
   Button,
+  Chip,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  Table,
+  TableBody,
+  TableCell,
+  TableColumn,
+  TableHeader,
+  TableRow,
   useDisclosure,
 } from '@nextui-org/react';
+import Link from 'next/link';
 import { useQRCode } from 'next-qrcode';
+import React, { useState } from 'react';
 import { IoQrCodeOutline } from 'react-icons/io5';
+import { MdEdit } from 'react-icons/md';
 
-export default function RTables() {
+export default function RTables({ data }: any) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const { Canvas } = useQRCode();
+  const [selectedData, setSelectedData] = useState('');
+  const handleButtonClick = (data) => {
+    setSelectedData(data);
+    console.log(selectedData);
+  };
 
   return (
     <>
@@ -59,54 +63,41 @@ export default function RTables() {
           </TableColumn>
         </TableHeader>
         <TableBody>
-          <TableRow key="1">
-            <TableCell>
-              <Chip color="success" size="md" variant="flat">
-                فعال
-              </Chip>
-            </TableCell>
-            <TableCell>ali</TableCell>
-            <TableCell>
-              <button className="p-2 text-2xl mx-3 bg-[#415FEF] rounded-lg ">
-                <MdEdit />
-              </button>
-            </TableCell>
-            <TableCell>1055</TableCell>
-            <TableCell>50</TableCell>
-            <TableCell>10.8</TableCell>
-            <TableCell>
-              <Button
-                onPress={onOpen}
-                className="p-2 text-white text-2xl mx-3 bg-[#415FEF] rounded-lg  "
-              >
-                <IoQrCodeOutline />
-              </Button>
-            </TableCell>
-          </TableRow>
-          <TableRow key="2">
-            <TableCell>
-              <Chip color="danger" size="md" variant="flat">
-                غیر فعال
-              </Chip>
-            </TableCell>
-            <TableCell>amir</TableCell>
-            <TableCell>
-              <button className="p-2 text-2xl mx-3 bg-[#415FEF] rounded-lg ">
-                <MdEdit />
-              </button>
-            </TableCell>
-            <TableCell>2011</TableCell>
-            <TableCell>60</TableCell>
-            <TableCell>60</TableCell>
-            <TableCell>
-              <Button
-                onPress={onOpen}
-                className="p-2 text-white text-2xl mx-3 bg-[#415FEF] rounded-lg  "
-              >
-                <IoQrCodeOutline />
-              </Button>
-            </TableCell>
-          </TableRow>
+          {data.map(({ amount, accountName, id, used, token }: any) => (
+            <TableRow key="1">
+              <TableCell>
+                {amount >= used / 1073741824 ? (
+                  <Chip color="success" size="md" variant="flat">
+                    فعال
+                  </Chip>
+                ) : (
+                  <Chip color="danger" size="md" variant="flat">
+                    غیر فعال
+                  </Chip>
+                )}
+              </TableCell>
+              <TableCell>{accountName}</TableCell>
+              <TableCell>
+                <button className="mx-3 rounded-lg bg-[#415FEF] p-2 text-2xl ">
+                  <Link href={`/dashboard/user/${id}`}>
+                    <MdEdit />
+                  </Link>
+                </button>
+              </TableCell>
+              <TableCell>{id}</TableCell>
+              <TableCell>{amount}</TableCell>
+              <TableCell>{used / 1073741824}</TableCell>
+              <TableCell>
+                <Button
+                  onClick={() => handleButtonClick(token)}
+                  onPress={onOpen}
+                  className="mx-3 rounded-lg bg-[#415FEF] p-2 text-2xl text-white  "
+                >
+                  <IoQrCodeOutline />
+                </Button>
+              </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
 
@@ -118,19 +109,23 @@ export default function RTables() {
                 لینک اتصال{' '}
               </ModalHeader>
               <ModalBody>
-                <div className="q flex flex-col justify-center items-center">
-                  <span className="bg-[#17c964] text-black rounded-lg p-3">
-                    https://site.imfromir.site/sub/FkPiwni6qq2lf9bQTp2c
+                <div className="q flex flex-col items-center justify-center">
+                  <span className="rounded-lg bg-[#17c964] p-3 text-black">
+                    {selectedData
+                      ? `https://sub.domain.com/sub/${selectedData}`
+                      : ''}
                   </span>
-                  <Canvas
-                    text={'https://site.imfromir.site/sub/FkPiwni6qq2lf9bQTp2c'}
-                    options={{
-                      errorCorrectionLevel: 'M',
-                      margin: 3,
-                      scale: 4,
-                      width: 200,
-                    }}
-                  />
+                  {selectedData ? (
+                    <Canvas
+                      text={`https://sub.domain.com/sub/${selectedData}`}
+                      options={{
+                        errorCorrectionLevel: 'M',
+                        margin: 3,
+                        scale: 4,
+                        width: 200,
+                      }}
+                    />
+                  ) : null}
                 </div>
               </ModalBody>
               <ModalFooter>
