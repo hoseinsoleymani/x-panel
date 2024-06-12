@@ -10,6 +10,7 @@ import RTables from './components/RTables';
 export default async function Users() {
   let data = '';
   let combinedArray = 'a';
+
   try {
     const token = cookiesReq().get('token');
     if (!token) return redirect('/auth/login');
@@ -28,13 +29,11 @@ export default async function Users() {
     data = JSON.parse(JSON.stringify(response));
     const faa = data.accounts;
     const ids = faa.map((item) => item.id);
-    console.log(ids);
     const [rows, fields] = await connection.execute(
       `SELECT token,used FROM user WHERE id IN (1, 2, 3)`,
     );
 
     await connection.end();
-
     combinedArray = faa.map((item, index) => {
       return { ...item, ...rows[index] };
     });

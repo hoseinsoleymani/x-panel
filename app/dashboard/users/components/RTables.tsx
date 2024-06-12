@@ -63,41 +63,46 @@ export default function RTables({ data }: any) {
           </TableColumn>
         </TableHeader>
         <TableBody>
-          {data.map(({ amount, accountName, id, used, token }: any) => (
-            <TableRow key="1">
-              <TableCell>
-                {amount >= used / 1073741824 ? (
-                  <Chip color="success" size="md" variant="flat">
-                    فعال
-                  </Chip>
-                ) : (
-                  <Chip color="danger" size="md" variant="flat">
-                    غیر فعال
-                  </Chip>
-                )}
-              </TableCell>
-              <TableCell>{accountName}</TableCell>
-              <TableCell>
-                <button className="mx-3 rounded-lg bg-[#415FEF] p-2 text-2xl ">
-                  <Link href={`/dashboard/user/${id}`}>
-                    <MdEdit />
-                  </Link>
-                </button>
-              </TableCell>
-              <TableCell>{id}</TableCell>
-              <TableCell>{amount}</TableCell>
-              <TableCell>{used / 1073741824}</TableCell>
-              <TableCell>
-                <Button
-                  onClick={() => handleButtonClick(token)}
-                  onPress={onOpen}
-                  className="mx-3 rounded-lg bg-[#415FEF] p-2 text-2xl text-white  "
-                >
-                  <IoQrCodeOutline />
-                </Button>
-              </TableCell>
-            </TableRow>
-          ))}
+          {data.map(({ amount, accountName, id, used, token }: any) => {
+            const usedNumber = parseFloat(used);
+            const amounts = parseFloat(amount);
+            const result = (usedNumber / 1073741824).toFixed(3);
+            return (
+              <TableRow key="1">
+                <TableCell>
+                  {amounts >= result ? (
+                    <Chip color="success" size="md" variant="flat">
+                      فعال
+                    </Chip>
+                  ) : (
+                    <Chip color="danger" size="md" variant="flat">
+                      غیر فعال
+                    </Chip>
+                  )}
+                </TableCell>
+                <TableCell>{accountName}</TableCell>
+                <TableCell>
+                  <button className="mx-3 rounded-lg bg-[#415FEF] p-2 text-2xl ">
+                    <Link href={`/dashboard/user/${id}`}>
+                      <MdEdit />
+                    </Link>
+                  </button>
+                </TableCell>
+                <TableCell>{id}</TableCell>
+                <TableCell>{amount}</TableCell>
+                <TableCell>{result}</TableCell>
+                <TableCell>
+                  <Button
+                    onClick={() => handleButtonClick(token)}
+                    onPress={onOpen}
+                    className="mx-3 rounded-lg bg-[#415FEF] p-2 text-2xl text-white  "
+                  >
+                    <IoQrCodeOutline />
+                  </Button>
+                </TableCell>
+              </TableRow>
+            );
+          })}
         </TableBody>
       </Table>
 
