@@ -1,9 +1,5 @@
 'use client';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 
-import React, { useState } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa';
 import {
   Card,
   CardBody,
@@ -11,24 +7,41 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
+  NavbarMenuToggle,
 } from '@nextui-org/react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import React from 'react';
 
 import Wallet from '@/app/components/layout/Wallet';
 
-export default function Header() {
+export interface NavProps {
+  user: {
+    wallet: { inventory: string };
+    prices: { traffic: string; date: string; limit: string };
+    _id: string;
+    email: string;
+    password: string;
+    name: string;
+    accountStatus: string;
+    accounts: {
+      amount: string;
+      userLimit: string;
+      accountName: string;
+      expireTime: string;
+      serverType: null;
+      id: string;
+      _id: string;
+    }[];
+  };
+}
+
+export default function Nav({ user }: NavProps) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const pathname = usePathname();
 
-  const delayedSetIsMenuOpen = (val: boolean) => {
-    setTimeout(() => {
-      setIsMenuOpen(val);
-    }, 500);
-  };
-
-  const [nav, setNav] = useState(false);
   const links = [
     {
       id: 1,
@@ -73,12 +86,12 @@ export default function Header() {
 
       <NavbarContent justify="end">
         <NavbarItem>
-          <Wallet />
+          <Wallet inventory={user.wallet.inventory} />
         </NavbarItem>
         <NavbarItem>
           <Card className="hidden md:block">
             <CardBody>
-              <p> ابوالفضل </p>
+              <p> {user.name} </p>
             </CardBody>
           </Card>
         </NavbarItem>
@@ -89,7 +102,7 @@ export default function Header() {
             <Link
               onClick={() => setIsMenuOpen(false)}
               href={path}
-              className={` flex w-40 ${pathname == path ? 'text-blue-600 font-bold' : 'text-zinc-950'} bg-white rounded-md p-2`}
+              className={` flex w-40 ${pathname === path ? 'font-bold text-blue-600' : 'text-zinc-950'} rounded-md bg-white p-2`}
             >
               {link}
             </Link>

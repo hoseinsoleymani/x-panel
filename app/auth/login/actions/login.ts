@@ -7,6 +7,7 @@ import { permanentRedirect } from 'next/navigation';
 import { z } from 'zod';
 
 import dbConnect from '@/app/api/connect-db';
+import Setting from '@/app/api/models/setting';
 import User from '@/app/api/models/user';
 import { jwtSecretKey } from '@/app/utils/jwt';
 import withValidation from '@/app/utils/zodValidation';
@@ -55,6 +56,14 @@ export const login = withValidation(schema, async (formData: FormData) => {
   //     date: '20000',
   //     limit: '10000',
   //   },
+  // });
+
+  // await Setting.create({
+  //   minTraffic: '20',
+  //   maxTraffic: '200',
+  //   minExpirationTime: '30',
+  //   maxExpirationTime: '60',
+  //   maxUserLimit: '3',
   // });
 
   cookies().set('token', token);

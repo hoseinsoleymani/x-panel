@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { IoIosSettings } from 'react-icons/io';
 import { IoNotifications } from 'react-icons/io5';
+
 import Wallet from '@/app/components/layout/Wallet';
 
 export default function Header() {
@@ -54,7 +55,7 @@ export default function Header() {
       </button>
 
       {nav ? (
-        <ul className="absolute z-[1] left-0 top-0 flex h-screen w-full flex-col justify-center bg-gradient-to-b from-[#060B26] to-gray-800 p-2 ">
+        <ul className="absolute left-0 top-0 z-[1] flex h-screen w-full flex-col justify-center bg-gradient-to-b from-[#060B26] to-gray-800 p-2 ">
           {links.map(({ id, link, path }) => (
             <li
               key={id}

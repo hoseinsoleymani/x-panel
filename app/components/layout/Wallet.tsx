@@ -1,23 +1,23 @@
-import { FaWallet } from 'react-icons/fa';
 import {
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
   Button,
-  useDisclosure,
   Input,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  useDisclosure,
 } from '@nextui-org/react';
+import { FaWallet } from 'react-icons/fa';
 
-export default function Wallet() {
+export default function Wallet({ inventory }: { inventory: string }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
-    <div className="flex items-center cursor-pointer rounded text-[1rem]  text-blue-800 md:text-[1.2rem] ">
+    <div className="flex cursor-pointer items-center rounded text-[1rem]  text-blue-800 md:text-[1.2rem] ">
       <Button onPress={onOpen} className="">
         <FaWallet className="" />
-        <span className="font-bold">700.000</span>
+        <span className="font-bold">{inventory}</span>
         <span className="me-2 ">تومان</span>
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
