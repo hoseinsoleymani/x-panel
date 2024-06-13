@@ -23,7 +23,7 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="flex h-full max-w-[90rem] flex-col gap-2">
-            <h3 className="text-xl font-semibold">Statistics</h3>
+            <h3 className="text-xl font-semibold text-white">تعداد اکانت های خریداری شده</h3>
             <Card>
               <Chart />
             </Card>

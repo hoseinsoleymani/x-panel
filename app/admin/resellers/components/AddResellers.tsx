@@ -24,10 +24,10 @@ export default function AddResellers({ balance }: any) {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1 text-black">
+              <ModalHeader className="flex flex-col gap-1 text-black bg-white ">
                 اطلاعات نماینده جدید رو وارد کنید
               </ModalHeader>
-              <ModalBody>
+              <ModalBody className='bg-white p-2'>
                 <div className="flex flex-row justify-between items-center text-black">
                   <div>
                     <span>مقدار موجودی را وارد کنید:</span>
@@ -81,7 +81,7 @@ export default function AddResellers({ balance }: any) {
                   />
                 </div>
               </ModalBody>
-              <ModalFooter>
+              <ModalFooter className='bg-white'>
                 <Button color="danger" variant="light" onPress={onClose}>
                   بستن
                 </Button>

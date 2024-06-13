@@ -35,28 +35,28 @@ export default function RTables({ data }: any) {
       <Table removeWrapper aria-label="Example static collection table">
         <TableHeader>
           <TableColumn
-            className="md:text-lg"
+            className="md:text-lg bg-white"
             style={{ borderRadius: '0 10px 10px 0', textAlign: 'start' }}
           >
             وضعیت
           </TableColumn>
-          <TableColumn className="md:text-lg" style={{ textAlign: 'start' }}>
+          <TableColumn className="md:text-lg bg-white" style={{ textAlign: 'start' }}>
             نام اکانت
           </TableColumn>
-          <TableColumn className="md:text-lg" style={{ textAlign: 'start' }}>
+          <TableColumn className="md:text-lg bg-white" style={{ textAlign: 'start' }}>
             ادیت
           </TableColumn>
-          <TableColumn className="md:text-lg" style={{ textAlign: 'start' }}>
+          <TableColumn className="md:text-lg  bg-white" style={{ textAlign: 'start' }}>
             آیدی
           </TableColumn>
-          <TableColumn className="md:text-lg" style={{ textAlign: 'start' }}>
+          <TableColumn className="md:text-lg  bg-white" style={{ textAlign: 'start' }}>
             حجم کل (GB)
           </TableColumn>
-          <TableColumn className="md:text-lg" style={{ textAlign: 'start' }}>
+          <TableColumn className="md:text-lg  bg-white" style={{ textAlign: 'start' }}>
             حجم مصرفی (GB)
           </TableColumn>
           <TableColumn
-            className="md:text-lg"
+            className="md:text-lg bg-white"
             style={{ borderRadius: '10px 0 0 10px', textAlign: 'start' }}
           >
             لینک اتصال
@@ -71,16 +71,16 @@ export default function RTables({ data }: any) {
               <TableRow key="1">
                 <TableCell>
                   {amounts >= result ? (
-                    <Chip color="success" size="md" variant="flat">
+                    <Chip className='bg-[#18c96433] text-[#12a150]' color="success" size="md" variant="flat">
                       فعال
                     </Chip>
                   ) : (
-                    <Chip color="danger" size="md" variant="flat">
+                    <Chip className='text-[#f31260] bg-[#f3126033]' color="danger" size="md" variant="flat">
                       غیر فعال
                     </Chip>
                   )}
                 </TableCell>
-                <TableCell>{accountName}</TableCell>
+                <TableCell className='text-white'>{accountName}</TableCell>
                 <TableCell>
                   <button className="mx-3 rounded-lg bg-[#415FEF] p-2 text-2xl ">
                     <Link href={`/dashboard/user/${id}`}>
@@ -88,9 +88,9 @@ export default function RTables({ data }: any) {
                     </Link>
                   </button>
                 </TableCell>
-                <TableCell>{id}</TableCell>
-                <TableCell>{amount}</TableCell>
-                <TableCell>{result}</TableCell>
+                <TableCell className='text-white'>{id}</TableCell>
+                <TableCell className='text-white'>{amount}</TableCell>
+                <TableCell className='text-white'>{result}</TableCell>
                 <TableCell>
                   <Button
                     onClick={() => handleButtonClick(token)}

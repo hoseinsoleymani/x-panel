@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 const vazirfont = localFont({
-  src: '../../public/font/Vazirmatn-Regular.woff2',
+  src: '../../public/font/IRANSansWeb.woff',
 });
 
 export default function RootLayout({
