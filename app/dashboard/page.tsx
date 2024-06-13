@@ -1,98 +1,35 @@
 'use client';
-import { IoMdPersonAdd } from 'react-icons/io';
-import { MdCalendarMonth } from 'react-icons/md';
-import Chart from 'react-apexcharts';
+
+import dynamic from 'next/dynamic';
+
+import { Card } from '../components/shared/Card';
+
+const Chart = dynamic(
+  () => import('@/app/components/chart/steam').then((mod) => mod.Steam),
+  {
+    ssr: false,
+  },
+);
 
 export default function Dashboard() {
-  const series = [
-    {
-      name: 'تعداد اکانت',
-      data: [31, 40, 28, 51, 42, 109, 100],
-    },
-  ];
-
-  const options = {
-    chart: {
-      type: 'area',
-      height: 350,
-      zoom: {
-        enabled: false,
-      },
-      background: '#333', // پس‌زمینه تاریک
-    },
-    dataLabels: {
-      enabled: false,
-    },
-    stroke: {
-      curve: 'smooth',
-    },
-    xaxis: {
-      type: 'datetime',
-      categories: [
-        '2023-01-01',
-        '2023-02-01',
-        '2023-03-01',
-        '2023-04-01',
-        '2023-05-01',
-        '2023-06-01',
-        '2023-07-01',
-        '2023-08-01',
-        '2023-09-01',
-        '2023-10-01',
-        '2023-11-01',
-        '2023-12-01',
-      ],
-    },
-    tooltip: {
-      x: {
-        format: 'MM/yyyy',
-      },
-    },
-    theme: {
-      mode: 'dark', // تم تاریک
-    },
-    grid: {
-      borderColor: '#444', // رنگ خطوط شبکه
-    },
-    responsive: [
-      {
-        breakpoint: 1000,
-        options: {
-          chart: {
-            width: '100%',
-            height: 'auto',
-          },
-          legend: {
-            position: 'bottom',
-          },
-        },
-      },
-    ],
-  };
-
   return (
-    <section className="w-full   p-5">
-      <div className="text-xl ">
-        <h1>سلام ابوالفضل خوش اومدی</h1>
-        <div className="flex flex-row items-center text-xl my-5">
-          <IoMdPersonAdd className="mx-2 text-green-500" />
-          <span className="m-2">تعداد کاربر های ساخته شده:</span>
+    <div className="h-full lg:px-6">
+      <div className="mx-auto flex w-full flex-wrap justify-center gap-4  px-4 pt-3 sm:pt-10 lg:px-0 xl:flex-nowrap xl:gap-6">
+        <div className="mt-6 flex w-full flex-col gap-6">
+          <div className="flex flex-col gap-2">
+            <h3 className="text-xl font-semibold"></h3>
+            <div className="grid w-full grid-cols-1 justify-center gap-5  md:grid-cols-2 2xl:grid-cols-3">
+              <div />
+            </div>
+          </div>
+          <div className="flex h-full max-w-[90rem] flex-col gap-2">
+            <h3 className="text-xl font-semibold">Statistics</h3>
+            <Card>
+              <Chart />
+            </Card>
+          </div>
         </div>
       </div>
-
-      <div>
-        <div id="chart">
-          <Chart options={options} series={series} type="area" height={350} />{' '}
-        </div>
-      </div>
-
-      <div className="flex md:flex-row flex-col  justify-between">
-        <div className="flex flex-row items-center text-xl">
-          <MdCalendarMonth className="mx-2 text-green-600" />
-          <span>مقدار کل خرید ها </span>
-          <span className="m-2">150.000</span>
-        </div>
-      </div>
-    </section>
+    </div>
   );
 }

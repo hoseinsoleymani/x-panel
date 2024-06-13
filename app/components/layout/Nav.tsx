@@ -66,24 +66,16 @@ export default function Nav({ user }: NavProps) {
   return (
     <Navbar
       maxWidth="2xl"
-      className="bg-[#22025cdcc]"
+      className="border border-primary-200 bg-primary-100 py-5 text-white"
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
     >
-      <NavbarContent>
-        <NavbarMenuToggle
-          onChange={setIsMenuOpen}
-          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-          className="sm:hidden"
-        />
-        <NavbarBrand>
-          <Link className="text-xl" href="/">
-            {' '}
-            VPN LOGO{' '}
-          </Link>
-        </NavbarBrand>
+      <NavbarContent justify="start">
+        <NavbarItem className="flex flex-col gap-2">
+          <h1 className="text-3xl">داشبورد</h1>
+          <p className="text-gray-200">داشبورد ادمین مدیریت اکانت های vpn</p>
+        </NavbarItem>
       </NavbarContent>
-
       <NavbarContent justify="end">
         <NavbarItem>
           <Wallet inventory={user.wallet.inventory} />
@@ -102,7 +94,7 @@ export default function Nav({ user }: NavProps) {
             <Link
               onClick={() => setIsMenuOpen(false)}
               href={path}
-              className={` flex w-40 ${pathname === path ? 'font-bold text-blue-600' : 'text-zinc-950'} rounded-md bg-white p-2`}
+              className={` flex w-40 ${pathname === path ? 'text-blue-600 font-bold' : 'text-zinc-950'} rounded-md bg-white p-2`}
             >
               {link}
             </Link>

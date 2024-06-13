@@ -21,12 +21,14 @@ export default function RootLayout({
 }>) {
   return (
     <body
-      className={`h-max bg-[#060B26] text-slate-200 md:h-[100vh] ${vazirfont.className}`}
+      className={`h-max bg-primary-400 md:h-[100vh] ${vazirfont.className}`}
     >
-      <Header />
-      <main className="justify-between p-2 md:flex md:flex-row md:p-5 xl:px-20 ">
+      <main className="justify-between md:flex md:flex-row">
         <Sidebar />
-        {children}
+        <section className="grow">
+          <Header />
+          {children}
+        </section>
       </main>
     </body>
   );
