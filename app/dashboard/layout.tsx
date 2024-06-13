@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <body
-      className={`h-max bg-primary-400 md:h-[100vh] ${vazirfont.className}`}
+      className={`h-max bg-tprimary-400 md:h-[100vh] ${vazirfont.className}`}
     >
       <main className="justify-between md:flex md:flex-row">
         <Sidebar />

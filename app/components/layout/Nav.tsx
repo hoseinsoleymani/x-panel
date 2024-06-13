@@ -66,7 +66,7 @@ export default function Nav({ user }: NavProps) {
   return (
     <Navbar
       maxWidth="2xl"
-      className="border border-tprimary-200 bg-primary-100 py-5 text-white"
+      className="border border-tprimary-200 bg-tprimary-100 py-5 text-white"
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
     >
