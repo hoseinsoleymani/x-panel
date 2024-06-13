@@ -1,3 +1,4 @@
+import { nextui } from '@nextui-org/theme';
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
@@ -25,11 +26,11 @@ const config: Config = {
         200: 'rgb(34 173 92/1)',
       },
       tred: {
-        100: 'rgb(242 48 48/1)'
+        100: 'rgb(242 48 48/1)',
       },
-      white: '#fff'
+      white: '#fff',
     },
   },
-  plugins: [netxtui()],
+  plugins: [nextui()],
 };
 export default config;

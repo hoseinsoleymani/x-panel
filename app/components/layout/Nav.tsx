@@ -66,14 +66,14 @@ export default function Nav({ user }: NavProps) {
   return (
     <Navbar
       maxWidth="2xl"
-      className="border border-primary-200 bg-primary-100 py-5 text-white"
+      className="border border-tprimary-200 bg-primary-100 py-5 text-white"
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
     >
       <NavbarContent justify="start">
         <NavbarItem className="flex flex-col gap-2">
           <h1 className="text-3xl">داشبورد</h1>
-          <p className="text-gray-200">داشبورد ادمین مدیریت اکانت های vpn</p>
+          <p className="text-tgray-200">داشبورد ادمین مدیریت اکانت های vpn</p>
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
