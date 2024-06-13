@@ -9,13 +9,13 @@ export default function Page({ params }: { params: { id: string } }) {
   return (
     <section className="w-full p-5">
       <div className="flex flex-col">
-        <h1 className="m-3 text-2xl text-center">
+        <h1 className="m-3 text-2xl text-center text-white">
           نماینده شماره
           <span className="m-2 bg-green-600 px-4 py-2  rounded-md">
             {params.id}
           </span>{' '}
         </h1>
-        <h1 className="p-5 text-2xl">ابوالفضل حسن زاده</h1>
+        <h1 className="p-5 text-2xl text-white">ابوالفضل حسن زاده</h1>
       </div>
       <AccDetail
         allUser="3"
@@ -33,10 +33,12 @@ export default function Page({ params }: { params: { id: string } }) {
         />
       </div>
       <div className="flex items-center">
-        <h1>عملیات:</h1>
+        <h1 className='text-white'>عملیات:</h1>
+        <div className="flex p-2 flex-col md:flex-row gap-3">
         <PassModal />
         <PriceModal />
         <BalanceModal balance="500.000" />
+        </div>
       </div>
     </section>
   );

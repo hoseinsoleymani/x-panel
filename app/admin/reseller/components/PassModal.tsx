@@ -1,26 +1,29 @@
-import React from 'react';
 import {
+  Button,
   Input,
   Modal,
-  ModalContent,
-  ModalHeader,
   ModalBody,
+  ModalContent,
   ModalFooter,
-  Button,
+  ModalHeader,
   useDisclosure,
 } from '@nextui-org/react';
+import React from 'react';
+
 export default function PassModal() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
-    <div>
-      <Button onPress={onOpen}>تغییر رمز</Button>
+    <div className="mx-2">
+      <Button color="secondary" variant="shadow" onPress={onOpen}>
+        تغییر رمز
+      </Button>
 
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1 text-black">
+              <ModalHeader className="text-black flex flex-col gap-1">
                 رمز جدید رو وارد کنید
               </ModalHeader>
               <ModalBody>

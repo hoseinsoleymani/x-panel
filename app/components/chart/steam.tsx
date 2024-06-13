@@ -149,7 +149,7 @@ export function Steam() {
         enabled: false,
       },
       id: 'basic-bar',
-      foreColor: 'hsl(var(--nextui-default-800))',
+      foreColor: '#fff',
       stacked: true,
       toolbar: {
         show: false,
@@ -161,21 +161,21 @@ export function Steam() {
       labels: {
         // show: false,
         style: {
-          colors: 'hsl(var(--nextui-default-800))',
+          colors: '#fff',
         },
       },
       axisBorder: {
-        color: 'hsl(var(--nextui-nextui-default-200))',
+        color: '#fff',
       },
       axisTicks: {
-        color: 'hsl(var(--nextui-nextui-default-200))',
+        color: '#fff',
       },
     },
     yaxis: {
       labels: {
         style: {
           // hsl(var(--nextui-content1-foreground))
-          colors: 'hsl(var(--nextui-default-800))',
+          colors: '#fff',
         },
       },
     },
@@ -184,7 +184,7 @@ export function Steam() {
     },
     grid: {
       show: true,
-      borderColor: 'hsl(var(--nextui-default-200))',
+      borderColor: '#fff',
       strokeDashArray: 0,
       position: 'back',
     },
@@ -194,7 +194,6 @@ export function Steam() {
         colors: ['red'],
       },
     },
-    // @ts-ignore
     markers: false,
   };
 
@@ -209,17 +208,7 @@ export function Steam() {
     <div className="border-stroke pt-7.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 col-span-12 rounded-sm border px-5 pb-5 xl:col-span-8">
       <div className="flex flex-wrap items-start justify-between gap-3 sm:flex-nowrap">
         <div className="max-w-45 flex w-full justify-end">
-          <div className="bg-whiter dark:bg-meta-4 inline-flex items-center rounded-md p-1.5">
-            <button className="shadow-card hover:shadow-card dark:bg-boxdark dark:hover:bg-boxdark rounded bg-white px-3 py-1 text-xs font-medium text-white hover:bg-white dark:text-white">
-              Day
-            </button>
-            <button className="hover:shadow-card dark:hover:bg-boxdark rounded px-3 py-1 text-xs font-medium text-white hover:bg-white dark:text-white">
-              Week
-            </button>
-            <button className="hover:shadow-card dark:hover:bg-boxdark rounded px-3 py-1 text-xs font-medium text-white hover:bg-white dark:text-white">
-              Month
-            </button>
-          </div>
+
         </div>
       </div>
 

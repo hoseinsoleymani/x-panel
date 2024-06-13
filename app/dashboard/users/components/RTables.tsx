@@ -71,11 +71,11 @@ export default function RTables({ data }: any) {
               <TableRow key="1">
                 <TableCell>
                   {amounts >= result ? (
-                    <Chip className='bg-[#18c96433] text-[#12a150]' color="success" size="md" variant="flat">
+                    <Chip color="success" size="md" variant="flat">
                       فعال
                     </Chip>
                   ) : (
-                    <Chip className='text-[#f31260] bg-[#f3126033]' color="danger" size="md" variant="flat">
+                    <Chip color="danger" size="md" variant="flat">
                       غیر فعال
                     </Chip>
                   )}

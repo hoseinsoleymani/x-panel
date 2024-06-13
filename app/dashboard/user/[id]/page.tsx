@@ -32,7 +32,7 @@ export default function Page({ params }: { params: { id: string } }) {
   return (
     <div className="w-full md:mt-5 md:p-5">
       <div className=" flex items-center  gap-5 py-5">
-        <h1 className="text-2xl">مشخصات:</h1>
+        <h1 className="text-2xl text-white">مشخصات:</h1>
         <Card className=" bg-[#d4d4d8]">
           <CardBody>
             <p className="w-full inline-block text-xl justify-start px-1  font-medium">
@@ -42,7 +42,7 @@ export default function Page({ params }: { params: { id: string } }) {
         </Card>
         <Card className="bg-[#d4d4d8]">
           <CardBody>
-            <p className="text-xl justify-start px-1  font-medium">
+            <p className="text-xl justify-start px-1 font-medium">
               نام اکانت: AMIR
             </p>
           </CardBody>
@@ -51,12 +51,12 @@ export default function Page({ params }: { params: { id: string } }) {
 
       <div className="py-12 px-4 grid md:grid-cols-3 grid-cols-2 gap-16 items-center bg-[#23273C] rounded-xl">
         <div className="text-xs">
-          <Span className="bg-gray-700">
+          <Span className="bg-white text-black">
             https://sub.domain.com/sub/FkPiwni6qq2lf9bQTp2c
           </Span>
         </div>
         <div className="a"></div>
-        <div className="flex items-center">
+        <div className="flex items-center text-white">
           <span className="">برای دریافت qr کلیک کنید</span>
           <Button
             onPress={onOpen}
@@ -69,7 +69,7 @@ export default function Page({ params }: { params: { id: string } }) {
 
       <div className="py-16 px-4 grid md:grid-cols-3 grid-cols-2 gap-16 items-center mt-8 bg-[#23273C] rounded-xl">
         <div className="flex flex-row">
-          <h1 className="md:text-xl  text-sm">وضعیت اکانت</h1>
+          <h1 className="md:text-xl  text-sm text-white">وضعیت اکانت</h1>
           <Switch
             isDisabled
             color="success"
@@ -81,7 +81,7 @@ export default function Page({ params }: { params: { id: string } }) {
         <Infobox title="حجم مصرف شده" content="8.8 GB" />
         <Infobox title="زمان پایان" content="2024/08/11" />
         <Infobox title="تعداد کاربر" content="4" />
-        <div className="flex items-center">
+        <div className="flex items-center text-white">
           <p>تغییر لینک اکانت</p>
           <Buttonc>
             <BiReset />
