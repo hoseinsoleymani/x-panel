@@ -34,7 +34,7 @@ export const createUser = withValidation(schema, async (formData: FormData) => {
 
   try {
     const loginToPanel = await client.post(
-      'https://dash.imfromir.site/admin/login',
+       `${process.env.PANEL}admin/login`,
       {
         email: '4345abol@gmail.com',
         passwd: 'abol0011',
@@ -44,9 +44,10 @@ export const createUser = withValidation(schema, async (formData: FormData) => {
       },
     );
 
-    const cookies = cookieJar.getCookiesSync('https://dash.imfromir.site');
+    
+    const cookies = cookieJar.getCookiesSync(process.env.PANEL);    
     const createAccount = await axios.post(
-      'https://dash.imfromir.site/admin/user/save',
+      `${process.env.PANEL}admin/user/save`,
       {
         email: generateEmail(accountName),
         passwd: '!ABdsv512com',
@@ -71,12 +72,11 @@ export const createUser = withValidation(schema, async (formData: FormData) => {
     const [rows, fields] = await connection.execute(
       `SELECT id , token FROM user WHERE email = '${generateEmail(accountName)}'`,
     );
-    console.log('id isssssssssssssssssssssssssss:',rows)
 
     await connection.end();
 
     const edituser = await axios.post(
-      'https://dash.imfromir.site/admin/user/save',
+      `${process.env.PANEL}admin/user/save`,
       {
         id: `${rows[0].id}`,
         transfer_enable: amount,

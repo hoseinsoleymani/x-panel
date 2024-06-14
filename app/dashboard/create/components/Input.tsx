@@ -33,7 +33,7 @@ const NumberInput = () => {
           onChange={(e) => {
             setValue(e.target.value);
           }}
-          label="."
+          label="GB"
           selectedKeys={[value]}
           placeholder="حجم را انتخاب کنید"
         >

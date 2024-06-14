@@ -27,7 +27,7 @@ const UserLimitInput = () => {
             setValue(e.target.value);
           }}
           selectedKeys={[value]}
-          label="."
+          label="تعداد کاربر"
         >
           {limits.map((item) => (
             <SelectItem key={item.key}>{item.label}</SelectItem>
