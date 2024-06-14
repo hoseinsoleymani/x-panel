@@ -1,3 +1,4 @@
+'use client'
 import { Input } from '@nextui-org/react';
 import { useState } from 'react';
 
