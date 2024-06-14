@@ -23,7 +23,7 @@ export default function RootLayout({
     <body
       className={`h-max bg-tprimary-400 md:h-[100vh] ${vazirfont.className}`}
     >
-      <main className="justify-between md:flex md:flex-row">
+      <main className="justify-between dark md:flex md:flex-row">
         <Sidebar />
         <section className="grow">
           <Header />

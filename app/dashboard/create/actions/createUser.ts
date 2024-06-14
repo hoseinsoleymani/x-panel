@@ -26,7 +26,7 @@ export const createUser = withValidation(schema, async (formData: FormData) => {
   const date = formData.get('date') as string;
   const amount = formData.get('amount') as string;
   const userLimit = formData.get('user-limit');
-  const serverType = formData.get('server-type');
+  // const serverType = formData.get('server-type');
   const accountName = formData.get('account-name') as string;
   // const serverLocation = formData.get('server-location');
   const cookieJar = new CookieJar();
@@ -71,6 +71,7 @@ export const createUser = withValidation(schema, async (formData: FormData) => {
     const [rows, fields] = await connection.execute(
       `SELECT id , token FROM user WHERE email = '${generateEmail(accountName)}'`,
     );
+    console.log('id isssssssssssssssssssssssssss:',rows)
 
     await connection.end();
 
@@ -115,7 +116,7 @@ export const createUser = withValidation(schema, async (formData: FormData) => {
               userLimit,
               accountName,
               expireTime: date,
-              serverType,
+              // serverType,
               id: rows[0].id,
             },
           },
