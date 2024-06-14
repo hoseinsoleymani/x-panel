@@ -115,7 +115,7 @@ export default function RTables({ data }: any) {
               </ModalHeader>
               <ModalBody>
                 <div className="q flex flex-col items-center justify-center">
-                  <span className="rounded-lg bg-[#17c964] p-3 text-black">
+                  <span className="rounded-lg bg-[#17c964] p-2 text-black">
                     {selectedData
                       ? `https://sub.domain.com/sub/${selectedData}`
                       : ''}
@@ -133,8 +133,8 @@ export default function RTables({ data }: any) {
                   ) : null}
                 </div>
               </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
+              <ModalFooter >
+                <Button  color="danger" variant="light" onPress={onClose}>
                   بستن
                 </Button>
               </ModalFooter>

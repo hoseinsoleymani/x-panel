@@ -18,7 +18,7 @@ export default function Sidebar() {
     },
   ];
   return (
-    <aside className="min-h-screen w-[289px] border border-tprimary-200 bg-tprimary-100 p-5 text-tgray-200">
+    <aside className="min-h-screen w-[289px] border border-tprimary-200 bg-tprimary-100 p-5 text-tgray-200 hidden md:block">
       <div className="flex items-center justify-between gap-2 p-6 lg:py-7 xl:py-10">
         <a href="/">
           <img
