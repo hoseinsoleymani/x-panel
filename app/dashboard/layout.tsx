@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <body className="h-max bg-tprimary-400 md:h-[100vh]">
       <main
-        className={`justify-between md:flex md:flex-row ${sansfont.className}`}
+        className={`justify-between dark md:flex md:flex-row ${sansfont.className}`}
       >
         <Sidebar />
         <section className="grow">

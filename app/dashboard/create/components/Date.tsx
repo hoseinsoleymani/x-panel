@@ -8,7 +8,7 @@ import { Label } from '@/app/components/shared';
 import { useCalculatorContext } from '@/app/hook/useCalculator';
 
 export const DatePicker = () => {
-  const { date, setDate } = useCalculatorContext();
+  const { date, setDate, settings } = useCalculatorContext();
   const [maxDate, setMaxDate] = useState<CalendarDate | undefined>();
 
   useEffect(() => {
@@ -18,18 +18,19 @@ export const DatePicker = () => {
       todayDate.getMonth() + 1,
       todayDate.getDate(),
     );
-    setMaxDate(calender.add({ weeks: 8 }));
-  }, []);
+    setMaxDate(calender.add({ days: +settings?.maxExpirationTime }));
+  }, [settings]);
 
   return (
     <div className="flex w-full flex-col gap-1">
       <Label>زمان اکانت</Label>
       <NextUiDatePicker
-        label="Date and time"
+        label="."
         name="date"
         onChange={(e) => {
           setDate(`${e.month}/${e.day}/${e.year}`);
         }}
+        variant="faded"
         minValue={today(getLocalTimeZone())}
         maxValue={maxDate}
       />

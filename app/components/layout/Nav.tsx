@@ -14,9 +14,9 @@ import {
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
+import { BiMenu } from 'react-icons/bi';
 
 import Wallet from '@/app/components/layout/Wallet';
-import { BiMenu } from 'react-icons/bi';
 
 export interface NavProps {
   user: {
@@ -74,11 +74,11 @@ export default function Nav({ user }: NavProps) {
     >
       <NavbarContent justify="start">
         <NavbarMenuToggle
-          icon={<BiMenu/>}
+          icon={<BiMenu />}
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-          className="text-white font-sans sm:hidden"
+          className="font-sans text-white sm:hidden"
         />
-        <NavbarBrand>
+        <NavbarBrand className="flex flex-col items-start gap-4">
           <h1 className="md:text-3xl">داشبورد</h1>
           <p className="hidden  text-tgray-200 md:flex ">
             داشبورد ادمین مدیریت اکانت های vpn

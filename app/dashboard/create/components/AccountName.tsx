@@ -6,8 +6,13 @@ const AccountName = () => {
   return (
     <div>
       <Label>اسم اکانت</Label>
-      <div className="relative flex max-w-[11rem] items-center">
-        <Input color="primary" name="account-name"  />
+      <div className="relative flex items-center">
+        <Input
+          color="primary"
+          name="account-name"
+          variant="faded"
+          label="اسم اکانت"
+        />
       </div>
     </div>
   );

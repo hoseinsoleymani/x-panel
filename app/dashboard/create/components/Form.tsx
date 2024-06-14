@@ -3,13 +3,14 @@
 import { Button } from '@nextui-org/react';
 import { useFormState } from 'react-dom';
 
+import { Card } from '@/app/components/shared/Card';
 import AccountName from '@/app/dashboard/create/components/AccountName';
 import NumberInput from '@/app/dashboard/create/components/Input';
 import UserLimitInput from '@/app/dashboard/create/components/UserLimitInput';
 import { CalculatorProvider } from '@/app/hook/useCalculator';
 
 import { createUser } from '../actions/createUser';
-import type { UserDB } from '../page';
+import type { Setting, UserDB } from '../page';
 import Cost from './Cost';
 import { DatePicker } from './Date';
 
@@ -19,34 +20,33 @@ const initialState = {
 
 export interface Props {
   prices: UserDB['prices'] | undefined;
+  settings: Setting | undefined
 }
 
-export default function Form({ prices }: Props) {
+export default function Form({ prices, settings }: Props) {
   const [state, formAction] = useFormState(createUser, initialState);
 
   return (
-    <CalculatorProvider prices={prices}>
-      <form
-        action={formAction}
-        className="grid grid-cols-1 gap-y-6 md:grid-cols-3"
-      >
-        <div className="me-5">
-          <DatePicker />
-        </div>
-        <NumberInput />
-        <UserLimitInput />
-        {/* <div className="flex gap-2">
-              <Dropdown />
-              <DropdownS />
-            </div> */}
-        <AccountName />
-        <div className="mt-10 flex items-center gap-6">
-          <Cost />
-          <Button color="primary" type="submit" className="max-w-36">
-            ساخت اکانت
-          </Button>
-        </div>
-      </form>
+    <CalculatorProvider prices={prices} settings={settings}>
+      <Card>
+        <form action={formAction}>
+          <div className="grid grid-cols-1 gap-20 md:grid-cols-2">
+            <DatePicker />
+            <AccountName />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-20 mt-6">
+            <NumberInput />
+            <UserLimitInput />
+          </div>
+
+          <div className="mt-10 flex items-center gap-6">
+            <Cost />
+            <Button color="primary" type="submit" className="max-w-36">
+              ساخت اکانت
+            </Button>
+          </div>
+        </form>
+      </Card>
     </CalculatorProvider>
   );
 }
