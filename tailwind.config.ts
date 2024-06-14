@@ -29,6 +29,7 @@ const config: Config = {
         100: 'rgb(242 48 48/1)',
       },
       white: '#fff',
+      black: '#000',
     },
   },
   plugins: [nextui()],
