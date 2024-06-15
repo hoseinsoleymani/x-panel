@@ -1,39 +1,43 @@
-'use client';
 import { Input } from '@nextui-org/react';
+import { redirect } from 'next/navigation';
 
-import AccDetail from '../components/AccDetail';
+import User from '@/app/api/models/user';
+
 import BalanceModal from '../components/BalanceModal';
+import Form from '../components/Form';
 import PassModal from '../components/PassModal';
 import PriceModal from '../components/PriceModal';
 
-export default function Page({ params }: { params: { id: string } }) {
+export default async function Page({ params }: { params: { id: string } }) {
+  let userData;
+
+  try {
+    const aData = await User.findOne({ _id: params.id });
+    userData = JSON.parse(JSON.stringify(aData));
+  } catch (error) {
+    redirect('/dashboard');
+  }
+
   return (
-    <section className="w-full p-5">
+    <section className="m-2 grow  md:m-6">
       <div className="flex flex-col">
-        <h1 className="m-3 text-center text-2xl text-white">
-          نماینده شماره
-          <span className="bg-green-600 m-2 rounded-md px-4  py-2">
-            {params.id}
-          </span>{' '}
-        </h1>
-        <h1 className="p-5 text-2xl text-white">ابوالفضل حسن زاده</h1>
+        <h1 className="p-5 text-2xl text-white">{userData.name}</h1>
       </div>
 
       <div className="flex p-5">
         <Input
           type="email"
           label="ایمیل نماینده"
-          color="success"
-          defaultValue="abolfazl@gmail.org"
-          className="max-w-xs"
+          color="primary"
+          isDisabled
+          defaultValue={userData.email}
+          className="max-w-xs text-white"
         />
       </div>
-      <div className="flex items-center">
-        <h1 className="text-white">عملیات:</h1>
-        <div className="flex flex-col gap-3 p-2 md:flex-row">
-          <PassModal />
-          <PriceModal />
-          <BalanceModal balance="500.000" />
+      <h1 className="text-white">عملیات:</h1>
+      <div className="mt-6 flex flex-row">
+        <div className="flex w-full flex-col">
+          <Form data={userData} />
         </div>
       </div>
     </section>

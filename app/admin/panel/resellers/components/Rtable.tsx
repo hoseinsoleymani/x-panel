@@ -8,6 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from '@nextui-org/react';
+import Link from 'next/link';
 import { MdEdit } from 'react-icons/md';
 
 export default function Rtable({ data }: any) {
@@ -32,12 +33,7 @@ export default function Rtable({ data }: any) {
         >
           ادیت
         </TableColumn>
-        <TableColumn
-          className="md:text-lg bg-white"
-          style={{ textAlign: 'start' }}
-        >
-          آیدی
-        </TableColumn>
+
         <TableColumn
           className="md:text-lg bg-white"
           style={{ textAlign: 'start' }}
@@ -48,13 +44,13 @@ export default function Rtable({ data }: any) {
           className="md:text-lg bg-white"
           style={{ borderRadius: '10px 0 0 10px', textAlign: 'start' }}
         >
-          تعداد اکانت های فعال
+          تعداد اکانت ها
         </TableColumn>
       </TableHeader>
 
       <TableBody>
-        {data.map(({ id, wallet, accountStatus, name, accounts }: any) => (
-          <TableRow key={id}>
+        {data.map(({ _id, wallet, accountStatus, name, accounts }: any) => (
+          <TableRow key={_id}>
             <TableCell>
               {accountStatus === 'active' ? (
                 <Chip
@@ -79,10 +75,9 @@ export default function Rtable({ data }: any) {
             <TableCell className='text-white'>{name}</TableCell>
             <TableCell>
               <button className="mx-3 rounded-lg bg-[#415FEF] p-2 text-2xl ">
-                <MdEdit />
+                <Link href={`reseller/${_id}`}><MdEdit /></Link>
               </button>
             </TableCell>
-            <TableCell className='text-white'>1</TableCell>
             <TableCell className='text-white'>{wallet.inventory}</TableCell>
             <TableCell className='text-white'>{accounts.length}</TableCell>
           </TableRow>
