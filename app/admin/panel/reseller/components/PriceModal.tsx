@@ -13,8 +13,8 @@ export default function PriceModal() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
-    <div>
-      <Button onPress={onOpen}>تغییر قیمت ها</Button>
+    <div className='mx-2'>
+      <Button color='secondary' variant='shadow'  onPress={onOpen}>تغییر قیمت ها</Button>
 
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>

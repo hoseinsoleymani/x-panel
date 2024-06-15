@@ -29,6 +29,8 @@ export default async function Users() {
     data = JSON.parse(JSON.stringify(response));
     const faa = data.accounts;
     const ids = faa.map((item) => item.id);
+    console.log(ids);
+    
     const [rows, fields] = await connection.execute(
       `SELECT token,used FROM user WHERE id IN (1, 2, 3)`,
     );

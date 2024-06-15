@@ -71,11 +71,11 @@ export default function RTables({ data }: any) {
               <TableRow key="1">
                 <TableCell>
                   {amounts >= result ? (
-                    <Chip className='bg-[#18c96433] text-[#12a150]' color="success" size="md" variant="flat">
+                    <Chip color="success" size="md" variant="flat">
                       فعال
                     </Chip>
                   ) : (
-                    <Chip className='text-[#f31260] bg-[#f3126033]' color="danger" size="md" variant="flat">
+                    <Chip color="danger" size="md" variant="flat">
                       غیر فعال
                     </Chip>
                   )}
@@ -115,7 +115,7 @@ export default function RTables({ data }: any) {
               </ModalHeader>
               <ModalBody>
                 <div className="q flex flex-col items-center justify-center">
-                  <span className="rounded-lg bg-[#17c964] p-3 text-black">
+                  <span className="rounded-lg bg-[#17c964] p-2 text-black">
                     {selectedData
                       ? `https://sub.domain.com/sub/${selectedData}`
                       : ''}
@@ -133,8 +133,8 @@ export default function RTables({ data }: any) {
                   ) : null}
                 </div>
               </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
+              <ModalFooter >
+                <Button  color="danger" variant="light" onPress={onClose}>
                   بستن
                 </Button>
               </ModalFooter>

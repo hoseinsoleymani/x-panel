@@ -14,6 +14,7 @@ import {
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
+import { BiMenu } from 'react-icons/bi';
 
 import Wallet from '@/app/components/layout/Wallet';
 
@@ -65,16 +66,24 @@ export default function Nav({ user }: NavProps) {
 
   return (
     <Navbar
+      isBordered
       maxWidth="2xl"
       className="border border-tprimary-200 bg-tprimary-100 py-5 text-white"
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
     >
       <NavbarContent justify="start">
-        <NavbarItem className="flex flex-col gap-2">
-          <h1 className="text-3xl">داشبورد</h1>
-          <p className="text-tgray-200">داشبورد ادمین مدیریت اکانت های vpn</p>
-        </NavbarItem>
+        <NavbarMenuToggle
+          icon={<BiMenu />}
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          className="font-sans text-white sm:hidden"
+        />
+        <NavbarBrand className="flex flex-col items-start gap-4">
+          <h1 className="md:text-3xl">داشبورد</h1>
+          <p className="hidden  text-tgray-200 md:flex ">
+            داشبورد ادمین مدیریت اکانت های vpn
+          </p>
+        </NavbarBrand>
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
@@ -88,7 +97,7 @@ export default function Nav({ user }: NavProps) {
           </Card>
         </NavbarItem>
       </NavbarContent>
-      <NavbarMenu className="bg-[#22025cdcc]">
+      <NavbarMenu className="mt-6 bg-[#22025cdcc]">
         {links.map(({ id, link, path }) => (
           <NavbarMenuItem className=" m-2" key={id}>
             <Link

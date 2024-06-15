@@ -5,8 +5,8 @@ export default function BalanceModal({ balance }: any) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
-    <div>
-      <Button onPress={onOpen}>تغییر موجودی</Button>
+    <div className='mx-2'>
+      <Button color='secondary' variant='shadow' onPress={onOpen}>تغییر موجودی</Button>
 
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>

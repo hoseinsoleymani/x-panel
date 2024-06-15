@@ -2,11 +2,11 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import { GoHome } from 'react-icons/go';
 import { PiUsersThreeDuotone } from 'react-icons/pi';
-import { TbUserEdit } from 'react-icons/tb';
 
+// import { TbUserEdit } from 'react-icons/tb';
 import Sidebar from '@/app/components/layout/sidebar';
 
-import Header from '../components/layout/Header';
+import Header from '../../components/layout/Header';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 const sansfont = localFont({
-  src: '../../public/font/IRANSansWeb.woff',
+  src: '../../../public/font/IRANSansWeb.woff',
 });
 
 export default function RootLayout({
@@ -23,16 +23,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const routes = [
-    { text: 'پیشخوان', icon: <GoHome size={26} />, path: '/dashboard' },
     {
-      text: 'ساخت کاربر',
-      icon: <TbUserEdit size={26} />,
-      path: '/dashboard/create',
+      text: 'نماینده ها',
+      icon: <GoHome size={26} />,
+      path: '/admin/panel/resellers',
     },
+    // {
+    //   text: 'ساخت کاربر',
+    //   icon: <TbUserEdit size={26} />,
+    //   path: '/dashboard/create',
+    // },
     {
-      text: 'کاربران',
+      text: 'تنظیمات',
       icon: <PiUsersThreeDuotone size={26} />,
-      path: '/dashboard/users',
+      path: '/admin/panel/setting',
     },
   ];
 

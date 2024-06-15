@@ -44,7 +44,7 @@ export const login = withValidation(schema, async (formData: FormData) => {
   const token = await generateToken(email, password);
 
   cookies().set('token', token);
-  permanentRedirect('/dashboard');
+  permanentRedirect('/admin/panel/resellers');
 });
 
 async function isValidCredentials(email: string, password: string) {
