@@ -11,7 +11,8 @@ const Cost = () => {
     <div className="flex items-center gap-3">
       <Label>هزینه ساخت</Label>
       <div className="relative flex max-w-[11rem] items-center">
-        <Input className='text-white' isDisabled value={price} />
+        <Input className="text-white" isDisabled value={price} />
+        <input type="hidden" value={price} name="account-price" />
       </div>
     </div>
   );

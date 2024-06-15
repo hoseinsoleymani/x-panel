@@ -7,6 +7,7 @@ import { TbUserEdit } from 'react-icons/tb';
 import Sidebar from '@/app/components/layout/sidebar';
 
 import Header from '../components/layout/Header';
+import ToastProvider from '../components/shared/ToastProvider';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -44,7 +45,8 @@ export default function RootLayout({
         <Sidebar routes={routes} />
         <section className="grow">
           <Header />
-          {children}
+
+        <ToastProvider>{children}</ToastProvider>
         </section>
       </main>
     </body>

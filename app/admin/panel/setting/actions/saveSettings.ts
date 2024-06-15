@@ -24,7 +24,7 @@ export const saveSetting = withValidation(
 
     try {
       await Setting.updateMany({ ...Object.fromEntries(filterData) });
-    } catch (error) {
+    } catch (error: any) {
       throw Error(error);
     }
   },

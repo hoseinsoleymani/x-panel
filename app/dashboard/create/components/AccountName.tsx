@@ -8,8 +8,7 @@ const AccountName = () => {
       <Label>اسم اکانت</Label>
       <div className="relative flex items-center">
         <Input
-          className='text-white'
-          color="primary"
+          className="text-white"
           name="account-name"
           variant="faded"
           label="اسم اکانت"

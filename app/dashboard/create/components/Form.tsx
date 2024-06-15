@@ -4,6 +4,7 @@ import { Button } from '@nextui-org/react';
 import { useFormState } from 'react-dom';
 
 import { Card } from '@/app/components/shared/Card';
+import { showToast } from '@/app/components/shared/Toast';
 import AccountName from '@/app/dashboard/create/components/AccountName';
 import NumberInput from '@/app/dashboard/create/components/Input';
 import UserLimitInput from '@/app/dashboard/create/components/UserLimitInput';
@@ -20,11 +21,18 @@ const initialState = {
 
 export interface CreateUserProps {
   prices: UserDB['prices'] | undefined;
-  settings: Setting | undefined
+  settings: Setting | undefined;
 }
 
 export default function Form({ prices, settings }: CreateUserProps) {
   const [state, formAction] = useFormState(createUser, initialState);
+  console.log(state?.message);
+
+  if (state?.message) {
+    showToast('error', <p>{state.message}</p>, {
+      toastId: 'error 1',
+    });
+  }
 
   return (
     <CalculatorProvider prices={prices} settings={settings}>
@@ -34,7 +42,7 @@ export default function Form({ prices, settings }: CreateUserProps) {
             <DatePicker />
             <AccountName />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-20 mt-6">
+          <div className="mt-6 grid grid-cols-1 gap-20 md:grid-cols-2">
             <NumberInput />
             <UserLimitInput />
           </div>
