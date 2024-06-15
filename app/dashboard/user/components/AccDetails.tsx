@@ -2,10 +2,12 @@ import { Switch } from '@nextui-org/react';
 import React from 'react';
 import { BiReset } from 'react-icons/bi';
 import { FaCheck } from 'react-icons/fa';
+import { IoMdClose } from 'react-icons/io';
+
+import { Card } from '@/app/components/shared/Card';
 
 import Buttonc from './Buttonc';
 import Infobox from './Infobox';
-import { IoMdClose } from 'react-icons/io';
 
 export default function AccDetails({ amount, used, time, limit }: any) {
   const date = new Date(time);
@@ -29,35 +31,37 @@ export default function AccDetails({ amount, used, time, limit }: any) {
   const trafic = (amount / 1073741824).toFixed(2);
   const tused = (Number(used) / 1073741824).toFixed(2);
   return (
-    <div className="mt-8 grid grid-cols-2 items-center gap-16 rounded-xl bg-[#23273C] px-4 py-16 md:grid-cols-3">
-      <div className="flex flex-row">
-        <h1 className="text-sm  text-white md:text-xl">وضعیت اکانت</h1>
-        {trafic >= tused && formattedDateb < formattedDatea ? (
-          <Switch
-            isDisabled
-            color="success"
-            defaultSelected
-            thumbIcon={<FaCheck />}
-          />
-        ) : (
-          <Switch
-            isDisabled
-            color="danger"
-            defaultSelected
-            thumbIcon={<IoMdClose />}
-          />
-        )}
+    <Card>
+      <div className="grid grid-cols-2 items-center gap-16 md:grid-cols-3">
+        <div className="flex flex-row">
+          <h1 className="text-sm  text-white md:text-xl">وضعیت اکانت</h1>
+          {trafic >= tused && formattedDateb < formattedDatea ? (
+            <Switch
+              isDisabled
+              color="success"
+              defaultSelected
+              thumbIcon={<FaCheck />}
+            />
+          ) : (
+            <Switch
+              isDisabled
+              color="danger"
+              defaultSelected
+              thumbIcon={<IoMdClose />}
+            />
+          )}
+        </div>
+        <Infobox title="حجم کل" content={`${trafic} GB`} />
+        <Infobox title="حجم مصرف شده" content={`${tused} GB`} />
+        <Infobox title="زمان پایان" content={formattedDate} />
+        <Infobox title="تعداد کاربر" content={limit} />
+        <div className="flex items-center text-white">
+          <p>تغییر لینک اکانت</p>
+          <Buttonc>
+            <BiReset />
+          </Buttonc>
+        </div>
       </div>
-      <Infobox title="حجم کل" content={`${trafic} GB`} />
-      <Infobox title="حجم مصرف شده" content={`${tused} GB`} />
-      <Infobox title="زمان پایان" content={formattedDate} />
-      <Infobox title="تعداد کاربر" content={limit} />
-      <div className="flex items-center text-white">
-        <p>تغییر لینک اکانت</p>
-        <Buttonc>
-          <BiReset />
-        </Buttonc>
-      </div>
-    </div>
+    </Card>
   );
 }

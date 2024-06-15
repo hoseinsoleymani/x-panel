@@ -18,12 +18,12 @@ const initialState = {
   message: '',
 };
 
-export interface Props {
+export interface CreateUserProps {
   prices: UserDB['prices'] | undefined;
   settings: Setting | undefined
 }
 
-export default function Form({ prices, settings }: Props) {
+export default function Form({ prices, settings }: CreateUserProps) {
   const [state, formAction] = useFormState(createUser, initialState);
 
   return (
