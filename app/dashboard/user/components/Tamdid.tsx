@@ -15,11 +15,11 @@ export default function Tamdid() {
           <Label>مدت زمان اکانت</Label>
           <DatePicker label="زمان تمدید" className="max-w-[284px]" />
         </div>
-        {/* <UserLimitInput /> */}
+        <UserLimitInput />
       </div>
 
       <div className="mt-5 flex items-center justify-center">
-        {/* <Cost /> */}
+        <Cost />
 
         <Button color="primary" className="mx-5 max-w-36">
           تمدید اکانت

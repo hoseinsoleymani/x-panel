@@ -1,15 +1,32 @@
 /* eslint-disable fp/no-let */
 import mysql from 'mysql2/promise';
 import React from 'react';
+import { cookies as cookiesReq } from 'next/headers';
+import { redirect } from 'next/navigation';
+
+import User from '@/app/api/models/user';
+import { verifyToken } from '@/app/utils/jwt';
 
 import AccDetails from '../components/AccDetails';
 import AccID from '../components/AccID';
 import Qr from '../components/Qr';
 import Span from '../components/Span';
-import Tamdid from '../components/Tamdid';
 
 export default async function Page({ params }: { params: { id: string } }) {
   let data = '';
+
+  try {
+    const token = cookiesReq().get('token');
+    if (!token) return redirect('/auth/login');
+
+    const userData = await verifyToken<{ email: string }>(token.value);
+    if (!userData) return;
+    const { accounts } = await User.findOne({ email: userData.email });
+    const account = accounts.some(account => account.id === params.id);    
+    if (!account) return redirect('/dashboard')
+  } catch (error) {
+    redirect('/dashboard');
+  }
 
   try {
     const connection = await mysql.createConnection({
@@ -48,7 +65,6 @@ export default async function Page({ params }: { params: { id: string } }) {
         time={data.expire_in}
         limit={data.iplimit}
       />
-      {/* <Tamdid /> */}
     </div>
   );
 }
