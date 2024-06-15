@@ -29,9 +29,7 @@ export default async function Users() {
     data = JSON.parse(JSON.stringify(response));
     const faa = data.accounts;
     const ids = faa.map((item) => item.id);
-    const formattedArray = `${ids.join(', ')}`;
-    console.log(formattedArray);
-    
+    const formattedArray = `${ids.join(', ')}`;    
     const [rows, fields] = await connection.execute(
       `SELECT token,used FROM user WHERE id IN (${formattedArray})`,
     );

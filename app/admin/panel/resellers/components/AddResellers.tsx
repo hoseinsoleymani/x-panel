@@ -22,6 +22,15 @@ export default function AddResellers({ balance }: any) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [state, formAction] = useFormState(createReseller, initialState);
 
+  const [value, setValue] = React.useState("");
+
+  const validateEmail = (value) => value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
+
+  const isInvalid = React.useMemo(() => {
+    if (value === "") return false;
+
+    return validateEmail(value) ? false : true;
+  }, [value]);
   return (
     <div>
       <Button onPress={onOpen} color="secondary">
@@ -43,7 +52,7 @@ export default function AddResellers({ balance }: any) {
                   <div>
                     <Input
                       className="text-black"
-                      type="text"
+                      type="number"
                       variant="bordered"
                       label="مقدار موجودی "
                       name="inventory"
@@ -57,6 +66,10 @@ export default function AddResellers({ balance }: any) {
                     variant="bordered"
                     label="ایمیل نماینده"
                     name="email"
+                    value={value}
+                    isInvalid={isInvalid}
+                    color={isInvalid ? "danger" : "success"}
+                    onValueChange={setValue}
                   />
                   <Input
                     className="m-2 text-black"
@@ -75,7 +88,7 @@ export default function AddResellers({ balance }: any) {
                   <span className="text-black">تعرفه های نماینده:</span>
                   <Input
                     className="m-2"
-                    type="number "
+                    type="number"
                     variant="bordered"
                     label="قیمت هر گیگ"
                     name="traffic-price"

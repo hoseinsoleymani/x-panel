@@ -55,12 +55,12 @@ export default function AccDetails({ amount, used, time, limit }: any) {
         <Infobox title="حجم مصرف شده" content={`${tused} GB`} />
         <Infobox title="زمان پایان" content={formattedDate} />
         <Infobox title="تعداد کاربر" content={limit} />
-        <div className="flex items-center text-white">
+        {/* <div className="flex items-center text-white">
           <p>تغییر لینک اکانت</p>
           <Buttonc>
             <BiReset />
           </Buttonc>
-        </div>
+        </div> */}
       </div>
     </Card>
   );
