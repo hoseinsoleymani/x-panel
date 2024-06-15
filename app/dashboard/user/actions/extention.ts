@@ -18,8 +18,8 @@ export const extention = withValidation(schema, async (formData: FormData) => {
   const date = formData.get('date') as string;
   const amount = formData.get('amount') as string;
   const userLimit = formData.get('user-limit');
+  const id = formData.get('id');
   // const serverType = formData.get('server-type');
-  const accountName = formData.get('account-name') as string;
   // const serverLocation = formData.get('server-location');
   const cookieJar = new CookieJar();
   const client = wrapper(axios.create({ jar: cookieJar }));
@@ -37,39 +37,10 @@ export const extention = withValidation(schema, async (formData: FormData) => {
     );
 
     const cookies = cookieJar.getCookiesSync(process.env.PANEL);
-    const createAccount = await axios.post(
-      `${process.env.PANEL}admin/user/save`,
-      {
-        email: generateEmail(accountName),
-        passwd: '!ABdsv512com',
-        name: `${accountName}.1`,
-        server_group: '1',
-        role: '0',
-      },
-      {
-        headers: {
-          Cookie: cookies,
-        },
-      },
-    );
-
-    const connection = await mysql.createConnection({
-      host: process.env.DB_HOST,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
-    });
-
-    const [rows, fields] = await connection.execute(
-      `SELECT id , token FROM user WHERE email = '${generateEmail(accountName)}'`,
-    );
-
-    await connection.end();
-
     const edituser = await axios.post(
       `${process.env.PANEL}admin/user/save`,
       {
-        id: `${rows[0].id}`,
+        id,
         transfer_enable: amount,
         server_group: `1`,
         speedlimit: '1024',
@@ -98,18 +69,13 @@ export const extention = withValidation(schema, async (formData: FormData) => {
 
       const { _id } = await User.findOne({ email: userData.email });
 
-      const addDatatoDB = await User.updateOne(
-        { _id },
+      const editUser = await User.updateOne(
+        { _id,'accounts.id': id },
         {
-          $push: {
-            accounts: {
-              amount,
-              userLimit,
-              accountName,
-              expireTime: date,
-              // serverType,
-              id: rows[0].id,
-            },
+          $set:{
+            'accounts.$.amount': amount,
+            'accounts.$.userLimit': userLimit,
+            'accounts.$.expireTime': date,
           },
         },
       );
@@ -120,7 +86,3 @@ export const extention = withValidation(schema, async (formData: FormData) => {
     console.error('Error logging in:', error);
   }
 });
-
-function generateEmail(accountName: string) {
-  return `${accountName}.1@gmail.com`;
-}
