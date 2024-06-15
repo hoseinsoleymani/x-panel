@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import React from 'react';
 
 import User from '@/app/api/models/user';
+import type { UserDB } from '@/app/dashboard/create/page';
 
 import AddResellers from './components/AddResellers';
 import Rtable from './components/Rtable';

@@ -4,7 +4,6 @@ const withValidation =
   (schema: z.ZodType, handler: (formData: FormData) => void) =>
   (prevState: any, formData: FormData) => {
     const entries = Object.fromEntries(formData.entries());
-
     const validatedFields = schema.safeParse(entries);
 
     if (!validatedFields.success) {

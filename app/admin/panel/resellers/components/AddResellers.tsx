@@ -1,18 +1,26 @@
-'use client'
-import React from 'react';
+'use client';
 import {
+  Button,
   Input,
   Modal,
-  ModalContent,
-  ModalHeader,
   ModalBody,
+  ModalContent,
   ModalFooter,
-  Button,
+  ModalHeader,
   useDisclosure,
 } from '@nextui-org/react';
+import React from 'react';
+import { useFormState } from 'react-dom';
+
+import { createReseller } from '../actions/createReseller';
+
+const initialState = {
+  message: '',
+};
 
 export default function AddResellers({ balance }: any) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [state, formAction] = useFormState(createReseller, initialState);
 
   return (
     <div>
@@ -23,12 +31,12 @@ export default function AddResellers({ balance }: any) {
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1 text-black bg-white ">
+            <form action={formAction}>
+              <ModalHeader className="flex flex-col gap-1 bg-white text-black ">
                 اطلاعات نماینده جدید رو وارد کنید
               </ModalHeader>
-              <ModalBody className='bg-white p-2'>
-                <div className="flex flex-row justify-between items-center text-black">
+              <ModalBody className="bg-white p-2">
+                <div className="flex flex-row items-center justify-between text-black">
                   <div>
                     <span>مقدار موجودی را وارد کنید:</span>
                   </div>
@@ -38,27 +46,31 @@ export default function AddResellers({ balance }: any) {
                       type="text"
                       variant="bordered"
                       label="مقدار موجودی "
+                      name="inventory"
                     />
                   </div>
                 </div>
                 <div className="flex flex-col items-center">
                   <Input
-                    className="text-black m-2"
+                    className="m-2 text-black"
                     type="text"
                     variant="bordered"
                     label="ایمیل نماینده"
+                    name="email"
                   />
                   <Input
-                    className="text-black m-2"
+                    className="m-2 text-black"
                     type="text"
                     variant="bordered"
                     label="نام نماینده"
+                    name="name"
                   />
                   <Input
-                    className="text-black m-2"
+                    className="m-2 text-black"
                     type="text"
                     variant="bordered"
                     label="پسورد نماینده"
+                    name="password"
                   />
                   <span className="text-black">تعرفه های نماینده:</span>
                   <Input
@@ -66,30 +78,33 @@ export default function AddResellers({ balance }: any) {
                     type="number "
                     variant="bordered"
                     label="قیمت هر گیگ"
+                    name="traffic-price"
                   />
                   <Input
                     className="m-2"
                     type="number"
                     variant="bordered"
                     label="قیمت هر روز"
+                    name="date-price"
                   />
                   <Input
                     className="m-2"
                     type="number"
                     variant="bordered"
                     label="قیمت هر یوزر"
+                    name="user-price"
                   />
                 </div>
               </ModalBody>
-              <ModalFooter className='bg-white'>
+              <ModalFooter className="bg-white">
                 <Button color="danger" variant="light" onPress={onClose}>
                   بستن
                 </Button>
-                <Button color="primary" onPress={onClose}>
+                <Button type="submit" color="primary" onPress={onClose}>
                   ساخت نماینده
                 </Button>
               </ModalFooter>
-            </>
+            </form>
           )}
         </ModalContent>
       </Modal>

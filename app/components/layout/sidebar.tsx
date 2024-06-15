@@ -1,24 +1,12 @@
 import Link from 'next/link';
-import { GoHome } from 'react-icons/go';
-import { PiUsersThreeDuotone } from 'react-icons/pi';
-import { TbUserEdit } from 'react-icons/tb';
 
-export default function Sidebar() {
-  const routes = [
-    { text: 'پیشخوان', icon: <GoHome size={26} />, path: '/dashboard' },
-    {
-      text: 'ساخت کاربر',
-      icon: <TbUserEdit size={26} />,
-      path: '/dashboard/create',
-    },
-    {
-      text: 'کاربران',
-      icon: <PiUsersThreeDuotone size={26} />,
-      path: '/dashboard/users',
-    },
-  ];
+interface Props {
+  routes: { text: string; icon: any; path: string }[];
+}
+
+export default function Sidebar({ routes }: Props) {
   return (
-    <aside className="min-h-screen w-[289px] border border-tprimary-200 bg-tprimary-100 p-5 text-tgray-200 hidden md:block">
+    <aside className="hidden min-h-screen w-[289px] border border-tprimary-200 bg-tprimary-100 p-5 text-tgray-200 md:block">
       <div className="flex items-center justify-between gap-2 p-6 lg:py-7 xl:py-10">
         <a href="/">
           <img
@@ -55,7 +43,7 @@ export default function Sidebar() {
           <li key={item.path}>
             <Link
               href={item.path}
-              className="flex items-center gap-4 rounded-md px-4 py-3 transition-all hover:bg-gray-300 hover:text-tgray-100"
+              className="hover:bg-gray-300 flex items-center gap-4 rounded-md px-4 py-3 transition-all hover:text-tgray-100"
             >
               {item.icon}
               <span>{item.text}</span>
