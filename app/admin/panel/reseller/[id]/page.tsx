@@ -3,10 +3,8 @@ import { redirect } from 'next/navigation';
 
 import User from '@/app/api/models/user';
 
-import BalanceModal from '../components/BalanceModal';
 import Form from '../components/Form';
-import PassModal from '../components/PassModal';
-import PriceModal from '../components/PriceModal';
+
 
 export default async function Page({ params }: { params: { id: string } }) {
   let userData;
