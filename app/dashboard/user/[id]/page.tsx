@@ -83,7 +83,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       </div>
 
       <div className="mt-8">
-        <Extension settings={defaultSettings} prices={price}/>
+        <Extension id={params.id} settings={defaultSettings} prices={price}/>
       </div>
     </div>
   );
