@@ -26,7 +26,6 @@ export interface CreateUserProps {
 
 export default function Form({ prices, settings }: CreateUserProps) {
   const [state, formAction] = useFormState(createUser, initialState);
-  console.log(state?.message);
 
   if (state?.message) {
     showToast('error', <p>{state.message}</p>, {
