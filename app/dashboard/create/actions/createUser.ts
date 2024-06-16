@@ -141,6 +141,7 @@ export const createUser = withValidation(schema, async (formData: FormData) => {
           { wallet: { inventory: inventory - accountPrice } },
         );
 
+        return { inventory: inventory - accountPrice, token: rows[0].token };
       } else {
         return {
           message: 'موجودی شما کافی نیست',

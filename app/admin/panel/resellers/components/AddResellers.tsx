@@ -22,14 +22,15 @@ export default function AddResellers({ balance }: any) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [state, formAction] = useFormState(createReseller, initialState);
 
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = React.useState('');
 
-  const validateEmail = (value) => value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
+  const validateEmail = (value) =>
+    value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
 
   const isInvalid = React.useMemo(() => {
-    if (value === "") return false;
+    if (value === '') return false;
 
-    return validateEmail(value) ? false : true;
+    return !validateEmail(value);
   }, [value]);
   return (
     <div>
@@ -68,7 +69,7 @@ export default function AddResellers({ balance }: any) {
                     name="email"
                     value={value}
                     isInvalid={isInvalid}
-                    color={isInvalid ? "danger" : "success"}
+                    color={isInvalid ? 'danger' : 'success'}
                     onValueChange={setValue}
                   />
                   <Input

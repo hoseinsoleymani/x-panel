@@ -16,17 +16,18 @@ export const CalculatorProvider = ({
   prices: UserDB['prices'] | undefined;
   settings: Setting | undefined;
 }>) => {
-  const [traffic, setTraffic] = useState('1');
-  const [limit, setLimit] = useState('1');
+  const [traffic, setTraffic] = useState('');
+  const [limit, setLimit] = useState('');
   const [date, setDate] = useState('6/15/2024');
   console.log(traffic);
 
-  const price = prices
-    ? parseInt(limit, 10) * parseInt(prices.limit, 10) +
-      parseInt(traffic, 10) * parseInt(prices.traffic, 10) +
-      compareDates(date, new Date().toLocaleDateString('en')) *
-        parseInt(prices.date, 10)
-    : 0;
+  const price =
+    prices && traffic && limit
+      ? parseInt(limit, 10) * parseInt(prices.limit, 10) +
+          parseInt(traffic, 10) * parseInt(prices.traffic, 10) +
+        compareDates(date, new Date().toLocaleDateString('en')) *
+          parseInt(prices.date, 10)
+      : 0;
 
   const value = useMemo(
     () => ({
@@ -37,7 +38,7 @@ export const CalculatorProvider = ({
       setTraffic,
       setLimit,
       price,
-      settings
+      settings,
     }),
     [traffic, limit, date, price, settings],
   );

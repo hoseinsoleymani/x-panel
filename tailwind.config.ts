@@ -15,6 +15,7 @@ const config: Config = {
         200: 'rgb(39 48 62/1)',
         300: 'rgb(87 80 241/1)',
         400: 'rgb(2 13 26/1)',
+        500: 'rgb(24, 191, 255)',
       },
       tgray: {
         100: 'rgb(255 255 255/1)',
@@ -30,6 +31,8 @@ const config: Config = {
       },
       white: '#fff',
       black: '#000',
+      torange: 'rgb(255, 156, 85)',
+      tpurple: 'rgb(129, 85, 255)',
     },
   },
   plugins: [nextui()],

@@ -8,7 +8,7 @@ export default function Sidebar({ routes }: Props) {
   return (
     <aside className="hidden min-h-screen w-[289px] border border-tprimary-200 bg-tprimary-100 p-5 text-tgray-200 md:block">
       <div className="flex items-center justify-between gap-2 p-6 lg:py-7 xl:py-10">
-        <a href="/">
+        <Link href="/dashboard">
           <img
             alt="Logo"
             fetchPriority="high"
@@ -20,7 +20,7 @@ export default function Sidebar({ routes }: Props) {
             src="https://demo.nextadmin.co/images/logo/logo.svg"
             style={{ color: 'transparent', width: 'auto', height: 'auto' }}
           />
-        </a>
+        </Link>
         <button className="block lg:hidden">
           <svg
             className="fill-current"

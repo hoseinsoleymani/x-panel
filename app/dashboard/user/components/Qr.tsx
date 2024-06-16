@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import {
   Button,
   Modal,
@@ -30,12 +30,12 @@ export default function Qr({ data }: any) {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="text-black flex flex-col gap-1">
+              <ModalHeader className="flex flex-col gap-1 text-black">
                 لینک اتصال
               </ModalHeader>
               <ModalBody>
                 <div className="flex flex-col items-center justify-center">
-                  <span className="text-black rounded-lg bg-[#17c964] py-2 px-1">
+                  <span className="rounded-lg bg-[#17c964] px-1 py-2 text-black">
                     {data}
                   </span>
                   <Canvas

@@ -8,7 +8,7 @@ import { Label } from '@/app/components/shared';
 import { useCalculatorContext } from '@/app/hook/useCalculator';
 
 export const DatePicker = () => {
-  const { date, setDate, settings } = useCalculatorContext();
+  const { setDate, settings } = useCalculatorContext();
   const [maxDate, setMaxDate] = useState<CalendarDate | undefined>();
 
   useEffect(() => {
@@ -27,8 +27,8 @@ export const DatePicker = () => {
       <NextUiDatePicker
         label="."
         name="date"
-        onChange={(e) => {
-          setDate(`${e.month}/${e.day}/${e.year}`);
+        onChange={(e: any) => {
+          setDate(`${e?.month}/${e?.day}/${e?.year}`);
         }}
         variant="faded"
         minValue={today(getLocalTimeZone())}
