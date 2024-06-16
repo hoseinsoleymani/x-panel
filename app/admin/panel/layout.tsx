@@ -3,10 +3,8 @@ import localFont from 'next/font/local';
 import { GoHome } from 'react-icons/go';
 import { PiUsersThreeDuotone } from 'react-icons/pi';
 
-// import { TbUserEdit } from 'react-icons/tb';
+import AdminNav from '@/app/components/layout/AdminNav';
 import Sidebar from '@/app/components/layout/sidebar';
-
-// import Header from '../../components/layout/Header';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -28,11 +26,6 @@ export default function RootLayout({
       icon: <GoHome size={26} />,
       path: '/admin/panel/resellers',
     },
-    // {
-    //   text: 'ساخت کاربر',
-    //   icon: <TbUserEdit size={26} />,
-    //   path: '/dashboard/create',
-    // },
     {
       text: 'تنظیمات',
       icon: <PiUsersThreeDuotone size={26} />,
@@ -41,13 +34,13 @@ export default function RootLayout({
   ];
 
   return (
-    <body className="h-max bg-tprimary-400 md:h-[100vh]">
+    <body className="min-h-screen bg-tprimary-400">
       <main
         className={`justify-between dark md:flex md:flex-row ${sansfont.className}`}
       >
         <Sidebar routes={routes} />
-        <section className="grow">
-          {/* <Header /> */}
+        <section className="min-h-screen grow">
+          <AdminNav />
           {children}
         </section>
       </main>

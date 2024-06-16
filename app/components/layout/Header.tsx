@@ -1,5 +1,5 @@
 import Nav from './Nav';
 
-export default async function Header() {
+export default function Header() {
   return <Nav />;
 }
