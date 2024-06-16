@@ -1,11 +1,13 @@
 import mysql from 'mysql2/promise';
 import { cookies as cookiesReq } from 'next/headers';
 import { redirect } from 'next/navigation';
+import { Suspense } from 'react'
 
 import User from '@/app/api/models/user';
 import { verifyToken } from '@/app/utils/jwt';
 
 import RTables from './components/RTables';
+import Loading from '@/app/components/shared/Loading';
 
 export default async function Users() {
   let data = '';
@@ -14,7 +16,6 @@ export default async function Users() {
   try {
     const token = cookiesReq().get('token');
     if (!token) return redirect('/auth/login');
-
     const userData = await verifyToken<{ email: string }>(token.value);
     if (!userData) return;
 
@@ -29,7 +30,7 @@ export default async function Users() {
     data = JSON.parse(JSON.stringify(response));
     const faa = data.accounts;
     const ids = faa.map((item) => item.id);
-    const formattedArray = `${ids.join(', ')}`;    
+    const formattedArray = `${ids.join(', ')}`;
     const [rows, fields] = await connection.execute(
       `SELECT token,used FROM user WHERE id IN (${formattedArray})`,
     );
@@ -43,8 +44,10 @@ export default async function Users() {
   }
 
   return (
-    <div className="z-0 mx-auto flex flex-row overflow-x-scroll py-10 md:w-8/12 md:overflow-hidden ">
-      <RTables data={combinedArray} />
-    </div>
+    <Suspense fallback={<Loading/>}>
+      <div className="z-0 mx-auto flex flex-row overflow-x-scroll py-10 md:w-8/12 md:overflow-hidden ">
+        <RTables data={combinedArray} />
+      </div>
+    </Suspense>
   );
 }

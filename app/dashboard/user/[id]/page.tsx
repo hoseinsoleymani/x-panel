@@ -2,7 +2,7 @@
 import mysql from 'mysql2/promise';
 import { cookies as cookiesReq } from 'next/headers';
 import { redirect } from 'next/navigation';
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import Setting from '@/app/api/models/setting';
 import User from '@/app/api/models/user';
@@ -15,6 +15,7 @@ import { Extension } from '../components/Extension';
 import type { Setting as SettingT } from '../components/Form';
 import Qr from '../components/Qr';
 import Span from '../components/Span';
+import Loading from '@/app/components/shared/Loading';
 
 export default async function Page({ params }: { params: { id: string } }) {
   let data = '';
@@ -58,33 +59,35 @@ export default async function Page({ params }: { params: { id: string } }) {
   }
 
   return (
-    <div className="w-full md:mt-5 md:p-5">
-      <AccID id={params.id} name={data.username} />
+    <Suspense fallback={<Loading />}>
+      <div className="w-full md:mt-5 md:p-5">
+        <AccID id={params.id} name={data.username} />
 
-      <Card>
-        <div className="grid grid-cols-2 items-center gap-16 md:grid-cols-3">
-          <div className="text-xs">
-            <Span className="bg-white text-black">
-              {`${process.env.SUB}${data.token}`}
-            </Span>
+        <Card>
+          <div className="grid grid-cols-2 items-center gap-16 md:grid-cols-3">
+            <div className="text-xs">
+              <Span className="bg-white text-black">
+                {`${process.env.SUB}${data.token}`}
+              </Span>
+            </div>
+            <div />
+            <Qr data={`${process.env.SUB}${data.token}`} />
           </div>
-          <div />
-          <Qr data={`${process.env.SUB}${data.token}`} />
+        </Card>
+
+        <div className="mt-8">
+          <AccDetails
+            amount={data.transfer_enable}
+            used={data.total_data_used}
+            time={data.expire_in}
+            limit={data.iplimit}
+          />
         </div>
-      </Card>
 
-      <div className="mt-8">
-        <AccDetails
-          amount={data.transfer_enable}
-          used={data.total_data_used}
-          time={data.expire_in}
-          limit={data.iplimit}
-        />
+        <div className="mt-8">
+          <Extension id={params.id} settings={defaultSettings} prices={price} />
+        </div>
       </div>
-
-      <div className="mt-8">
-        <Extension id={params.id} settings={defaultSettings} prices={price}/>
-      </div>
-    </div>
+    </Suspense>
   );
 }

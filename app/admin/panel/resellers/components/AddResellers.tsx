@@ -12,6 +12,8 @@ import {
 import React from 'react';
 import { useFormState } from 'react-dom';
 
+import { showToast } from '@/app/components/shared/Toast';
+
 import { createReseller } from '../actions/createReseller';
 
 const initialState = {
@@ -22,10 +24,16 @@ export default function AddResellers({ balance }: any) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [state, formAction] = useFormState(createReseller, initialState);
 
+  if (state?.message) {
+    showToast('error', <p>{state.message}</p>, {
+      toastId: 'error 1',
+    });
+  }
+
   const [value, setValue] = React.useState('');
 
-  const validateEmail = (value) =>
-    value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
+  const validateEmail = (avalue: any): any =>
+    avalue.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
 
   const isInvalid = React.useMemo(() => {
     if (value === '') return false;

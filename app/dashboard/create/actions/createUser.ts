@@ -90,7 +90,7 @@ export const createUser = withValidation(schema, async (formData: FormData) => {
         const [rows, _] = await connection.execute(
           `SELECT id , token FROM user WHERE email = '${generateEmail(accountName)}'`,
         );
-
+        const rowsId = rows[0].id;
         await connection.end();
 
         await axios.post(
@@ -126,8 +126,7 @@ export const createUser = withValidation(schema, async (formData: FormData) => {
                   userLimit,
                   accountName,
                   expireTime: date,
-                  // serverType,
-                  id: rows[0].id,
+                  id: rowsId,
                 },
               },
             },
