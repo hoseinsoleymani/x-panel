@@ -6,7 +6,7 @@ import { PiUsersThreeDuotone } from 'react-icons/pi';
 // import { TbUserEdit } from 'react-icons/tb';
 import Sidebar from '@/app/components/layout/sidebar';
 
-import Header from '../../components/layout/Header';
+// import Header from '../../components/layout/Header';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -47,7 +47,7 @@ export default function RootLayout({
       >
         <Sidebar routes={routes} />
         <section className="grow">
-          <Header />
+          {/* <Header /> */}
           {children}
         </section>
       </main>

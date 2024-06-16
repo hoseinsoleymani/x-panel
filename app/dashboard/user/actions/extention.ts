@@ -84,6 +84,8 @@ export const extention = withValidation(schema, async (formData: FormData) => {
             },
           },
         );
+
+        return { inventory: inventory - accountPrice };
       } catch (error) {
         redirect('');
       }

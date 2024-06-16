@@ -1,20 +1,14 @@
-import {
-  Button,
-  Input,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  useDisclosure,
-} from '@nextui-org/react';
+import { Button, useDisclosure } from '@nextui-org/react';
 import { FaWallet } from 'react-icons/fa';
 
-export default function Wallet({ inventory }: { inventory: string }) {
+import { useWalletContextProvider } from './WalletProvider';
+
+export default function Wallet() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { inventory } = useWalletContextProvider();
 
   return (
-    <div className="flex cursor-pointer items-center rounded text-[1rem]  text-blue-800 md:text-[1.2rem] ">
+    <div className="flex cursor-pointer items-center rounded text-[1rem] md:text-[1.2rem] ">
       <Button onPress={onOpen} className="">
         <FaWallet className="" />
         <span className="font-bold">{inventory}</span>

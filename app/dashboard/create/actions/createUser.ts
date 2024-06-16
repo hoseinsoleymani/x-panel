@@ -50,7 +50,8 @@ export const createUser = withValidation(schema, async (formData: FormData) => {
       `SELECT id , token FROM user WHERE email = '${generateEmail(accountName)}'`,
     );
     await connection.end();
-    if (rows[0] === []) {
+
+    if (rows.length === 0) {
       if (inventory >= accountPrice) {
         await client.post(
           `${panelDomain}admin/login`,
@@ -139,6 +140,7 @@ export const createUser = withValidation(schema, async (formData: FormData) => {
           { _id },
           { wallet: { inventory: inventory - accountPrice } },
         );
+
       } else {
         return {
           message: 'موجودی شما کافی نیست',
@@ -149,7 +151,6 @@ export const createUser = withValidation(schema, async (formData: FormData) => {
         message: 'این اکانت وجود دارد یک اسم دیگه انتخاب کنید',
       };
     }
-    
   } catch (error) {
     console.error('Error logging in:', error);
   }

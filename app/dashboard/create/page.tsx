@@ -11,6 +11,7 @@ import Form from './components/Form';
 export interface User extends Payload {
   email: string;
   password: string;
+  role: 'admin' | 'user';
 }
 
 export interface UserDB {
@@ -44,8 +45,8 @@ export default async function Create() {
     const response = await User.findOne<UserDB>({ email: userData.email });
     const defaultSettingsResponse = await Setting.findOne<Setting>();
     if (!response || !defaultSettingsResponse) return;
-    
-    defaultSettings = defaultSettingsResponse
+
+    defaultSettings = defaultSettingsResponse;
     prices = response.prices;
   } catch (error) {
     console.error('Error verifying token:', error);
@@ -55,7 +56,7 @@ export default async function Create() {
     <section className="m-2 grow  md:m-6">
       <div className="mt-6 flex flex-row">
         <div className="flex w-full flex-col">
-          <Form prices={prices} settings={defaultSettings}/>
+          <Form prices={prices} settings={defaultSettings} />
         </div>
       </div>
     </section>

@@ -1,8 +1,10 @@
 'use client';
 
 import { Button } from '@nextui-org/react';
+import { useEffect } from 'react';
 import { useFormState } from 'react-dom';
 
+import { useWalletContextProvider } from '@/app/components/layout/WalletProvider';
 import { Card } from '@/app/components/shared/Card';
 import { showToast } from '@/app/components/shared/Toast';
 import { CalculatorProvider } from '@/app/hook/useCalculator';
@@ -22,16 +24,25 @@ export interface CreateUserProps {
 
 const initialState = {
   message: '',
+  inventory: '',
 };
 
 export function Extension({ prices, settings, id }: CreateUserProps) {
-  const [state, formAction] = useFormState(extention, initialState);
+  const [state, formAction] = useFormState<any>(extention, initialState);
+
+  const { setInventory } = useWalletContextProvider();
 
   if (state?.message) {
     showToast('error', <p>{state.message}</p>, {
       toastId: 'error 1',
     });
   }
+
+  useEffect(() => {
+    if (!state?.inventory) return;
+
+    setInventory(state.inventory);
+  }, [state?.inventory]);
 
   return (
     <CalculatorProvider prices={prices} settings={settings}>

@@ -18,6 +18,8 @@ import { BiMenu } from 'react-icons/bi';
 
 import Wallet from '@/app/components/layout/Wallet';
 
+import { useWalletContextProvider } from './WalletProvider';
+
 export interface NavProps {
   user: {
     wallet: { inventory: string };
@@ -39,10 +41,10 @@ export interface NavProps {
   };
 }
 
-export default function Nav({ user }: NavProps) {
+export default function Nav() {
+  const { user } = useWalletContextProvider();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const pathname = usePathname();
-
   const links = [
     {
       id: 1,
@@ -88,7 +90,7 @@ export default function Nav({ user }: NavProps) {
       <NavbarContent justify="end">
         {!pathname.startsWith('/admin') ? (
           <NavbarItem>
-            <Wallet inventory={user.wallet.inventory} />
+            <Wallet />
           </NavbarItem>
         ) : null}
         <NavbarItem>
@@ -105,9 +107,8 @@ export default function Nav({ user }: NavProps) {
             <Link
               onClick={() => setIsMenuOpen(false)}
               href={path}
-              className={`flex w-40 ${pathname === `/admin${path}` ? 'text-black font-bold' : 'text-zinc-950'} rounded-md bg-white p-2`}
+              className={`flex w-40 ${pathname === `/admin${path}` ? 'font-bold text-black' : 'text-zinc-950'} rounded-md bg-white p-2`}
             >
-              {console.log(pathname, `/admin${path}`)}
               {link}
             </Link>
           </NavbarMenuItem>

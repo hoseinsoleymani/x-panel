@@ -56,7 +56,7 @@ async function isValidCredentials(email: string, password: string) {
 }
 
 async function generateToken(email: string, password: string) {
-  const token = await new SignJWT({ email, password })
+  const token = await new SignJWT({ email, password, role: 'admin' })
     .setProtectedHeader({ alg: 'HS256' })
     .setIssuedAt()
     .setExpirationTime('2day')
