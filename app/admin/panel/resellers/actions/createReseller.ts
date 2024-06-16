@@ -27,22 +27,27 @@ export const createReseller = withValidation(
     }
 
     try {
-      const hashedPassword = await bcrypt.hash(password, 10);
+      const data = await User.findOne({ email: email });
+      if (data !== null) {
+        const hashedPassword = await bcrypt.hash(password, 10);
 
-      const addStaus = await User.create({
-        email,
-        password: hashedPassword,
-        name,
-        wallet: { inventory },
-        accountStatus: 'active',
-        prices: {
-          traffic: trafficPrice,
-          date: datePrice,
-          limit: userPrice,
-        },
-      });
-
-      console.log('User:', addStaus);
+        const addStaus = await User.create({
+          email,
+          password: hashedPassword,
+          name,
+          wallet: { inventory },
+          accountStatus: 'active',
+          prices: {
+            traffic: trafficPrice,
+            date: datePrice,
+            limit: userPrice,
+          },
+        });
+      } else {
+        return {
+          message: 'این ایمیل وجود دارد',
+        };
+      }
     } catch (error) {
       redirect('');
     }
