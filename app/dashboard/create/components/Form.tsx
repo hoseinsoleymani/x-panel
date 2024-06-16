@@ -91,10 +91,10 @@ export default function Form({ prices, settings }: CreateUserProps) {
               <ModalBody>
                 <div className="flex flex-col items-center justify-center">
                   <span className="rounded-lg bg-[#17c964] px-1 py-2 text-black">
-                    {`${process.env.SUB ?? ''}${state?.token}`}
+                    {`${process.env.NEXT_PUBLIC_SUB ?? ''}${state?.token}`}
                   </span>
                   <Canvas
-                    text={`${process.env.SUB ?? ''}${state?.token}`}
+                    text={`${process.env.NEXT_PUBLIC_SUB ?? ''}${state?.token}`}
                     options={{
                       errorCorrectionLevel: 'M',
                       margin: 3,

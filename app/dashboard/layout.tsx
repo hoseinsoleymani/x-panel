@@ -66,7 +66,7 @@ export default async function RootLayout({
   ];
 
   return (
-    <body className="h-max bg-tprimary-400 md:h-[100vh]">
+    <body className="h-max bg-tprimary-400 md:min-h-screen">
       <main
         className={`justify-between dark md:flex md:flex-row ${sansfont.className}`}
       >

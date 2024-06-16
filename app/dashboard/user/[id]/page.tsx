@@ -67,11 +67,11 @@ export default async function Page({ params }: { params: { id: string } }) {
           <div className="grid grid-cols-2 items-center gap-16 md:grid-cols-3">
             <div className="text-xs">
               <Span className="bg-white text-black">
-                {`${process.env.SUB}${data.token}`}
+                {`${process.env.NEXT_PUBLIC_SUB}${data.token}`}
               </Span>
             </div>
             <div />
-            <Qr data={`${process.env.SUB}${data.token}`} />
+            <Qr data={`${process.env.NEXT_PUBLIC_SUB}${data.token}`} />
           </div>
         </Card>
 
