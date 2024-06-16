@@ -14,7 +14,6 @@ import {
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
-import { BiMenu } from 'react-icons/bi';
 
 import Wallet from '@/app/components/layout/Wallet';
 
@@ -75,11 +74,9 @@ export default function Nav() {
       onMenuOpenChange={setIsMenuOpen}
     >
       <NavbarContent justify="start">
-        <NavbarMenuToggle
-          icon={<BiMenu />}
-          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-          className="font-sans text-white sm:hidden"
-        />
+        <NavbarContent className="sm:hidden" justify="start">
+          <NavbarMenuToggle className="[&>span:after]:bg-tgray-100 [&>span:before]:bg-tgray-100" />
+        </NavbarContent>
         <NavbarBrand className="flex flex-col items-start gap-4">
           <h1 className="md:text-3xl">داشبورد</h1>
           <p className="hidden  text-tgray-200 md:flex ">
@@ -107,7 +104,7 @@ export default function Nav() {
             <Link
               onClick={() => setIsMenuOpen(false)}
               href={path}
-              className={`flex w-40 ${pathname === `/admin${path}` ? 'font-bold text-black' : 'text-zinc-950'} rounded-md bg-white p-2`}
+              className={`flex w-40 ${pathname === `${path}` ? 'font-bold text-tprimary-300' : 'text-tgray-100'} p-2`}
             >
               {link}
             </Link>

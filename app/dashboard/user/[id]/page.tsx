@@ -7,6 +7,7 @@ import React, { Suspense } from 'react';
 import Setting from '@/app/api/models/setting';
 import User from '@/app/api/models/user';
 import { Card } from '@/app/components/shared/Card';
+import Loading from '@/app/components/shared/Loading';
 import { verifyToken } from '@/app/utils/jwt';
 
 import AccDetails from '../components/AccDetails';
@@ -15,7 +16,6 @@ import { Extension } from '../components/Extension';
 import type { Setting as SettingT } from '../components/Form';
 import Qr from '../components/Qr';
 import Span from '../components/Span';
-import Loading from '@/app/components/shared/Loading';
 
 export default async function Page({ params }: { params: { id: string } }) {
   let data = '';
@@ -64,13 +64,13 @@ export default async function Page({ params }: { params: { id: string } }) {
         <AccID id={params.id} name={data.username} />
 
         <Card>
-          <div className="grid grid-cols-2 items-center gap-16 md:grid-cols-3">
+          <div className="grid grid-cols-1 items-center gap-16 sm:grid-cols-2 lg:grid-cols-3">
             <div className="text-xs">
               <Span className="bg-white text-black">
                 {`${process.env.NEXT_PUBLIC_SUB}${data.token}`}
               </Span>
             </div>
-            <div />
+
             <Qr data={`${process.env.NEXT_PUBLIC_SUB}${data.token}`} />
           </div>
         </Card>

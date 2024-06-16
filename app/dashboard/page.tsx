@@ -79,7 +79,7 @@ export default function Dashboard() {
             ))}
           </div>
 
-          <div className="grid grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             <div className="col-span-2">
               <Card>
                 <h3 className="mb-4 text-xl font-semibold text-white">
@@ -89,12 +89,14 @@ export default function Dashboard() {
               </Card>
             </div>
 
-            <Card>
-              <h3 className="mb-4 text-xl font-semibold text-white">
-                میزان درآمد بدست آمده در ماه جاری
-              </h3>
-              <Chart />
-            </Card>
+            <div className="col-span-2 lg:col-span-1">
+              <Card>
+                <h3 className="mb-4 text-xl font-semibold text-white">
+                  میزان درآمد بدست آمده در ماه جاری
+                </h3>
+                <Chart />
+              </Card>
+            </div>
           </div>
         </div>
       </div>

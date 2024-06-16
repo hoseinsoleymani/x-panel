@@ -32,11 +32,11 @@ export default function AccDetails({ amount, used, time, limit }: any) {
   const tused = (Number(used) / 1073741824).toFixed(2);
   return (
     <Card>
-      <div className="grid grid-cols-2 items-center gap-16 md:grid-cols-3">
+      <div className="grid grid-cols-2 items-center gap-16 lg:grid-cols-3">
         <div className="flex flex-row">
           <h1 className="text-sm  text-white md:text-xl">وضعیت اکانت</h1>
           {trafic >= tused && formattedDateb < formattedDatea ? (
-            <Switch
+            <Switch 
               isDisabled
               color="success"
               defaultSelected

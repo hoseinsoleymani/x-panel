@@ -63,11 +63,11 @@ export default function Form({ prices, settings }: CreateUserProps) {
     <CalculatorProvider prices={prices} settings={settings}>
       <Card>
         <form ref={ref} action={formAction}>
-          <div className="grid grid-cols-1 gap-20 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-20">
             <DatePicker />
             <AccountName />
           </div>
-          <div className="mt-6 grid grid-cols-1 gap-20 md:grid-cols-2">
+          <div className="mt-4 grid grid-cols-1 gap-4 md:mt-6 md:grid-cols-2 md:gap-20">
             <NumberInput />
             <UserLimitInput />
           </div>
@@ -81,7 +81,16 @@ export default function Form({ prices, settings }: CreateUserProps) {
         </form>
       </Card>
 
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={(open) => {
+          onOpenChange();
+
+          if (!open) {
+            ref.current?.reset();
+          }
+        }}
+      >
         <ModalContent>
           {(onClose) => (
             <>

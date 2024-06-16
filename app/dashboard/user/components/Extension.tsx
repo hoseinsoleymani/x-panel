@@ -49,7 +49,7 @@ export function Extension({ prices, settings, id }: CreateUserProps) {
       <Card>
         <form
           action={formAction}
-          className="mt-6 grid grid-cols-1 gap-20 md:grid-cols-3"
+          className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-4 lg:grid-cols-3 lg:gap-20"
         >
           <input type="hidden" name="id" value={id} />
           <DatePicker />
