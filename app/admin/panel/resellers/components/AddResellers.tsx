@@ -24,8 +24,8 @@ export default function AddResellers({ balance }: any) {
 
   const [value, setValue] = React.useState('');
 
-  const validateEmail = (value): any =>
-    value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
+  const validateEmail = (avalue: any): any =>
+    avalue.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
 
   const isInvalid = React.useMemo(() => {
     if (value === '') return false;
