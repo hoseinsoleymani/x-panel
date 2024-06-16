@@ -50,6 +50,7 @@ export const createUser = withValidation(schema, async (formData: FormData) => {
       `SELECT id , token FROM user WHERE email = '${generateEmail(accountName)}'`,
     );
     await connection.end();
+
     if (rows[0] === []) {
       if (inventory >= accountPrice) {
         await client.post(
@@ -89,7 +90,7 @@ export const createUser = withValidation(schema, async (formData: FormData) => {
         const [rows, _] = await connection.execute(
           `SELECT id , token FROM user WHERE email = '${generateEmail(accountName)}'`,
         );
-
+        const rowsId = rows[0].id
         await connection.end();
 
         await axios.post(
@@ -125,8 +126,7 @@ export const createUser = withValidation(schema, async (formData: FormData) => {
                   userLimit,
                   accountName,
                   expireTime: date,
-                  // serverType,
-                  id: rows[0].id,
+                  id: rowsId,
                 },
               },
             },
@@ -149,7 +149,6 @@ export const createUser = withValidation(schema, async (formData: FormData) => {
         message: 'این اکانت وجود دارد یک اسم دیگه انتخاب کنید',
       };
     }
-    
   } catch (error) {
     console.error('Error logging in:', error);
   }

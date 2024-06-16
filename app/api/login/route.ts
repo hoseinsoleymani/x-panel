@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
       JSON.stringify({ success: false, message: 'Invalid email or password' }),
       { status: 400 },
     );
-  } catch (error) {
+  } catch (error: any) {
     return new Response(
       JSON.stringify({ success: false, message: error.message }),
       { status: 500 },
