@@ -27,7 +27,8 @@ export const createReseller = withValidation(
     }
 
     try {
-      const data = await User.findOne({ email: email });
+      const data = await User.findOne({ email });
+
       if (data !== null) {
         const hashedPassword = await bcrypt.hash(password, 10);
 
