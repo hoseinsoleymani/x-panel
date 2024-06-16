@@ -22,11 +22,17 @@ export default function AddResellers({ balance }: any) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [state, formAction] = useFormState(createReseller, initialState);
 
+  if (state?.message) {
+    showToast('error', <p>{state.message}</p>, {
+      toastId: 'error 1',
+    });
+  }
   const [value, setValue] = React.useState('');
 
   const validateEmail = (avalue: any): any =>
     avalue.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
 
+  
   const isInvalid = React.useMemo(() => {
     if (value === '') return false;
 
