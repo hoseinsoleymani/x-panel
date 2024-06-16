@@ -86,9 +86,11 @@ export default function Nav({ user }: NavProps) {
         </NavbarBrand>
       </NavbarContent>
       <NavbarContent justify="end">
-        <NavbarItem>
-          <Wallet inventory={user.wallet.inventory} />
-        </NavbarItem>
+        {!pathname.startsWith('/admin') ? (
+          <NavbarItem>
+            <Wallet inventory={user.wallet.inventory} />
+          </NavbarItem>
+        ) : null}
         <NavbarItem>
           <Card className="hidden md:block">
             <CardBody>
@@ -103,8 +105,9 @@ export default function Nav({ user }: NavProps) {
             <Link
               onClick={() => setIsMenuOpen(false)}
               href={path}
-              className={` flex w-40 ${pathname === path ? 'text-blue-600 font-bold' : 'text-zinc-950'} rounded-md bg-white p-2`}
+              className={`flex w-40 ${pathname === `/admin${path}` ? 'text-black font-bold' : 'text-zinc-950'} rounded-md bg-white p-2`}
             >
+              {console.log(pathname, `/admin${path}`)}
               {link}
             </Link>
           </NavbarMenuItem>
