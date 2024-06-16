@@ -13,7 +13,7 @@ const initialMessage = {
 };
 
 export default function Setting() {
-  const [state, formAction] = useFormState(saveSetting, initialMessage);
+  const [_, formAction] = useFormState(saveSetting, initialMessage);
 
   return (
     <section className="w-full p-3">

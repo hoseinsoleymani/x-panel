@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import {
   Button,
   Dropdown as NextUiDropdown,
@@ -11,7 +12,7 @@ import { IoIosArrowDropdown } from 'react-icons/io';
 import { Label } from '../../../components/shared';
 
 const Dropdown = () => {
-  const [selectedKeys, setSelectedKeys] = useState(new Set(['VIP']));
+  const [selectedKeys, setSelectedKeys] = useState<any>(new Set(['VIP']));
 
   const selectedValue = useMemo(
     () => Array.from(selectedKeys).join(', ').replaceAll('_', ' '),

@@ -1,7 +1,10 @@
+/* eslint-disable fp/no-let */
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import React from 'react';
 
+import Setting from '@/app/api/models/setting';
+import User from '@/app/api/models/user';
 import type { Payload } from '@/app/utils/jwt';
 import { verifyToken } from '@/app/utils/jwt';
 
@@ -31,7 +34,7 @@ export interface Setting {
 
 export default async function Form() {
   const token = cookies().get('token');
-  let prices;
+  let prices: any;
   let defaultSettings;
 
   if (!token) return redirect('/auth/login');
@@ -50,5 +53,5 @@ export default async function Form() {
     console.error('Error verifying token:', error);
   }
 
-  return <Tamdid prices={prices} settings={defaultSettings} />;
+  return <Tamdid />;
 }

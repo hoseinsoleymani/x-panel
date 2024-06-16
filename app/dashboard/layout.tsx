@@ -1,3 +1,5 @@
+/* eslint-disable fp/no-let */
+/* eslint-disable import/extensions */
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import { cookies } from 'next/headers';

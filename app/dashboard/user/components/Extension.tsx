@@ -19,7 +19,7 @@ import { extention } from '../actions/extention';
 export interface CreateUserProps {
   prices: UserDB['prices'] | undefined;
   settings: Setting | undefined;
-  id: Setting | undefined;
+  id: any;
 }
 
 const initialState = {

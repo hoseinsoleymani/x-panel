@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-shadow */
+/* eslint-disable @typescript-eslint/naming-convention */
 'use server';
 
 import axios from 'axios';
@@ -19,142 +21,145 @@ const schema = z.object({
   'user-limit': z.string().nonempty({ message: 'User limit is required' }),
 });
 
-export const createUser = withValidation(schema, async (formData: FormData) => {
-  const date = formData.get('date') as string;
-  const amount = formData.get('amount') as string;
-  const userLimit = formData.get('user-limit');
-  const accountName = formData.get('account-name') as string;
-  const accountPrice = parseInt(formData.get('account-price') as string, 10);
+export const createUser: any = withValidation(
+  schema,
+  async (formData: FormData) => {
+    const date = formData.get('date') as string;
+    const amount = formData.get('amount') as string;
+    const userLimit = formData.get('user-limit');
+    const accountName = formData.get('account-name') as string;
+    const accountPrice = parseInt(formData.get('account-price') as string, 10);
 
-  const cookieJar = new CookieJar();
-  const client = wrapper(axios.create({ jar: cookieJar }));
-  const panelDomain = process.env.PANEL ?? '';
+    const cookieJar = new CookieJar();
+    const client = wrapper(axios.create({ jar: cookieJar }));
+    const panelDomain = process.env.PANEL ?? '';
 
-  try {
-    const token = cookiesReq().get('token');
-    if (!token) return redirect('/auth/login');
+    try {
+      const token = cookiesReq().get('token');
+      if (!token) return redirect('/auth/login');
 
-    const userData = await verifyToken<{ email: string }>(token.value);
-    if (!userData) return;
+      const userData = await verifyToken<any>(token.value);
+      if (!userData) return;
 
-    const { _id, wallet } = await User.findOne({ email: userData.email });
-    const inventory = parseInt(wallet.inventory, 10);
+      const { _id, wallet } = await User.findOne({ email: userData.email });
+      const inventory = parseInt(wallet.inventory, 10);
 
-    const connection = await mysql.createConnection({
-      host: process.env.DB_HOST,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
-    });
-    const [rows, _] = await connection.execute(
-      `SELECT id , token FROM user WHERE email = '${generateEmail(accountName)}'`,
-    );
-    await connection.end();
+      const connection = await mysql.createConnection({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME,
+      });
+      const [rows, _] = await connection.execute<any>(
+        `SELECT id , token FROM user WHERE email = '${generateEmail(accountName)}'`,
+      );
+      await connection.end();
 
-    if (rows.length === 0) {
-      if (inventory >= accountPrice) {
-        await client.post(
-          `${panelDomain}admin/login`,
-          {
-            email: '4345abol@gmail.com',
-            passwd: 'abol0011',
-          },
-          {
-            withCredentials: true,
-          },
-        );
-
-        const cookies = cookieJar.getCookiesSync(panelDomain);
-        await axios.post(
-          `${panelDomain}admin/user/save`,
-          {
-            email: generateEmail(accountName),
-            passwd: '!ABdsv512com',
-            name: `${accountName}.1`,
-            server_group: '1',
-            role: '0',
-          },
-          {
-            headers: {
-              Cookie: cookies,
-            },
-          },
-        );
-
-        const connection = await mysql.createConnection({
-          host: process.env.DB_HOST,
-          user: process.env.DB_USER,
-          password: process.env.DB_PASSWORD,
-          database: process.env.DB_NAME,
-        });
-        const [rows, _] = await connection.execute(
-          `SELECT id , token FROM user WHERE email = '${generateEmail(accountName)}'`,
-        );
-        const rowsId = rows[0].id;
-        await connection.end();
-
-        await axios.post(
-          `${panelDomain}admin/user/save`,
-          {
-            id: `${rows[0].id}`,
-            transfer_enable: amount,
-            server_group: `1`,
-            speedlimit: '1024',
-            iplimit: userLimit,
-            expire_in: `${date} 00:00:00`,
-          },
-          {
-            headers: {
-              Cookie: cookies,
-            },
-          },
-        );
-
-        try {
-          await dbConnect();
-        } catch (error: any) {
-          throw Error(error.message);
-        }
-
-        try {
-          await User.updateOne(
-            { _id },
+      if (rows.length === 0) {
+        if (inventory >= accountPrice) {
+          await client.post(
+            `${panelDomain}admin/login`,
             {
-              $push: {
-                accounts: {
-                  amount,
-                  userLimit,
-                  accountName,
-                  expireTime: date,
-                  id: rowsId,
-                },
+              email: '4345abol@gmail.com',
+              passwd: 'abol0011',
+            },
+            {
+              withCredentials: true,
+            },
+          );
+
+          const cookies = cookieJar.getCookiesSync(panelDomain);
+          await axios.post(
+            `${panelDomain}admin/user/save`,
+            {
+              email: generateEmail(accountName),
+              passwd: '!ABdsv512com',
+              name: `${accountName}.1`,
+              server_group: '1',
+              role: '0',
+            },
+            {
+              headers: {
+                Cookie: cookies as any,
               },
             },
           );
-        } catch (error) {
-          redirect('');
+
+          await mysql.createConnection({
+            host: process.env.DB_HOST,
+            user: process.env.DB_USER,
+            password: process.env.DB_PASSWORD,
+            database: process.env.DB_NAME,
+          });
+          const [rows, _]: any = await connection.execute(
+            `SELECT id , token FROM user WHERE email = '${generateEmail(accountName)}'`,
+          );
+          const rowsId = rows[0].id;
+          await connection.end();
+
+          await axios.post(
+            `${panelDomain}admin/user/save`,
+            {
+              id: `${rows[0].id}`,
+              transfer_enable: amount,
+              server_group: `1`,
+              speedlimit: '1024',
+              iplimit: userLimit,
+              expire_in: `${date} 00:00:00`,
+            },
+            {
+              headers: {
+                Cookie: cookies as any,
+              },
+            },
+          );
+
+          try {
+            await dbConnect();
+          } catch (error: any) {
+            throw Error(error.message);
+          }
+
+          try {
+            await User.updateOne(
+              { _id },
+              {
+                $push: {
+                  accounts: {
+                    amount,
+                    userLimit,
+                    accountName,
+                    expireTime: date,
+                    id: rowsId,
+                  },
+                },
+              },
+            );
+          } catch (error) {
+            redirect('');
+          }
+
+          await User.updateOne(
+            { _id },
+            { wallet: { inventory: inventory - accountPrice } },
+          );
+
+          return { inventory: inventory - accountPrice, token: rows[0].token };
+        } else {
+          return {
+            message: 'موجودی شما کافی نیست',
+          };
         }
-
-        await User.updateOne(
-          { _id },
-          { wallet: { inventory: inventory - accountPrice } },
-        );
-
-        return { inventory: inventory - accountPrice, token: rows[0].token };
       } else {
         return {
-          message: 'موجودی شما کافی نیست',
+          message: 'این اکانت وجود دارد یک اسم دیگه انتخاب کنید',
         };
       }
-    } else {
-      return {
-        message: 'این اکانت وجود دارد یک اسم دیگه انتخاب کنید',
-      };
+    } catch (error) {
+      console.error('Error logging in:', error);
     }
-  } catch (error) {
-    console.error('Error logging in:', error);
-  }
-});
+  },
+);
 
 function generateEmail(accountName: string) {
   return `${accountName}.1@gmail.com`;

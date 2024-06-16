@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 'use client';
 import {
   Chip,
@@ -16,32 +17,32 @@ export default function Rtable({ data }: any) {
     <Table removeWrapper aria-label="Example static collection table ">
       <TableHeader>
         <TableColumn
-          className="md:text-lg bg-white"
+          className="bg-white md:text-lg"
           style={{ borderRadius: '0 10px 10px 0', textAlign: 'start' }}
         >
           وضعیت اکانت
         </TableColumn>
         <TableColumn
-          className="md:text-lg bg-white"
+          className="bg-white md:text-lg"
           style={{ textAlign: 'start' }}
         >
           نام نماینده
         </TableColumn>
         <TableColumn
-          className="md:text-lg bg-white"
+          className="bg-white md:text-lg"
           style={{ textAlign: 'start' }}
         >
           ادیت
         </TableColumn>
 
         <TableColumn
-          className="md:text-lg bg-white"
+          className="bg-white md:text-lg"
           style={{ textAlign: 'start' }}
         >
           موجودی
         </TableColumn>
         <TableColumn
-          className="md:text-lg bg-white"
+          className="bg-white md:text-lg"
           style={{ borderRadius: '10px 0 0 10px', textAlign: 'start' }}
         >
           تعداد اکانت ها
@@ -63,7 +64,7 @@ export default function Rtable({ data }: any) {
                 </Chip>
               ) : (
                 <Chip
-                  className="text-[#f31260] bg-[#f3126033]"
+                  className="bg-[#f3126033] text-[#f31260]"
                   color="danger"
                   size="md"
                   variant="flat"
@@ -72,14 +73,16 @@ export default function Rtable({ data }: any) {
                 </Chip>
               )}
             </TableCell>
-            <TableCell className='text-white'>{name}</TableCell>
+            <TableCell className="text-white">{name}</TableCell>
             <TableCell>
               <button className="mx-3 rounded-lg bg-[#415FEF] p-2 text-2xl ">
-                <Link href={`reseller/${_id}`}><MdEdit /></Link>
+                <Link href={`reseller/${_id}`}>
+                  <MdEdit />
+                </Link>
               </button>
             </TableCell>
-            <TableCell className='text-white'>{wallet.inventory}</TableCell>
-            <TableCell className='text-white'>{accounts.length}</TableCell>
+            <TableCell className="text-white">{wallet.inventory}</TableCell>
+            <TableCell className="text-white">{accounts.length}</TableCell>
           </TableRow>
         ))}
       </TableBody>

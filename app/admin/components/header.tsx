@@ -1,12 +1,9 @@
+/* eslint-disable import/extensions */
 'use client';
 
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import { IoIosSettings } from 'react-icons/io';
-import { IoNotifications } from 'react-icons/io5';
-
-import Wallet from '@/app/components/layout/Wallet';
 
 export default function Header() {
   const [nav, setNav] = useState(false);
@@ -49,17 +46,17 @@ export default function Header() {
 
       <button
         onClick={() => setNav(!nav)}
-        className="z-10 cursor-pointer pr-4 text-gray-500 md:hidden"
+        className="z-10 cursor-pointer pr-4 md:hidden"
       >
         {nav ? <FaTimes size={30} /> : <FaBars size={30} />}
       </button>
 
       {nav ? (
-        <ul className="absolute left-0 top-0 z-[1] flex h-screen w-full flex-col justify-center bg-gradient-to-b from-[#060B26] to-gray-800 p-2 ">
+        <ul className="absolute left-0 top-0 z-[1] flex h-screen w-full flex-col justify-center bg-gradient-to-b from-[#060B26] p-2">
           {links.map(({ id, link, path }) => (
             <li
               key={id}
-              className="mb-2 cursor-pointer rounded-3xl bg-purple-700 p-3 px-4 py-6 text-center text-2xl font-medium capitalize hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+              className="mb-2 cursor-pointer rounded-3xl p-3 px-4 py-6 text-center text-2xl font-medium capitalize"
             >
               <Link onClick={() => setNav(!nav)} href={path}>
                 {link}

@@ -24,7 +24,7 @@ export const CalculatorProvider = ({
   const price =
     prices && traffic && limit
       ? parseInt(limit, 10) * parseInt(prices.limit, 10) +
-          parseInt(traffic, 10) * parseInt(prices.traffic, 10) +
+        parseInt(traffic, 10) * parseInt(prices.traffic, 10) +
         compareDates(date, new Date().toLocaleDateString('en')) *
           parseInt(prices.date, 10)
       : 0;

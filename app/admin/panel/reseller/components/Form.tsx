@@ -1,23 +1,23 @@
 'use client';
 import { Button, Input } from '@nextui-org/react';
 import React from 'react';
+import { useFormState } from 'react-dom';
 
 import { Card } from '@/app/components/shared/Card';
 
 import { editReseller } from '../actions/editReseller';
-import { useFormState } from 'react-dom';
 
 const initialState = {
   message: '',
 };
 
-export default function Form({data}:any) {
-  const [state, formAction] = useFormState(editReseller, initialState);
+export default function Form({ data }: any) {
+  const [_, formAction] = useFormState(editReseller, initialState);
   return (
     <Card>
       <form action={formAction}>
         <div className="grid grid-cols-1 gap-x-20 gap-y-14 md:grid-cols-2">
-        <input type="hidden" name="id" value={data._id} />
+          <input type="hidden" name="id" value={data._id} />
           <Input
             className="text-white"
             type="text"
@@ -34,8 +34,6 @@ export default function Form({data}:any) {
             label="نام نماینده"
             name="name"
           />
-
-
         </div>
         <div className="mt-6 grid grid-cols-1  gap-x-20 gap-y-14 md:grid-cols-2">
           <Input

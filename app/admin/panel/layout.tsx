@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import { GoHome } from 'react-icons/go';

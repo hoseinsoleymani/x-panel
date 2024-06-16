@@ -1,12 +1,11 @@
+/* eslint-disable import/extensions */
 import { Switch } from '@nextui-org/react';
 import React from 'react';
-import { BiReset } from 'react-icons/bi';
 import { FaCheck } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
 
 import { Card } from '@/app/components/shared/Card';
 
-import Buttonc from './Buttonc';
 import Infobox from './Infobox';
 
 export default function AccDetails({ amount, used, time, limit }: any) {
@@ -36,7 +35,7 @@ export default function AccDetails({ amount, used, time, limit }: any) {
         <div className="flex flex-row">
           <h1 className="text-sm  text-white md:text-xl">وضعیت اکانت</h1>
           {trafic >= tused && formattedDateb < formattedDatea ? (
-            <Switch 
+            <Switch
               isDisabled
               color="success"
               defaultSelected

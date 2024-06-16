@@ -1,9 +1,12 @@
-import React from 'react';
-import { Label } from '@/app/components/shared';
-import NumberInput from '../../create/components/Input';
 import { DatePicker } from '@nextui-org/date-picker';
-import UserLimitInput from '../../create/components/UserLimitInput';
 import { Button } from '@nextui-org/react';
+import React from 'react';
+
+import { Label } from '@/app/components/shared';
+
+import NumberInput from '../../create/components/Input';
+import UserLimitInput from '../../create/components/UserLimitInput';
+// import Cost from './Cost';
 
 export default function Tamdid() {
   return (
@@ -19,7 +22,7 @@ export default function Tamdid() {
       </div>
 
       <div className="mt-5 flex items-center justify-center">
-        <Cost />
+        {/* <Cost /> */}
 
         <Button color="primary" className="mx-5 max-w-36">
           تمدید اکانت

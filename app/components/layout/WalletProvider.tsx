@@ -5,7 +5,7 @@ import { createContext, useContext, useMemo, useState } from 'react';
 
 import type { NavProps } from './Nav';
 
-const WalletContext = createContext({});
+const WalletContext = createContext<any>({});
 
 export const useWalletContextProvider = () => useContext(WalletContext);
 

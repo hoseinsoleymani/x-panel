@@ -1,10 +1,10 @@
+/* eslint-disable fp/no-let */
 import { Input } from '@nextui-org/react';
 import { redirect } from 'next/navigation';
 
 import User from '@/app/api/models/user';
 
 import Form from '../components/Form';
-
 
 export default async function Page({ params }: { params: { id: string } }) {
   let userData;

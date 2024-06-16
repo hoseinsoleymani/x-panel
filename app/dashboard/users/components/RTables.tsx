@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-shadow */
+/* eslint-disable import/extensions */
 'use client';
 import {
   Button,
@@ -25,9 +27,9 @@ export default function RTables({ data }: any) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const { Canvas } = useQRCode();
   const [selectedData, setSelectedData] = useState('');
-  const handleButtonClick = (data) => {
+
+  const handleButtonClick = (data: any) => {
     setSelectedData(data);
-    console.log(selectedData);
   };
 
   return (
@@ -35,28 +37,43 @@ export default function RTables({ data }: any) {
       <Table removeWrapper aria-label="Example static collection table">
         <TableHeader>
           <TableColumn
-            className="md:text-lg bg-white"
+            className="bg-white md:text-lg"
             style={{ borderRadius: '0 10px 10px 0', textAlign: 'start' }}
           >
             وضعیت
           </TableColumn>
-          <TableColumn className="md:text-lg bg-white" style={{ textAlign: 'start' }}>
+          <TableColumn
+            className="bg-white md:text-lg"
+            style={{ textAlign: 'start' }}
+          >
             نام اکانت
           </TableColumn>
-          <TableColumn className="md:text-lg bg-white" style={{ textAlign: 'start' }}>
+          <TableColumn
+            className="bg-white md:text-lg"
+            style={{ textAlign: 'start' }}
+          >
             ادیت
           </TableColumn>
-          <TableColumn className="md:text-lg  bg-white" style={{ textAlign: 'start' }}>
+          <TableColumn
+            className="bg-white  md:text-lg"
+            style={{ textAlign: 'start' }}
+          >
             آیدی
           </TableColumn>
-          <TableColumn className="md:text-lg  bg-white" style={{ textAlign: 'start' }}>
+          <TableColumn
+            className="bg-white  md:text-lg"
+            style={{ textAlign: 'start' }}
+          >
             حجم کل (GB)
           </TableColumn>
-          <TableColumn className="md:text-lg  bg-white" style={{ textAlign: 'start' }}>
+          <TableColumn
+            className="bg-white  md:text-lg"
+            style={{ textAlign: 'start' }}
+          >
             حجم مصرفی (GB)
           </TableColumn>
           <TableColumn
-            className="md:text-lg bg-white"
+            className="bg-white md:text-lg"
             style={{ borderRadius: '10px 0 0 10px', textAlign: 'start' }}
           >
             لینک اتصال
@@ -66,7 +83,7 @@ export default function RTables({ data }: any) {
           {data.map(({ amount, accountName, id, used, token }: any) => {
             const usedNumber = parseFloat(used);
             const amounts = parseFloat(amount);
-            const result = (usedNumber / 1073741824).toFixed(3);
+            const result = Number((usedNumber / 1073741824).toFixed(3));
             return (
               <TableRow key="1">
                 <TableCell>
@@ -80,7 +97,7 @@ export default function RTables({ data }: any) {
                     </Chip>
                   )}
                 </TableCell>
-                <TableCell className='text-white'>{accountName}</TableCell>
+                <TableCell className="text-white">{accountName}</TableCell>
                 <TableCell>
                   <button className="mx-3 rounded-lg bg-[#415FEF] p-2 text-2xl ">
                     <Link href={`/dashboard/user/${id}`}>
@@ -88,9 +105,9 @@ export default function RTables({ data }: any) {
                     </Link>
                   </button>
                 </TableCell>
-                <TableCell className='text-white'>{id}</TableCell>
-                <TableCell className='text-white'>{amount}</TableCell>
-                <TableCell className='text-white'>{result}</TableCell>
+                <TableCell className="text-white">{id}</TableCell>
+                <TableCell className="text-white">{amount}</TableCell>
+                <TableCell className="text-white">{result}</TableCell>
                 <TableCell>
                   <Button
                     onClick={() => handleButtonClick(token)}
@@ -114,7 +131,7 @@ export default function RTables({ data }: any) {
                 لینک اتصال{' '}
               </ModalHeader>
               <ModalBody>
-                <div className="q flex flex-col items-center justify-center">
+                <div className="flex flex-col items-center justify-center">
                   <span className="rounded-lg bg-[#17c964] p-2 text-black">
                     {selectedData
                       ? `https://sub.domain.com/sub/${selectedData}`
@@ -133,8 +150,8 @@ export default function RTables({ data }: any) {
                   ) : null}
                 </div>
               </ModalBody>
-              <ModalFooter >
-                <Button  color="danger" variant="light" onPress={onClose}>
+              <ModalFooter>
+                <Button color="danger" variant="light" onPress={onClose}>
                   بستن
                 </Button>
               </ModalFooter>

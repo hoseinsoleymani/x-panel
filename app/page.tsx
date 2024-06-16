@@ -1,3 +1,3 @@
 export default function Home() {
-  return <Redirect />;
+  return <div />;
 }

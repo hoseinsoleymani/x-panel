@@ -18,15 +18,15 @@ export default function Form() {
         <h2>Login</h2>
         <div className="input">
           <div className="inputBox">
-            <label>ایمیل</label>
+            <label htmlFor="email">ایمیل</label>
             <input type="text" name="email" placeholder="example@test.com" />
           </div>
           <div className="inputBox">
-            <label>رمز</label>
+            <label htmlFor="password">رمز</label>
             <input type="password" name="password" placeholder="*****" />
           </div>
 
-          <div className="my-2 text-red-500">{state?.message}</div>
+          <div className="my-2">{state?.message}</div>
           <div className="inputBox">
             <SubmitButton />
           </div>

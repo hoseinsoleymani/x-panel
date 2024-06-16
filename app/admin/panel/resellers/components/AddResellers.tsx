@@ -20,7 +20,7 @@ const initialState = {
   message: '',
 };
 
-export default function AddResellers({ balance }: any) {
+export default function AddResellers() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [state, formAction] = useFormState(createReseller, initialState);
 

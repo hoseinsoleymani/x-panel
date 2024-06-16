@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+/* eslint-disable @typescript-eslint/no-empty-function */
 import React from 'react';
 import type { Props } from 'react-apexcharts';
 import Chart from 'react-apexcharts';
@@ -14,7 +16,7 @@ export function Steam() {
     },
   ];
 
-  const options: Props['options'] = {
+  const options: any = {
     chart: {
       type: 'area',
       animations: {
@@ -53,7 +55,6 @@ export function Steam() {
     yaxis: {
       labels: {
         style: {
-          // hsl(var(--nextui-content1-foreground))
           colors: '#fff',
         },
       },
@@ -76,11 +77,7 @@ export function Steam() {
     markers: false,
   };
 
-  const handleReset = () => {
-    setState((prevState) => ({
-      ...prevState,
-    }));
-  };
+  const handleReset = () => {};
   handleReset;
 
   return (

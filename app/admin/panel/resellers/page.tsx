@@ -1,3 +1,4 @@
+/* eslint-disable fp/no-let */
 import { cookies as cookiesReq } from 'next/headers';
 import { redirect } from 'next/navigation';
 import React from 'react';

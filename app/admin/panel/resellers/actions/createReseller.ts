@@ -1,8 +1,8 @@
 'use server';
 import bcrypt from 'bcryptjs';
+import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
-import { revalidatePath } from 'next/cache'
 
 import dbConnect from '@/app/api/connect-db';
 import User from '@/app/api/models/user';
@@ -29,9 +29,10 @@ export const createReseller = withValidation(
 
     try {
       const data = await User.findOne({ email });
+
       if (data === null) {
         const hashedPassword = await bcrypt.hash(password, 10);
-        const addStaus = await User.create({
+        await User.create({
           email,
           password: hashedPassword,
           name,
@@ -43,7 +44,7 @@ export const createReseller = withValidation(
             limit: userPrice,
           },
         });
-        revalidatePath('/admin/panel/resellers')
+        revalidatePath('/admin/panel/resellers');
       } else {
         return {
           message: 'این ایمیل وجود دارد',

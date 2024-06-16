@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable fp/no-let */
 import mysql from 'mysql2/promise';
 import { cookies as cookiesReq } from 'next/headers';
@@ -17,19 +18,19 @@ import type { Setting as SettingT } from '../components/Form';
 import Qr from '../components/Qr';
 import Span from '../components/Span';
 
-export default async function Page({ params }: { params: { id: string } }) {
-  let data = '';
+export default async function Page({ params }: { params: { id: any } }) {
+  let data: any = '';
   let price;
-  let defaultSettings;
+  let defaultSettings: any;
 
   try {
     const token = cookiesReq().get('token');
     if (!token) return redirect('/auth/login');
 
-    const userData = await verifyToken<{ email: string }>(token.value);
+    const userData = await verifyToken<any>(token.value);
     if (!userData) return;
     const { accounts, prices } = await User.findOne({ email: userData.email });
-    const account = accounts.some((account) => account.id === params.id);
+    const account = accounts.some((account: any) => account.id === params.id);
 
     const defaultSettingsResponse = await Setting.findOne<SettingT>();
 
@@ -49,7 +50,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       database: process.env.DB_NAME,
     });
 
-    const [rows, fields] = await connection.execute(
+    const [rows, _]: any = await connection.execute<any>(
       `SELECT id,username ,iplimit, token, total_data_used , transfer_enable, expire_in FROM user WHERE id = '${params.id}'`,
     );
     data = rows[0];
@@ -67,11 +68,11 @@ export default async function Page({ params }: { params: { id: string } }) {
           <div className="grid grid-cols-1 items-center gap-16 sm:grid-cols-2 lg:grid-cols-3">
             <div className="text-xs">
               <Span className="bg-white text-black">
-                {`${process.env.NEXT_PUBLIC_SUB}${data.token}`}
+                {`${process.env.NEXT_PUBLIC_SUB ?? ''}${data.token}`}
               </Span>
             </div>
 
-            <Qr data={`${process.env.NEXT_PUBLIC_SUB}${data.token}`} />
+            <Qr data={`${process.env.NEXT_PUBLIC_SUB ?? ''}${data.token}`} />
           </div>
         </Card>
 

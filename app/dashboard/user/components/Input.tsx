@@ -20,10 +20,10 @@ const Inputnm = () => {
           type="button"
           id="decrement-button"
           data-input-counter-decrement="bedrooms-input"
-          className="h-11 rounded-s-lg border border-gray-300 bg-gray-100 p-3 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+          className="border-gray-300 bg-gray-100 hover:bg-gray-200 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 h-11 rounded-s-lg border p-3 focus:outline-none focus:ring-2"
         >
           <svg
-            className="size-3 text-gray-900 dark:text-white"
+            className="text-gray-900 size-3 dark:text-white"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -45,12 +45,12 @@ const Inputnm = () => {
           data-input-counter-min="1"
           data-input-counter-max="5"
           aria-describedby="helper-text-explanation"
-          className="block h-11 w-full border-x-0 border-gray-300 bg-gray-50 pb-6 text-center text-sm font-medium text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+          className="border-gray-300 bg-gray-50 text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 block h-11 w-full border-x-0 pb-6 text-center text-sm font-medium dark:text-white"
           placeholder=""
           value={value}
           onChange={(e) => setValue(Number(e.target.value))}
         />
-        <div className="absolute bottom-1  flex -translate-x-1/2 items-center space-x-1 text-xs text-gray-400 rtl:translate-x-1/2 rtl:space-x-reverse">
+        <div className="text-gray-400 absolute  bottom-1 flex -translate-x-1/2 items-center space-x-1 text-xs rtl:translate-x-1/2 rtl:space-x-reverse">
           <span>GB</span>
         </div>
         <button
@@ -58,10 +58,10 @@ const Inputnm = () => {
           type="button"
           id="increment-button"
           data-input-counter-increment="bedrooms-input"
-          className="h-11 rounded-e-lg border border-gray-300 bg-gray-100 p-3 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+          className="border-gray-300 bg-gray-100 hover:bg-gray-200 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 h-11 rounded-e-lg border p-3 focus:outline-none focus:ring-2"
         >
           <svg
-            className="size-3 text-gray-900 dark:text-white"
+            className="text-gray-900 size-3 dark:text-white"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -79,7 +79,7 @@ const Inputnm = () => {
       </div>
       <p
         id="helper-text-explanation"
-        className="mt-2 text-sm text-gray-500 dark:text-gray-400"
+        className="text-gray-500 dark:text-gray-400 mt-2 text-sm"
       >
         بر اساس گیگابایت وارد کنید
       </p>

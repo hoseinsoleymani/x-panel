@@ -1,17 +1,19 @@
+/* eslint-disable @typescript-eslint/no-shadow */
 import { Input } from '@nextui-org/react';
 import React from 'react';
 
 import { Label } from '../../../components/shared';
 
 const AccountName = () => {
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = React.useState('');
 
-  const validateEmail = (value) => value.match(/^[a-zA-Z]{3,}[a-zA-Z0-9]*$/i);
+  const validateEmail = (value: any) =>
+    value.match(/^[a-zA-Z]{3,}[a-zA-Z0-9]*$/i);
 
   const isInvalid = React.useMemo(() => {
-    if (value === "") return false;
+    if (value === '') return false;
 
-    return validateEmail(value) ? false : true;
+    return !validateEmail(value);
   }, [value]);
   return (
     <div>
